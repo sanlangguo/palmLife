@@ -20,7 +20,7 @@
   <!-- 快速操作数据库指引 -->
 
   <!-- 简介 -->
-  <view class="guide" wx:if="{{step === 1}}">
+  <view class="guide">
     <text class="headline">示例介绍</text>
     <text class="p">1. 以计数器为例，在此演示如何操作数据库</text>
     <text class="p">2. 数据库操作大多需要用户 openid，需先配置好 login 云函数，如已配置好，点击下一步，获取用户 openid 并开始我们的指引</text>
@@ -30,7 +30,7 @@
   </view>
 
   <!-- 新建集合 -->
-  <view class="guide" wx:if="{{step === 2}}">
+  <view class="guide">
     <text class="headline">新建集合</text>
     <text class="p">1. 打开云开发控制台，进入到数据库管理页</text>
     <image class="image1" src="../../images/console-entrance.png" mode="aspectFit"></image>
@@ -46,7 +46,7 @@
   </view>
 
   <!-- 新增记录 -->
-  <view class="guide" wx:if="{{step === 3}}">
+  <view class="guide" >
     <text class="headline">新增记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onAdd 方法</text>
     <text class="p">2. 把注释掉的代码解除注释</text>
@@ -71,7 +71,7 @@
   </view>
 
   <!-- 查询记录 -->
-  <view class="guide" wx:if="{{step === 4}}">
+  <view class="guide">
     <text class="headline">查询记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onQuery 方法</text>
     <text class="p">2. 把注释掉的代码解除注释，onQuery 方法会在下方按钮被点击时触发</text>
@@ -87,7 +87,7 @@
   </view>
 
   <!-- 更新记录 -->
-  <view class="guide" wx:if="{{step === 5}}">
+  <view class="guide">
     <text class="headline">更新记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onCounterInc 和 onCounterDec 方法</text>
     <text class="p">2. 把注释掉的代码解除注释</text>
@@ -106,7 +106,7 @@
   </view>
 
   <!-- 删除记录 -->
-  <view class="guide" wx:if="{{step === 6}}">
+  <view class="guide">
     <text class="headline">删除记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onRemove 方法</text>
     <text class="p">2. 把注释掉的代码解除注释</text>
@@ -121,7 +121,7 @@
   </view>
 
   <!-- 结语 -->
-  <view class="guide" wx:if="{{step === 7}}">
+  <view class="guide">
     <text class="headline">完成指引 !</text>
     <text class="p">恭喜你，至此已完成数据库操作入门基础，可以点击调试器中的链接，查看详尽的数据库文档</text>
 
