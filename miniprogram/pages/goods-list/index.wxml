@@ -1,0 +1,7 @@
+<view>
+  <van-card wx:for="{{goodList}}" wx:key="{{item._id}}" lazy-load="true" tag="{{item.tag}}" price="{{item.price}}" origin-price="15" desc="{{item.desc}}" currency="¥" title="{{item.name}}" thumb="{{item.coverImg}}">
+    <view slot="footer" class="van-card__footer">
+      <van-button size="mini" bind:click="addCart" data-id="{{item._id}}" custom-class='button'>添加购物车</van-button>
+    </view>
+  </van-card>
+</view>

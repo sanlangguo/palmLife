@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "van-checkbox": "/miniprogram_npm/@vant/weapp/checkbox/index",
+    "van-checkbox-group": "/miniprogram_npm/@vant/weapp/checkbox-group/index",
+    "van-submit-bar": "/miniprogram_npm/@vant/weapp/submit-bar/index",
+    "van-card": "/miniprogram_npm/@vant/weapp/card/index",
+    "van-swipe-cell": "/miniprogram_npm/@vant/weapp/swipe-cell/index"
+  }
+}

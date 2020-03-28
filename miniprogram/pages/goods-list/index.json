@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "商品列表",
+  "usingComponents": {
+    "van-card": "/miniprogram_npm/@vant/weapp/card/index",
+    "van-button": "/miniprogram_npm/@vant/weapp/button/index"
+  }
+}
