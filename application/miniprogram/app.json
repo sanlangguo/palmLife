@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/my/index",
+    "pages/cart/index",
+    "pages/order/index",
+    "pages/goods-list/index",
+    "pages/index/index",
+    "pages/test/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "汇光皇后卤味",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#000",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/home-hover.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/goods-list/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/card-hover.png",
+        "iconPath": "images/card.png",
+        "pagePath": "pages/cart/index",
+        "text": "购物车"
+      },
+      {
+        "selectedIconPath": "images/order-hover.png",
+        "iconPath": "images/order.png",
+        "pagePath": "pages/order/index",
+        "text": "订单"
+      },
+      {
+        "selectedIconPath": "images/user-hover.png",
+        "iconPath": "images/user.png",
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+.button {
+  margin-right: 5px;
+  border: 1px solid #ebedf0;
+  border-radius: 20rpx;
+  width: 146rpx;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: -40rpx;
+  line-height: 40rpx;
+}
+
+.van-card__footer {
+  margin-top: 5px;
+}

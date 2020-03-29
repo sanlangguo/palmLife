@@ -1,0 +1,13 @@
+<view>
+  <van-swipe-cell  wx:for="{{ goods }}" wx:key="{{item._id}}" right-width="{{ 65 }}" left-width="{{ 65 }}">
+    <van-cell-group>
+      <van-checkbox-group class="card-goods" value="{{ checkedGoods }}" bind:change="onChange">
+        <van-checkbox class="card-goods__item"wx:key="{{ item.id }}" name="{{ item.id }}">
+          <van-card title="{{ item.title }}" desc="{{ item.desc }}" num="{{ item.num }}" price="{{ item.formatPrice }}" thumb="{{ item.thumb }}" />
+        </van-checkbox>
+      </van-checkbox-group>
+    </van-cell-group>
+    <view slot="right" bindtap="deleteGood" data-id="{{item._id}}">删除</view>
+  </van-swipe-cell>
+  <van-submit-bar price="{{ totalPrice }}" disabled="{{ !checkedGoods.length }}" button-text="{{ submitBarText }}" bind:submit="onSubmit" />
+</view>
