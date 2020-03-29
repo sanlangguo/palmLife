@@ -1,6 +1,6 @@
 <view>
   <view class='user'>
-    <image src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+    <image src="{{userInfo.avatarUrl}}"></image>
   </view>
   <van-cell-group border="true" custom-class="user-group">
     <van-cell icon="records" title="我的订单" is-link />
