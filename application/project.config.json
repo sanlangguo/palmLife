@@ -23,7 +23,6 @@
 	"libVersion": "2.8.1",
 	"appid": "wx785dd6dd751daf79",
 	"projectname": "palmLife",
-	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"cloudfunctionTemplateRoot": "",
 	"watchOptions": {
@@ -33,6 +32,8 @@
 		"hidedInDevtools": []
 	},
 	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

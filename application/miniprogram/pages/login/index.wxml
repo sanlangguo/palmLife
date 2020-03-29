@@ -1,0 +1,5 @@
+
+<van-notify id="van-notify" />
+<view class='login-btn'>
+  <van-button type="primary" open-type="getUserInfo" bind:getuserinfo="getUserInfo">点击授权</van-button>
+</view>

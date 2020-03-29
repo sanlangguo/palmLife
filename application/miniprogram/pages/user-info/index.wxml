@@ -1,0 +1,34 @@
+<van-cell-group>
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="姓名"
+    placeholder="请输入姓名"
+    required
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="电话"
+    placeholder="请输入电话"
+    required
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="地区"
+    placeholder="请选择地区"
+    required
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="详细地区"
+    placeholder="请输入详细地区"
+    required
+    border="{{ false }}"
+  />
+</van-cell-group>

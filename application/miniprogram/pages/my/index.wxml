@@ -1,9 +1,10 @@
 <view>
   <view class='user'>
-    <image src="{{userInfo.avatarUrl}}"></image>
+    <image src="{{userInfo.avatarUrl}}" data-url="user-info" bindtap="login"></image>
   </view>
   <van-cell-group border="true" custom-class="user-group">
-    <van-cell icon="records" title="我的订单" is-link />
-    <van-cell icon="user-o" title="个人信息" is-link />
+    <van-cell icon="records" title="订单" is-link data-url="order" bindtap="login" />
+    <van-cell icon="shopping-cart-o" title="购物车" is-link data-url="cart" bindtap="login" />
+    <van-cell icon="user-o" title="收货地址" is-link data-url="user-info" bindtap="login" />
   </van-cell-group>
 </view>
