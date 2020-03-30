@@ -1,34 +1,43 @@
 <van-cell-group>
   <van-field
     value="{{ password }}"
-    type="password"
+    type="text"
     label="姓名"
-    placeholder="请输入姓名"
+    placeholder="收货人姓名"
     required
+    clearable
+    error-message='请输入姓名'
     border="{{ false }}"
   />
   <van-field
     value="{{ password }}"
-    type="password"
+    type="number"
     label="电话"
-    placeholder="请输入电话"
+    placeholder="收货人电话"
     required
+    clearable
+    error-message='手机号格式错误'
     border="{{ false }}"
   />
   <van-field
     value="{{ password }}"
-    type="password"
+    type="text"
     label="地区"
-    placeholder="请选择地区"
+    placeholder="选择省/市/区"
     required
+    error-message='选择省/市/区'
     border="{{ false }}"
   />
   <van-field
     value="{{ password }}"
-    type="password"
+    type="text"
     label="详细地区"
-    placeholder="请输入详细地区"
+    placeholder="街道门牌，楼层房间号等信息"
     required
+    clearable
+    error-message='请输入正确的收货地址'
     border="{{ false }}"
   />
 </van-cell-group>
+
+<button class='save-btn' bindtap="save">保存并使用</button>

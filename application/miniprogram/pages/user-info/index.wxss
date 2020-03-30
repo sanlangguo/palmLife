@@ -1,1 +1,16 @@
-/* pages/user-info/index.wxss */
+page {
+  background-color: #f2f3f5;
+}
+
+.save-btn {
+  width: 92%;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  background-color: #eb544d;
+  color: #fff;
+  letter-spacing: 2rpx;
+  margin-top: 80rpx;
+  border: none;
+  border-radius: 2rpx;
+}

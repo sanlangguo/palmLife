@@ -8,6 +8,9 @@ const API = {
   },
   async insetUserInfo(data) {
     return await db.collection('user').add({data});
+  },
+  async getAreas() {
+    return await db.collection('area').get();
   }
 };
 
