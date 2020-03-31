@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "编辑地址",
   "usingComponents": {
-    "van-field": "/miniprogram_npm/@vant/weapp/field/index"
+    "van-field": "/miniprogram_npm/@vant/weapp/field/index",
+    "van-area": "/miniprogram_npm/@vant/weapp/area/index",
+    "van-popup": "/miniprogram_npm/@vant/weapp/popup/index"
   }
 }

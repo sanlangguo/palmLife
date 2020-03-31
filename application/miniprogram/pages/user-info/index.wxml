@@ -21,12 +21,13 @@
   />
   <van-field
     value="{{ password }}"
-    type="text"
+    type='text'
     label="地区"
-    placeholder="选择省/市/区"
+    placeholder="选择省|市|区"
     required
-    error-message='选择省/市/区'
+    error-message='选择省市/区'
     border="{{ false }}"
+    bind:focus="selectArea"
   />
   <van-field
     value="{{ password }}"
@@ -41,3 +42,12 @@
 </van-cell-group>
 
 <button class='save-btn' bindtap="save">保存并使用</button>
+
+<van-popup
+  show="{{ showArea }}"
+  position="bottom"
+  custom-style="height: 50%;"
+  bind:close="onClose"
+>
+ <van-area area-list="{{ areaList }}" bind:cancel="selectArea" bind:confirm="confirmArea" value="410184" />
+</van-popup>
