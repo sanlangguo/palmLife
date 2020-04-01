@@ -1,0 +1,16 @@
+.user {
+  height: 80px;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.user image {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.user-group {
+  margin-top: 20px;
+}

@@ -1,0 +1,53 @@
+<van-cell-group>
+  <van-field
+    value="{{ password }}"
+    type="text"
+    label="姓名"
+    placeholder="收货人姓名"
+    required
+    clearable
+    error-message='请输入姓名'
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ password }}"
+    type="number"
+    label="电话"
+    placeholder="收货人电话"
+    required
+    clearable
+    error-message='手机号格式错误'
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ password }}"
+    type='text'
+    label="地区"
+    placeholder="选择省|市|区"
+    required
+    error-message='选择省市/区'
+    border="{{ false }}"
+    bind:focus="selectArea"
+  />
+  <van-field
+    value="{{ password }}"
+    type="text"
+    label="详细地区"
+    placeholder="街道门牌，楼层房间号等信息"
+    required
+    clearable
+    error-message='请输入正确的收货地址'
+    border="{{ false }}"
+  />
+</van-cell-group>
+
+<button class='save-btn' bindtap="save">保存并使用</button>
+
+<van-popup
+  show="{{ showArea }}"
+  position="bottom"
+  custom-style="height: 50%;"
+  bind:close="onClose"
+>
+ <van-area area-list="{{ areaList }}" bind:cancel="selectArea" bind:confirm="confirmArea" value="410184" />
+</van-popup>
