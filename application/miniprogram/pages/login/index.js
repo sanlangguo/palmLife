@@ -52,6 +52,7 @@ Page({
     } = res.result;
     const userInfo = Object.assign({}, e.detail.userInfo)
     userInfo.openid = openid;
+    userInfo.areaCode = '410184';
     await API.insetUserInfo(userInfo);
     wx.setStorageSync('userInfo', userInfo);
     wx.hideLoading({
