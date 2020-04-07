@@ -4,11 +4,11 @@
       <van-checkbox-group class="card-goods" value="{{ checkedGoods }}" bind:change="onChange">
         <van-checkbox class="card-goods__item" wx:key="{{ item.id }}" name="{{ item.id }}">
           <van-card title="{{ item.title }}" price-class='price-with' desc="{{ item.desc }}" price="{{ item.formatPrice }}" thumb="{{ item.thumb }}">
-          <view slot="footer" class="van-card__footer cart-action">
-            <view bindtap="reduce" data-id="{{item}}">-</view>
-            <view>{{item.num}}</view>
-            <view bindtap="increase" data-id="{{item}}">+</view>
-          </view>
+            <view slot="footer" class="van-card__footer cart-action">
+              <view catchtap="reduce" data-id="{{item}}">-</view>
+              <view>{{item.num}}</view>
+              <view catchtap="increase" data-id="{{item}}">+</view>
+            </view>
           </van-card>
         </van-checkbox>
       </van-checkbox-group>

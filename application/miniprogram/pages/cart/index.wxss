@@ -43,7 +43,6 @@
 }
 
 .cart-action {
-  background: red;
   height: 52rpx;
   width: 120rpx;
   display: flex;
@@ -53,10 +52,10 @@
   margin-top: -52rpx;
   border: 1px solid #ccc;
   color: #a5acb1;
-  z-index: 1;
 }
 
 .cart-action view {
+  z-index: 2;
   flex: 1;
   text-align: center;
 }
