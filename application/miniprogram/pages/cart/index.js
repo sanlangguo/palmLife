@@ -74,7 +74,22 @@ Page({
     });
   },
 
-  deleteGood() {
-    console.log('2222')
+  /**
+   * 减少
+   */
+  reduce() {
+    console.log('2')
+  },
+
+  /**
+   * 增加
+   */
+  increase() {
+    console.log('1')
+  },
+
+
+  deleteGood(e) {
+    console.log('2222', e)
   }
 });

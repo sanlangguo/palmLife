@@ -27,3 +27,41 @@
 .card-goods__item .van-card__price {
   color: #f44;
 }
+
+.van-swipe-cell__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f44;
+  color: #fff;
+  font-size: 22rpx;
+  width: 120rpx;
+}
+
+.price-with {
+  color: aqua;
+}
+
+.cart-action {
+  background: red;
+  height: 52rpx;
+  width: 120rpx;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  float: right;
+  margin-top: -52rpx;
+  border: 1px solid #ccc;
+  color: #a5acb1;
+  z-index: 1;
+}
+
+.cart-action view {
+  flex: 1;
+  text-align: center;
+}
+
+.cart-action view:nth-child(2) {
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}

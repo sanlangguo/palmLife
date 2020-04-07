@@ -23,9 +23,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    this.setData({
-      userInfo: wx.getStorageSync('userInfo')
-    })
+    const userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      this.setData({
+        userInfo: wx.getStorageSync('userInfo')
+      })
+    } else {
+      wx.reLaunch({
+        url: '../login/index'
+      })
+    }
+    
   },
 
   /**
