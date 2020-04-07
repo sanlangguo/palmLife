@@ -1,6 +1,6 @@
 <van-cell-group>
   <van-field
-    value="{{ password }}"
+    value="{{ userInfo.name }}"
     type="text"
     label="姓名"
     placeholder="收货人姓名"
@@ -8,9 +8,11 @@
     clearable
     error-message='请输入姓名'
     border="{{ false }}"
+    bind:change="onChange"
+    data-type='name'
   />
   <van-field
-    value="{{ password }}"
+    value="{{ userInfo.phone }}"
     type="number"
     label="电话"
     placeholder="收货人电话"
@@ -18,9 +20,11 @@
     clearable
     error-message='手机号格式错误'
     border="{{ false }}"
+    bind:change="onChange"
+    data-type='phone'
   />
   <van-field
-    value="{{ password }}"
+    value="{{ userInfo.receiveCity }}"
     type='text'
     label="地区"
     placeholder="选择省|市|区"
@@ -30,7 +34,7 @@
     bind:focus="selectArea"
   />
   <van-field
-    value="{{ password }}"
+    value="{{ userInfo.receiveDetailedAddress }}"
     type="text"
     label="详细地区"
     placeholder="街道门牌，楼层房间号等信息"
@@ -38,6 +42,8 @@
     clearable
     error-message='请输入正确的收货地址'
     border="{{ false }}"
+    bind:change="onChange"
+    data-type='receiveDetailedAddress'
   />
 </van-cell-group>
 
@@ -49,5 +55,7 @@
   custom-style="height: 50%;"
   bind:close="onClose"
 >
- <van-area area-list="{{ areaList }}" bind:cancel="selectArea" bind:confirm="confirmArea" value="410184" />
+ <van-area area-list="{{ areaList }}" bind:cancel="selectArea" bind:confirm="confirmArea" value="{{userInfo.areaCode}}}" />
 </van-popup>
+
+<van-notify id="van-notify" />

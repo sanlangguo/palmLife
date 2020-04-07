@@ -1,9 +1,12 @@
 {
-	"miniprogramRoot": "miniprogram/",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
-		"enhance": false,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -23,7 +26,7 @@
 	"libVersion": "2.8.1",
 	"appid": "wx785dd6dd751daf79",
 	"projectname": "palmLife",
-	"cloudfunctionRoot": "cloudfunctions/",
+	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionTemplateRoot": "",
 	"watchOptions": {
 		"ignore": []
@@ -32,8 +35,6 @@
 		"hidedInDevtools": []
 	},
 	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
