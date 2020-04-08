@@ -25,10 +25,13 @@ const API = {
   async deletCards() {
     return await db.collection('cart').add({data});
   },
-  async getGoodsList() {
-    return await db.collection('goods-list').aggregate().match({
-      _id: ['1', '2'],
-    }).end();
+  async getGoodsList(ids) {
+    return await db.collection('goods-list').where({
+      _id: _.in(ids),
+    }).get();
+  },
+  async getTempFileURL(fileList) {
+    return await wx.cloud.getTempFileURL({ fileList })
   }
 };
 

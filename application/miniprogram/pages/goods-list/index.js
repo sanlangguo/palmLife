@@ -57,7 +57,7 @@ Page({
         delete data.openid;
         delete data._id;
         const goods = data.goods;
-        if (goods.length >=49) {
+        if (goods.length >=20) {
           Notify({ type: 'warning', message: '购物车已经加满啦', duration: 1500 });
         } else {
           const ids = [];
@@ -65,13 +65,13 @@ Page({
           if (ids.includes(gid)) {
             goods.map((item) => {
               if (item.id == gid ) {
-                item.num+=1;
+                item.count+=1;
               }
             });
           } else {
             goods.push({
               id: gid,
-              num: 1
+              count: 1
             })
           }
           const changeCards = await API.changeCards(card.data[0]._id, data);
@@ -81,12 +81,11 @@ Page({
             Notify({ type: 'warning', message: '添加失败请重新添加', duration: 900 });
           }
         }
-        
       } else {
         data.openid = userInfo.openid;
         data.goods = [{
           id: gid,
-          num: 1
+          count: 1
         }];
         const addGoods = await this.addGoods(data);
         if (addGoods._id) {

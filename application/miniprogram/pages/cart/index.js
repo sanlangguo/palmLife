@@ -36,20 +36,7 @@ Page({
 
   },
   async onLoad() {
-    const card = await this.getUserCardList(userInfo.openid);
-    console.log(card, 'card');
-    if (card.data && card.data.length) {
-      const data = JSON.parse(JSON.stringify(card.data[0]));
-      delete data._openid;
-      delete data.openid;
-      delete data._id;
-      const goods = data.goods;
-      goods.map((item) => {
-        
-      });
-    }
     this.getGoodsList();
-
     const { checkedGoods, goods } = this.data;
     const submitBarText = `结算`;
     const totalPrice = goods.reduce(
@@ -69,42 +56,41 @@ Page({
 
 
   /**
-   * 商品列表
+   * 购物车商品列表
    */
   async getGoodsList () {
-    const data = await API.getGoodsList();
-    console.log(data, 'data')
-    return false
-    const db = wx.cloud.database();
-    if (this.data.page === this.data.batchTimes) {
-      return false;
-    }
-    db.collection('goods-list').skip(this.data.page).limit(6).get({ 
-      success: res => {
-        const fileIds = [];
-        if (res.data && res.data.length) {
-          const goodList = res.data;
-          goodList.map(item => {
-            fileIds.push(item.fileId)
-          })
-          wx.cloud.getTempFileURL({
-            fileList: fileIds,
-            success: res => {
-              res.fileList.map(item => {
-                goodList.map(good => {
-                  good.coverImg = item.tempFileURL;
-                })
-              })
-              wx.hideLoading();
-              this.setData({
-                goodList: this.data.goodList.concat(goodList),
-                page: this.data.page+1,
-              })
-            },
+    const card = await this.getUserCardList(userInfo.openid);
+    console.log(card, 'card');
+    if (card.data && card.data.length) {
+      const data = JSON.parse(JSON.stringify(card.data[0]));
+      delete data._openid;
+      delete data.openid;
+      delete data._id;
+      const goods = data.goods;
+      const ids = [];
+      goods.map((item) => {
+        ids.push(item.id)
+      });
+      const goodList = await API.getGoodsList(ids);
+      if (goodList.data && goodList.data.length) {
+        const fileList = [];
+        goodList.data.map(item => fileList.push(item.fileId));
+        const fileUrl = await API.getTempFileURL(fileList);
+        if (fileUrl.fileList && fileUrl.fileList.length) {
+          goodList.data.map((item, index) => {
+            goods[index].coverImg = fileUrl.fileList[index].tempFileURL;
+            goods[index].name = item.name;
+            goods[index].price = item.price;
+            goods[index].originPrice = item.originPrice;
+            goods[index].desc = item.desc;
+            goods[index].unit = item.unit;
+            goods[index].num = item.num;
           })
         }
+        console.log(fileUrl, 'fileUrl')
+        console.log(goods, 'goods----')
       }
-    })
+    }
   },
 
 

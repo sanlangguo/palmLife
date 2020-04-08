@@ -25,7 +25,7 @@
 	"appid": "wx785dd6dd751daf79",
 	"projectname": "palmLife",
 	"cloudfunctionRoot": "cloudfunctions/",
-	"cloudfunctionTemplateRoot": "",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"watchOptions": {
 		"ignore": []
 	},
