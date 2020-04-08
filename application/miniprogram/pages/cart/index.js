@@ -1,3 +1,5 @@
+import API from '../../api/index';
+const userInfo = getApp().globalData.userInfo;
 Page({
   data: {
     checkedGoods: ['1', '2', '3'],
@@ -33,7 +35,21 @@ Page({
     totalPrice: 0,
 
   },
-  onLoad: function () {
+  async onLoad() {
+    const card = await this.getUserCardList(userInfo.openid);
+    console.log(card, 'card');
+    if (card.data && card.data.length) {
+      const data = JSON.parse(JSON.stringify(card.data[0]));
+      delete data._openid;
+      delete data.openid;
+      delete data._id;
+      const goods = data.goods;
+      goods.map((item) => {
+        
+      });
+    }
+    this.getGoodsList();
+
     const { checkedGoods, goods } = this.data;
     const submitBarText = `结算`;
     const totalPrice = goods.reduce(
@@ -50,6 +66,55 @@ Page({
       goods,
     });
   },
+
+
+  /**
+   * 商品列表
+   */
+  async getGoodsList () {
+    const data = await API.getGoodsList();
+    console.log(data, 'data')
+    return false
+    const db = wx.cloud.database();
+    if (this.data.page === this.data.batchTimes) {
+      return false;
+    }
+    db.collection('goods-list').skip(this.data.page).limit(6).get({ 
+      success: res => {
+        const fileIds = [];
+        if (res.data && res.data.length) {
+          const goodList = res.data;
+          goodList.map(item => {
+            fileIds.push(item.fileId)
+          })
+          wx.cloud.getTempFileURL({
+            fileList: fileIds,
+            success: res => {
+              res.fileList.map(item => {
+                goodList.map(good => {
+                  good.coverImg = item.tempFileURL;
+                })
+              })
+              wx.hideLoading();
+              this.setData({
+                goodList: this.data.goodList.concat(goodList),
+                page: this.data.page+1,
+              })
+            },
+          })
+        }
+      }
+    })
+  },
+
+
+  /**
+   * 查询用户购物车
+   */
+  async getUserCardList(openid) {
+    return await API.getCardList(openid);
+  },
+
 
   onChange(event) {
     const { goods } = this.data;

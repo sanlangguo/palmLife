@@ -9,6 +9,8 @@ App({
         traceUser: true,
       })
     }
-    this.globalData = {}
+    this.globalData = {
+      userInfo: wx.getStorageSync('userInfo') || {}
+    }
   }
 })

@@ -12,6 +12,23 @@ const API = {
   },
   async updateUserInfo(uid, data) {
     return await db.collection('user').doc(uid).update({data});
+  },
+  async getCardList(openid) {
+    return await db.collection('cart').where({openid}).get();
+  },
+  async addCards(data) {
+    return await db.collection('cart').add({data});
+  },
+  async changeCards(uid, data) {
+    return await db.collection('cart').doc(uid).update({data});
+  },
+  async deletCards() {
+    return await db.collection('cart').add({data});
+  },
+  async getGoodsList() {
+    return await db.collection('goods-list').aggregate().match({
+      _id: ['1', '2'],
+    }).end();
   }
 };
 
