@@ -2,65 +2,20 @@ import API from '../../api/index';
 const userInfo = getApp().globalData.userInfo;
 Page({
   data: {
-    checkedGoods: ['1', '2', '3'],
-    goods: [
-      {
-        id: '1',
-        title: '进口香蕉',
-        desc: '约250g，2根',
-        price: 200,
-        num: 1,
-        thumb:
-          'https://img.yzcdn.cn/public_files/2017/10/24/2f9a36046449dafb8608e99990b3c205.jpeg',
-      },
-      {
-        id: '2',
-        title: '陕西蜜梨',
-        desc: '约600g',
-        price: 690,
-        num: 10,
-        thumb:
-          'https://img.yzcdn.cn/public_files/2017/10/24/f6aabd6ac5521195e01e8e89ee9fc63f.jpeg',
-      },
-      {
-        id: '3',
-        title: '美国伽力果',
-        desc: '约680g/3个',
-        price: 2680,
-        num: 1,
-        thumb:
-          'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg',
-      },
-    ],
+    checkedGoods: [],
+    goods: [],
     totalPrice: 0,
-
   },
-  async onLoad() {
+
+  onShow() {
     this.getGoodsList();
-    const { checkedGoods, goods } = this.data;
-    const submitBarText = `结算`;
-    const totalPrice = goods.reduce(
-      (total, item) =>
-        total + (checkedGoods.indexOf(item.id) !== -1 ? item.price : 0),
-      0,
-    );
-    goods.forEach(item => {
-      item.formatPrice = (item.price / 100).toFixed(2);
-    });
-    this.setData({
-      totalPrice,
-      submitBarText,
-      goods,
-    });
   },
-
 
   /**
    * 购物车商品列表
    */
   async getGoodsList () {
     const card = await this.getUserCardList(userInfo.openid);
-    console.log(card, 'card');
     if (card.data && card.data.length) {
       const data = JSON.parse(JSON.stringify(card.data[0]));
       delete data._openid;
@@ -87,8 +42,9 @@ Page({
             goods[index].num = item.num;
           })
         }
-        console.log(fileUrl, 'fileUrl')
-        console.log(goods, 'goods----')
+        this.setData({
+          goods
+        })
       }
     }
   },
@@ -101,20 +57,23 @@ Page({
     return await API.getCardList(openid);
   },
 
-
   onChange(event) {
-    const { goods } = this.data;
-    const checkedGoods = event.detail;
-    const totalPrice = goods.reduce(
+    console.log(event, 'event')
+    const { goods, checkedGoods } = this.data;
+    const { id } = event.currentTarget.dataset;
+    if (checkedGoods.includes(id)) {
+      checkedGoods.splice(checkedGoods.findIndex(item => item == id),1);
+    } else {
+      checkedGoods.push(id);
+    }
+    let totalPrice = goods.reduce(
       (total, item) =>
-        total + (checkedGoods.indexOf(item.id) !== -1 ? item.price : 0),
+        total + (checkedGoods.includes(item.id) ? item.originPrice * item.count : 0),
       0,
     );
-    const submitBarText = checkedGoods.length ? `结算` : '结算';
     this.setData({
       checkedGoods,
-      totalPrice,
-      submitBarText,
+      totalPrice: totalPrice.toFixed(2)*100,
     });
   },
 

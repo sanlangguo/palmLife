@@ -1,22 +1,22 @@
 <view>
   <block wx:if="{{ goods.length }}">
-    <van-swipe-cell wx:for="{{ goods }}" wx:key="{{item._id}}" right-width="{{ 65 }}">
+    <van-swipe-cell wx:for="{{ goods }}" wx:key="id" right-width="{{ 65 }}">
       <van-cell-group>
-        <van-checkbox-group class="card-goods" value="{{ checkedGoods }}" bind:change="onChange">
-          <van-checkbox class="card-goods__item" wx:key="{{ item.id }}" name="{{ item.id }}">
-            <van-card title="{{ item.title }}" price-class='price-with' desc="{{ item.desc }}" price="{{ item.formatPrice }}" thumb="{{ item.thumb }}">
+        <van-checkbox-group class="card-goods" value="{{ checkedGoods }}" data-id="{{item.id}}" bind:change="onChange">
+          <van-checkbox class="card-goods__item" wx:key="{{ item.id }}">
+            <van-card price-class='price-with' title="{{ item.name }}" desc="{{ item.unit }}" price="{{ item.originPrice }}" origin-price="{{ item.price }}" thumb="{{ item.coverImg }}">
               <view slot="footer" class="van-card__footer cart-action">
                 <view catchtap="reduce" data-id="{{item}}">-</view>
-                <view>{{item.num}}</view>
+                <view>{{item.count}}</view>
                 <view catchtap="increase" data-id="{{item}}">+</view>
               </view>
             </van-card>
           </van-checkbox>
         </van-checkbox-group>
       </van-cell-group>
-      <view slot="right" bindtap="deleteGood" class='delete-btn' data-id="{{item._id}}">删除</view>
+      <view slot="right" bindtap="deleteGood" class='delete-btn' data-id="{{item.id}}">删除</view>
     </van-swipe-cell>
-    <van-submit-bar price="{{ totalPrice }}" disabled="{{ !checkedGoods.length }}" button-text="{{ submitBarText }}" bind:submit="onSubmit" />
+    <van-submit-bar price="{{ totalPrice }}" disabled="{{ !checkedGoods.length }}" button-text="结算" bind:submit="onSubmit" />
   </block>
   <block wx:else>
     <view>空空</view>
