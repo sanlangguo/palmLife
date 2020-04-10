@@ -5,6 +5,7 @@
     "van-checkbox-group": "/miniprogram_npm/@vant/weapp/checkbox-group/index",
     "van-submit-bar": "/miniprogram_npm/@vant/weapp/submit-bar/index",
     "van-card": "/miniprogram_npm/@vant/weapp/card/index",
-    "van-swipe-cell": "/miniprogram_npm/@vant/weapp/swipe-cell/index"
+    "van-swipe-cell": "/miniprogram_npm/@vant/weapp/swipe-cell/index",
+    "van-notify": "/miniprogram_npm/@vant/weapp/notify/index"
   }
 }

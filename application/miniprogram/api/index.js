@@ -19,11 +19,11 @@ const API = {
   async addCards(data) {
     return await db.collection('cart').add({data});
   },
-  async changeCards(uid, data) {
-    return await db.collection('cart').doc(uid).update({data});
+  async changeCards(id, data) {
+    return await db.collection('cart').doc(id).update({data});
   },
-  async deletCards() {
-    return await db.collection('cart').add({data});
+  async deletCards(id) {
+    return await db.collection('cart').doc(id).remove();
   },
   async getGoodsList(ids) {
     return await db.collection('goods-list').where({

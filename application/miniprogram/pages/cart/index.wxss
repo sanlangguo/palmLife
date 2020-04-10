@@ -1,3 +1,7 @@
+.cart-list {
+  padding-bottom: 150rpx
+}
+
 .card-goods {
   padding: 10px 0;
   background-color: #fff;
@@ -45,7 +49,7 @@
 .cart-action {
   height: 52rpx;
   line-height: 52rpx;
-  width: 120rpx;
+  width: 160rpx;
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
@@ -64,4 +68,28 @@
 .cart-action view:nth-child(2) {
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;
+}
+
+.cart-null {
+  height: 40vh;
+  width: 100%;
+  text-align: center;
+}
+
+.cart-null image {
+  margin-top: 150rpx;
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.cart-null .cart-text {
+  margin-bottom: 10rpx;
+  margin-top: 10rpx;
+  color: #8a8a8a;
+  font-size: 30rpx;
+}
+
+.cart-null .go-cart-text {
+  color: #dbdbdb;
+  font-size: 28rpx;
 }
