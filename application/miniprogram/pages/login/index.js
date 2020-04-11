@@ -21,6 +21,7 @@ Page({
       openid
     } = res.result;
     const userInfo = await API.getUserInfo(openid);
+    console.log(userInfo, 'userInfo')
     if (userInfo.data && userInfo.data.length) {
       wx.setStorageSync('userInfo', userInfo.data[0]);
       this.selectSuccessCallBack();

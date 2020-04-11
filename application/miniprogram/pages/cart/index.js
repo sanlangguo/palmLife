@@ -1,6 +1,6 @@
 import API from '../../api/index';
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
-const userInfo = getApp().globalData.userInfo;
+const userInfo = wx.getStorageSync('userInfo') || {};
 Page({
   data: {
     checkedGoods: [],
@@ -10,6 +10,9 @@ Page({
   },
 
   onShow() {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.getGoodsList();
   },
 
@@ -62,10 +65,12 @@ Page({
       }
     } else {
       this.setData({
+        checkedGoods: [],
         goods: [],
-        cart: []
+        cart: [],
       })
     }
+    wx.hideLoading();
   },
 
   /**

@@ -3,7 +3,7 @@
 		<van-cell-group>
 			<van-checkbox-group class="card-goods" value="{{ checkedGoods }}" data-id="{{item.id}}" bind:change="onChange">
 				<van-checkbox class="card-goods__item" name="{{item.id}}" wx:key="{{ item.id }}">
-					<van-card price-class='price-with' title="{{ item.name }}" desc="{{ item.unit }}" price="{{ item.originPrice }}" origin-price="{{ item.price }}" thumb="{{ item.coverImg }}">
+					<van-card price-class='price-with' title="{{ item.name }}" desc="{{ item.unit }}" price="{{ item.originPrice }}" thumb-link="{{'../goods-detail/index?id='+item.id}}" origin-price="{{ item.price }}" thumb="{{ item.coverImg }}">
 						<view slot="footer" class="van-card__footer cart-action">
 							<view catchtap="editCart" data-id="{{item.id}}" data-action='reduce'>-</view>
 							<view>{{item.count}}</view>

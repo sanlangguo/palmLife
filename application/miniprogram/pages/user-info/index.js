@@ -23,6 +23,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     const userInfo = wx.getStorageSync('userInfo');
     if (userInfo) {
       this.setData({
@@ -33,14 +36,13 @@ Page({
         url: '../login/index'
       })
     }
-    
+    wx.hideLoading();
   },
 
   /**
    * 选择地址
    */
   confirmArea(e) {
-    console.log(e, '--------')
     let receiveCity = '';
     const detail = e.detail.values;
     const areaCode = detail[detail.length-1].code;

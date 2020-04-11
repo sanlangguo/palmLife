@@ -1,7 +1,6 @@
 import API from '../../api/index';
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
-const userInfo = getApp().globalData.userInfo;
 Page({
 
   /**
@@ -48,7 +47,8 @@ Page({
    */
   async addCart(e) {
     const gid = e.currentTarget.dataset.id;
-    if (userInfo) {
+    const userInfo = wx.getStorageSync('userInfo');
+    if (userInfo && userInfo.openid) {
       const card = await this.getUserCardList(userInfo.openid);
       let data = {};
       if (card.data && card.data.length) {
