@@ -16,7 +16,7 @@ Page({
   /**
    * 购物车商品列表
    */
-  async getGoodsList() {
+  async getGoodsList(cartId) {
     const card = await this.getUserCardList(userInfo.openid);
     if (card.data && card.data.length) {
       const data = JSON.parse(JSON.stringify(card.data[0]));
@@ -44,7 +44,17 @@ Page({
             goods[index].num = item.num;
           })
         }
-        console.log(card.data[0], 'card.data[0]')
+        const checkedGoods = this.data.checkedGoods;
+        if (cartId || checkedGoods.length>0) {
+          let totalPrice = goods.reduce(
+            (total, item) =>
+            total + (checkedGoods.includes(item.id) ? item.originPrice * item.count : 0),
+            0,
+          );
+          this.setData({
+            totalPrice: totalPrice.toFixed(2) * 100,
+          });
+        }
         this.setData({
           goods,
           cart: card.data[0]
@@ -92,6 +102,9 @@ Page({
     });
   },
 
+  /**
+   * 提交结算
+   */
   onSubmit() {
     wx.showToast({
       title: '点击结算',
@@ -106,7 +119,6 @@ Page({
     const goods = JSON.parse(JSON.stringify(this.data.cart.goods));
     const id = this.data.cart._id;
     const cartId = e.currentTarget.dataset.id;
-    const checkedGoods = this.data.checkedGoods;
     const action = e.currentTarget.dataset.action;
     goods.map(item => {
       if (item.id == cartId) {
@@ -128,19 +140,7 @@ Page({
     await API.changeCards(id, {
       goods
     });
-    this.getGoodsList();
-    if (checkedGoods.includes(cartId)) {
-      // checkedGoods.splice(checkedGoods.findIndex(item => item == id), 1);
-      let totalPrice = this.data.goods.reduce(
-        (total, item) =>
-        total + (checkedGoods.includes(cartId) ? item.originPrice * item.count : 0),
-        0,
-      );
-      console.log(cartId, this.data.cart.goods,'totalPrice')
-      this.setData({
-        totalPrice: totalPrice.toFixed(2) * 100,
-      });
-    }
+    this.getGoodsList(cartId);
   },
 
   // 删除商品
@@ -166,8 +166,6 @@ Page({
         duration: 900
       });
       this.getGoodsList();
-
     }
-    console.log('2222', id, position)
   }
 });
