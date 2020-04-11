@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-goods-action": "@vant/weapp/goods-action/index",
+    "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+    "van-goods-action-button": "@vant/weapp/goods-action-button/index"
+  }
+}

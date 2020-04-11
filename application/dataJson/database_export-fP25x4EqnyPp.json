@@ -1,0 +1,130 @@
+{
+    "_id": "1",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "10",
+    "name": "猪蹄",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "2",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "3",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "4",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "5",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "6",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "7",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "8",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "9",
+    "name": "鸡爪",
+    "unit": "500g",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪2",
+    "tag": "爆款促销",
+    "originPrice": 4.99
+}
+{
+    "_id": "GBoIb25gSDzmcqW09T8mgIXXYKsgfKn6EBUb5OvkQPQq4PJd",
+    "id": "1",
+    "name": "鸡爪",
+    "unit": "500g/约20个",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": [
+        "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+        "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"
+    ],
+    "infoList": [
+        "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+        "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"
+    ]
+}

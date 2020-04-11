@@ -30,6 +30,9 @@ const API = {
       _id: _.in(ids),
     }).get();
   },
+  async getGoodsDetail(id) {
+    return await db.collection('goods-list').doc(id).get();
+  },
   async getTempFileURL(fileList) {
     return await wx.cloud.getTempFileURL({ fileList })
   }

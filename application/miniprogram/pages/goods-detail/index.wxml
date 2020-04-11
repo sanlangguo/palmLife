@@ -1,0 +1,32 @@
+<swiper class='swiper-box' indicator-dots="true" autoplay="true" circular="true" interval="2000" duration="500" previous-margin="0px" next-margin="0px">
+	<block wx:for='{{goods.topBannerUrl}}' wx:key='index'>
+		<swiper-item>
+			<image src='{{item.tempFileURL}}' mode='aspectFill' class='swiper-item-images' />
+		</swiper-item>
+	</block>
+</swiper>
+<view class="price-dec">
+	<view class="price-box">
+		<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price}}</text></b></p>
+	</view>
+	<view class="dec">{{goods.desc}}</view>
+</view>
+<van-cell-group custom-class="cell-group">
+	<van-cell title="库存数量" value="{{'剩余'+ goods.num}}" icon="eye-o" />
+</van-cell-group>
+<van-cell-group custom-class="cell-group">
+	<van-cell title="商品规格" value="{{goods.unit}}" icon="cart-circle-o" />
+</van-cell-group>
+<view class="goods-title">
+	<text>商品详情</text>
+</view>
+<view class="goods-img">
+	<image wx:for="{{goods.infoListUrl}}" lazy-load src="{{item.tempFileURL}}" />
+</view>
+<van-goods-action custom-class="goods-action-position" safe-area-inset-bottom="{{ false }}">
+	<van-goods-action-icon icon="wap-home-o" text="首页" url="../goods-list/index" link-type="switchTab" />
+	<van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
+	<van-goods-action-icon icon="cart-o" info="{{cartLength}}" text="购物车" url="../cart/index" link-type="switchTab" />
+	<van-goods-action-button text="加入购物车" type="warning" bind:click="onClickButton" />
+	<van-goods-action-button text="立即购买" bind:click="onClickButton" />
+</van-goods-action>
