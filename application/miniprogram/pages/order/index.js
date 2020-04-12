@@ -16,9 +16,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   async onShow() {
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
+    wx.showLoading({
+      title: '加载中',
+    })
     const count = await API.getOrderCount();
     console.log(count, 'countResult')
     const batchTimes = Math.ceil(count.total / 6);
@@ -38,6 +38,16 @@ Page({
     }
     const res = await API.getOrderList(this.data.page);
     if (res.data && res.data.length) {
+      res.data.map(async item => {
+        item.goods.map(async goods => {
+          const data = [goods.fileId];
+          console.log(goods, 'goods');
+          console.log(data, 'data');
+          const fileRes = await API.getTempFileURL(data);
+          goods.coverImg = fileRes.fileList[0].tempFileURL;
+          item.totalPrice = goods.count * goods.originPrice;
+        })
+      })
       this.setData({
         batchTimes: 0,
         page: this.data.page + 1,
@@ -51,34 +61,8 @@ Page({
         active: 0,
       })
     }
-    console.log(res, 'res')
-    return false
-    db.collection('goods-list').skip(this.data.page).limit(6).get({
-      success: res => {
-        const fileIds = [];
-        if (res.data && res.data.length) {
-          const goodList = res.data;
-          goodList.map(item => {
-            fileIds.push(item.fileId)
-          })
-          wx.cloud.getTempFileURL({
-            fileList: fileIds,
-            success: res => {
-              res.fileList.map(item => {
-                goodList.map(good => {
-                  good.coverImg = item.tempFileURL;
-                })
-              })
-              wx.hideLoading();
-              this.setData({
-                goodList: this.data.goodList.concat(goodList),
-                page: this.data.page + 1,
-              })
-            },
-          })
-        }
-      }
-    })
+    console.log(res.data, '---')
+    wx.hideLoading();
   },
 
   /**

@@ -37,7 +37,7 @@ const API = {
     return await db.collection('goods-list').doc(id).get();
   },
   async getTempFileURL(fileList) {
-    return await wx.cloud.getTempFileURL({ fileList })
+    return await wx.cloud.getTempFileURL({ fileList: fileList })
   },
   async orderTotal(data) {
     return await db.collection('order').add({data});

@@ -16,7 +16,6 @@ Page({
   },
 
   onShow() {
-    console.log(orderNumber(), 'orderNumber')
     wx.showLoading({
       title: '加载中',
     })
@@ -51,6 +50,7 @@ Page({
               goods[index].coverImg = fileUrl.fileList[index].tempFileURL;
               goods[index].name = item.name;
               goods[index].price = item.price;
+              goods[index].fileId = item.fileId;
               goods[index].originPrice = item.originPrice;
               goods[index].desc = item.desc;
               goods[index].unit = item.unit;

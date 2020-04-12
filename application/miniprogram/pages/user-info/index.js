@@ -76,7 +76,6 @@ Page({
     })
   },
 
-
   onChange(event) {
     const userInfo = this.data.userInfo;
     userInfo[event.currentTarget.dataset.type] = event.detail;
