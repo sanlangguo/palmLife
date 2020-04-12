@@ -1,6 +1,5 @@
 <van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title="标签 1">全部</van-tab>
-  <van-tab title="标签 2">待付款</van-tab>
-  <van-tab title="标签 3">待发货</van-tab>
-  <van-tab title="标签 4">待收货</van-tab>
+  <van-tab title="全部">全部</van-tab>
+  <van-tab title="待发货">待发货</van-tab>
+  <van-tab title="已收货">已收货</van-tab>
 </van-tabs>

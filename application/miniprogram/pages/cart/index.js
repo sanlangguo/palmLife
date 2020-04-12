@@ -1,12 +1,17 @@
 import API from '../../api/index';
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
-const userInfo = wx.getStorageSync('userInfo') || {};
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
   data: {
     checkedGoods: [],
     goods: [],
     cart: [],
     totalPrice: 0,
+    currentDate: new Date().getTime(),
+    minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).getTime(),
+    maxDate: new Date(new Date().getMonth()+2 > 12 ? new Date().getFullYear()+1 : new Date().getFullYear(), new Date().getMonth()+1, 1).getTime(),
+    createTime: 0,
+    selectTime: false,
   },
 
   onShow() {
@@ -20,47 +25,57 @@ Page({
    * 购物车商品列表
    */
   async getGoodsList(cartId) {
-    const card = await this.getUserCardList(userInfo.openid);
-    if (card.data && card.data.length) {
-      const data = JSON.parse(JSON.stringify(card.data[0]));
-      delete data._openid;
-      delete data.openid;
-      delete data._id;
-      const goods = data.goods;
-      const ids = [];
-      goods.map((item) => {
-        ids.push(item.id)
-      });
-      const goodList = await API.getGoodsList(ids);
-      if (goodList.data && goodList.data.length) {
-        const fileList = [];
-        goodList.data.map(item => fileList.push(item.fileId));
-        const fileUrl = await API.getTempFileURL(fileList);
-        if (fileUrl.fileList && fileUrl.fileList.length) {
-          goodList.data.map((item, index) => {
-            goods[index].coverImg = fileUrl.fileList[index].tempFileURL;
-            goods[index].name = item.name;
-            goods[index].price = item.price;
-            goods[index].originPrice = item.originPrice;
-            goods[index].desc = item.desc;
-            goods[index].unit = item.unit;
-            goods[index].num = item.num;
+    const userInfo = wx.getStorageSync('userInfo');
+    if (Object.keys(userInfo).length) {
+      const card = await this.getUserCardList(userInfo.openid);
+      if (card.data && card.data.length) {
+        const data = JSON.parse(JSON.stringify(card.data[0]));
+        console.log(data, 'list data')
+        delete data._openid;
+        delete data.openid;
+        delete data._id;
+        const goods = data.goods;
+        const ids = [];
+        goods.map((item) => {
+          ids.push(item.id)
+        });
+        const goodList = await API.getGoodsList(ids);
+        if (goodList.data && goodList.data.length) {
+          const fileList = [];
+          goodList.data.map(item => fileList.push(item.fileId));
+          const fileUrl = await API.getTempFileURL(fileList);
+          if (fileUrl.fileList && fileUrl.fileList.length) {
+            goodList.data.map((item, index) => {
+              goods[index].coverImg = fileUrl.fileList[index].tempFileURL;
+              goods[index].name = item.name;
+              goods[index].price = item.price;
+              goods[index].originPrice = item.originPrice;
+              goods[index].desc = item.desc;
+              goods[index].unit = item.unit;
+              goods[index].num = item.num;
+            })
+          }
+          const checkedGoods = this.data.checkedGoods;
+          if (cartId || checkedGoods.length>0) {
+            let totalPrice = goods.reduce(
+              (total, item) =>
+              total + (checkedGoods.includes(item.id) ? item.originPrice * item.count : 0),
+              0,
+            );
+            this.setData({
+              totalPrice: totalPrice.toFixed(2) * 100,
+            });
+          }
+          this.setData({
+            goods,
+            cart: card.data[0]
           })
         }
-        const checkedGoods = this.data.checkedGoods;
-        if (cartId || checkedGoods.length>0) {
-          let totalPrice = goods.reduce(
-            (total, item) =>
-            total + (checkedGoods.includes(item.id) ? item.originPrice * item.count : 0),
-            0,
-          );
-          this.setData({
-            totalPrice: totalPrice.toFixed(2) * 100,
-          });
-        }
+      } else {
         this.setData({
-          goods,
-          cart: card.data[0]
+          checkedGoods: [],
+          goods: [],
+          cart: [],
         })
       }
     } else {
@@ -110,11 +125,64 @@ Page({
   /**
    * 提交结算
    */
-  onSubmit() {
-    wx.showToast({
-      title: '点击结算',
-      icon: 'none'
-    });
+  async onSubmit() {
+    if (!this.data.createTime) {
+      this.setData({
+        selectTime: true
+      })
+      return false;
+    }
+    wx.showLoading({
+      title: '下单中',
+    })
+    const userInfo = wx.getStorageSync('userInfo');
+    if (userInfo && userInfo.phone && userInfo.receiveCity && userInfo.name && userInfo.receiveDetailedAddress) {
+      const {checkedGoods, goods, cart, createTime} = this.data;
+      const orderData = {
+        active: 0,
+        openid: userInfo.openid,
+        phone: userInfo.phone,
+        receiveCity: userInfo.receiveCity,
+        name: userInfo.name,
+        receiveDetailedAddress: userInfo.receiveDetailedAddress,
+        goods: [],
+        createTime
+      };
+      if (checkedGoods.length === goods.length) {
+        orderData.goods = goods;
+        await API.deletCards(cart._id);
+      } else {
+        goods.map((item, index) => {
+          checkedGoods.map(id => {
+            if (item.id == id) {
+              orderData.goods.push(item);
+              cart.goods.splice(cart.goods.findIndex(item => item.id == id), 1);
+            }
+          })
+        })
+        await API.changeCards(cart._id, {
+          goods: cart.goods
+        });
+      }
+      await API.orderTotal(orderData)
+      wx.showToast({
+        title: '下单成功',
+        icon: 'none'
+      });
+      wx.hideLoading();
+      wx.reLaunch({
+        url: '../order/index',
+      })
+    } else {
+      Dialog.confirm({
+        title: '收货信息',
+        message: '收货信息不完善，请填写收货人信息'
+      }).then(() => {
+        wx.navigateTo({
+          url: '../user-info/index',
+        })
+      });
+    }
   },
 
   /**
@@ -159,6 +227,7 @@ Page({
       const goods = JSON.parse(JSON.stringify(this.data.cart.goods));
       if (goods.length > 1) {
         goods.splice(goods.findIndex(item => item.id == cartId), 1);
+        console.log(goods, '-- goods')
         await API.changeCards(id, {
           goods
         });
@@ -172,5 +241,14 @@ Page({
       });
       this.getGoodsList();
     }
+  },
+
+  // 选择配送时间
+  orderTime(event) {
+    console.log(event, 'orderTime')
+    this.setData({
+      createTime: event ? event.detail : new Date().getTime(),
+      selectTime: false
+    });
   }
 });

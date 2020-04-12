@@ -35,7 +35,16 @@ const API = {
   },
   async getTempFileURL(fileList) {
     return await wx.cloud.getTempFileURL({ fileList })
-  }
+  },
+  async orderTotal(data) {
+    return await db.collection('order').add({data});
+  },
+  async getOrderList(page) {
+    return await db.collection('order').skip(page).limit(6).get();
+  },
+  async getOrderCount() {
+    return await db.collection('goods-list').count()
+  },
 };
 
 export default API;

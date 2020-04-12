@@ -20,8 +20,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    const db = wx.cloud.database();
-    const countResult = await db.collection('goods-list').count();
+    const countResult = await API.getGoodsCount();
     const batchTimes = Math.ceil(countResult.total / 6);
     this.setData({
       batchTimes,
