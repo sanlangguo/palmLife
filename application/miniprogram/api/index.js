@@ -30,6 +30,9 @@ const API = {
       _id: _.in(ids),
     }).get();
   },
+  async getGoodsCount() {
+    return await db.collection('goods-list').count();
+  },
   async getGoodsDetail(id) {
     return await db.collection('goods-list').doc(id).get();
   },
@@ -43,7 +46,7 @@ const API = {
     return await db.collection('order').skip(page).limit(6).get();
   },
   async getOrderCount() {
-    return await db.collection('goods-list').count()
+    return await db.collection('goods-list').count();
   },
 };
 

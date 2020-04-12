@@ -16,9 +16,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   async onShow() {
-    wx.showLoading({
-      title: '加载中',
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     const count = await API.getOrderCount();
     console.log(count, 'countResult')
     const batchTimes = Math.ceil(count.total / 6);

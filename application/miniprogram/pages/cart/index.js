@@ -1,4 +1,5 @@
 import API from '../../api/index';
+import { orderNumber } from '../../tool.js';
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
@@ -15,6 +16,7 @@ Page({
   },
 
   onShow() {
+    console.log(orderNumber(), 'orderNumber')
     wx.showLoading({
       title: '加载中',
     })
@@ -164,6 +166,7 @@ Page({
           goods: cart.goods
         });
       }
+      orderData.orderNumber = orderNumber();
       await API.orderTotal(orderData)
       wx.showToast({
         title: '下单成功',

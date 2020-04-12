@@ -1,1 +1,3 @@
-/* pages/order/index.wxss */
+page{
+  background-color: #f0f4f5;
+}
