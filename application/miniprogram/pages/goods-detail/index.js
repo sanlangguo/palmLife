@@ -13,8 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    console.log(Notify)
-    console.log(Dialog)
     if (options && options.id) {
       wx.showLoading({
         title: '加载中',
@@ -29,7 +27,6 @@ Page({
       },() =>{
         this.getUserCartLength();
       })
-      wx.hideLoading();
     } else {
       wx.reLaunch({
         url: '../goods-list/index',
@@ -58,6 +55,8 @@ Page({
     const card = await API.getCardList(this.data.userInfo.openid);
     this.setData({
       cartLength: card.data && card.data.length ? card.data[0].goods.length : 0
+    }, () => {
+      wx.hideLoading();
     })
   },
 

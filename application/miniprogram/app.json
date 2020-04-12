@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/order/index",
     "pages/goods-list/index",
     "pages/goods-detail/index",
     "pages/cart/index",
     "pages/my/index",
     "pages/user-info/index",
-    "pages/login/index",
-    "pages/order/index"
+    "pages/login/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
