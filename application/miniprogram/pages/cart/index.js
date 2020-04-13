@@ -139,7 +139,7 @@ Page({
     })
     const userInfo = wx.getStorageSync('userInfo');
     if (userInfo && userInfo.phone && userInfo.receiveCity && userInfo.name && userInfo.receiveDetailedAddress) {
-      const {checkedGoods, goods, cart, createTime} = this.data;
+      const {checkedGoods, goods, cart, createTime, totalPrice} = this.data;
       const orderData = {
         active: 0,
         openid: userInfo.openid,
@@ -148,7 +148,8 @@ Page({
         name: userInfo.name,
         receiveDetailedAddress: userInfo.receiveDetailedAddress,
         goods: [],
-        createTime
+        createTime,
+        totalPrice: (totalPrice/100),
       };
       if (checkedGoods.length === goods.length) {
         orderData.goods = goods;

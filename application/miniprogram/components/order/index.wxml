@@ -1,0 +1,11 @@
+<van-panel footer-class="panel-footer" header-class="panel-header" title="汇光皇后卤肉" desc="{{'订单号：' + item.orderNumber}}" status="{{item.active == 1 ? '已收货': '待发货'}}" wx:for="{{order}}" wx:key="id" use-footer-slot>
+	<van-card wx:for="{{item.goods}}" wx:key="index" num="{{item.count}}" price="{{item.originPrice}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{ 'https://6465-dev-o45qm-1301624908.tcb.qcloud.la/goods-list/10141584450128_.pic.jpg' }}" />
+	<van-cell title="合计" value-class="value-total-price" value="{{'¥'+ item.totalPrice}}" />
+	<view slot="footer">
+		<van-button size="small" plain hairline custom-class="btn-style">查看详情</van-button>
+		<block wx:if="{{item.active == 1}}">
+			<van-button size="small" plain hairline custom-class="btn-style">删除订单</van-button>
+		</block>
+		<van-button size="small" plain hairline color="red" custom-class="btn-style">再次购买</van-button>
+	</view>
+</van-panel>
