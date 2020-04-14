@@ -43,7 +43,7 @@ const API = {
     return await db.collection('order').add({data});
   },
   async getOrderList(page) {
-    return await db.collection('order').skip(page).limit(3).get();
+    return await db.collection('order').orderBy('createTime', 'desc').skip(page).limit(3).get();
   },
   async getOrderCount() {
     return await db.collection('goods-list').count();

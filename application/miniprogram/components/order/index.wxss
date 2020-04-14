@@ -1,4 +1,4 @@
-page{
+page {
   background-color: #f0f4f5;
 }
 
@@ -18,4 +18,12 @@ page{
 
 .value-total-price {
   color: #ee0a24 !important;
+}
+
+.no-order {
+  font-size: 30rpx;
+  margin-top: 100rpx;
+  width: 100%;
+  text-align: center;
+  color: var(--tab-text-color, #646566);
 }
