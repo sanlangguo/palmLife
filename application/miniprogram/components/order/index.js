@@ -8,17 +8,7 @@ Component({
   },
   lifetimes: {
     async created () {
-      wx.showLoading({
-        title: '加载中',
-      })
-      const count = await API.getOrderCount();
-      const batchTimes = Math.ceil(count.total / 3);
-      // console.log(batchTimes, 'batchTimes')
-      this.setData({
-        batchTimes,
-      }, () => {
-        this.getOrderList()
-      })
+      this.getOrderList();
     },
   },
   data: {
@@ -32,10 +22,15 @@ Component({
      */
     async getOrderList() {
       console.log(this.data.active, '----')
-      if (this.data.page === this.data.batchTimes) {
+      wx.showLoading({
+        title: '加载中',
+      })
+      const count = await API.getOrderCount();
+      const batchTimes = Math.ceil(count.total / 3);
+      if (this.data.page === batchTimes ) {
         return false;
       }
-      const res = await API.getOrderList(this.data.page);
+      const res = await API.getOrderList(this.data.page * 3);
       if (res.data && res.data.length) {
         const resouceData = [];
         res.data.map(async item => {
@@ -57,6 +52,7 @@ Component({
           }
         })
         this.setData({
+          batchTimes,
           page: this.data.page + 1,
           order: this.data.order.concat(resouceData),
         })
@@ -77,11 +73,35 @@ Component({
       console.log(this.data.page, 'pp')
       console.log(this.data.batchTimes, 'batchTimes')
       if (this.data.page < this.data.batchTimes) {
-        wx.showLoading({
-          title: '加载中',
-        })
         this.getOrderList();
       }
+    },
+    /**
+     * 再次购买
+     */
+    buyAgainOrder(e) {
+      const { id } = e.currentTarget.dataset;
+      console.log(id, '---')
+
+    },
+    /**
+     * 删除订单
+     */
+    async deletOrder(e) {
+      const { id } = e.currentTarget.dataset;
+      if (id) {
+        wx.showLoading({
+          title: '删除中..',
+        })
+        await API.deletOrder(id);
+        this.getOrderList();
+      }
+    },
+    /**
+     * 查看订单详情
+     */
+    viewOrderDetails(e) {
+
     }
   }
 })

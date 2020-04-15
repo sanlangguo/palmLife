@@ -134,7 +134,7 @@ Page({
     if (this.data.page === this.data.batchTimes) {
       return false;
     }
-    db.collection('goods-list').skip(this.data.page).limit(6).get({ 
+    db.collection('goods-list').skip(this.data.page * 6).limit(6).get({ 
       success: res => {
         const fileIds = [];
         if (res.data && res.data.length) {
