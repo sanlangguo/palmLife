@@ -8,6 +8,7 @@ Component({
   },
   lifetimes: {
     async created () {
+      console.log(11111)
       this.getOrderList();
     },
   },

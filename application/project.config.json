@@ -21,7 +21,7 @@
 		"bundle": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.4",
+	"libVersion": "2.11.0",
 	"appid": "wx785dd6dd751daf79",
 	"projectname": "palmLife",
 	"cloudfunctionRoot": "cloudfunctions/",
