@@ -141,7 +141,7 @@ Page({
     if (userInfo && userInfo.phone && userInfo.receiveCity && userInfo.name && userInfo.receiveDetailedAddress) {
       const {checkedGoods, goods, cart, createTime, totalPrice} = this.data;
       const orderData = {
-        active: 0,
+        active: 1,
         openid: userInfo.openid,
         phone: userInfo.phone,
         receiveCity: userInfo.receiveCity,

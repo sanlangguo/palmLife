@@ -42,8 +42,8 @@ const API = {
   async orderTotal(data) {
     return await db.collection('order').add({data});
   },
-  async getOrderList(page) {
-    return await db.collection('order').orderBy('createTime', 'desc').skip(page).limit(3).get();
+  async getAllOrderList(page) {
+    return await db.collection('order').orderBy('createTime', 'desc').skip(page).limit(4).get();
   },
   async deletOrder(id) {
     return await db.collection('order').doc(id).remove();
@@ -51,6 +51,15 @@ const API = {
   async getOrderCount() {
     return await db.collection('order').count();
   },
+  async filterOrder(active, page) {
+    return await db.collection('order').where({active: _.eq(active)}).skip(page).limit(4).get();
+  },
+  async getOrderActiveCount(active) {
+    return await db.collection('order').where({active: _.eq(active)}).count();
+  },
+  async getOrderDetail(_id) {
+    return await db.collection('order').where({_id}).get();
+  }
 };
 
 export default API;

@@ -1,0 +1,8 @@
+<van-cell-group>
+  <van-cell title="单元格" value="内容" />
+  <van-cell title="收货人：xxxx" icon="location-o" value-class="value-phone" value="15538055695" label="收货地址：xxxxxs" border="{{ false }}" />
+  <van-panel footer-class="panel-footer" header-class="panel-header" title="汇光皇后卤肉" desc="{{'订单号：' + item.orderNumber}}" status="{{item.active == 1 ? '待发货': '已发货'}}" wx:for="{{order}}" wx:key="_id" use-footer-slot>
+		<van-card wx:for="{{item.goods}}" wx:key="index" num="{{item.count}}" price="{{item.originPrice}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{ 'https://6465-dev-o45qm-1301624908.tcb.qcloud.la/goods-list/10141584450128_.pic.jpg' }}" />
+		<van-cell title="合计" value-class="value-total-price" value="{{'¥'+ item.totalPrice}}" />
+	</van-panel>
+</van-cell-group>
