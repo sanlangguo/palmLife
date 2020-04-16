@@ -59,6 +59,9 @@ const API = {
   },
   async getOrderDetail(_id) {
     return await db.collection('order').where({_id}).get();
+  },
+  async getMerchantInfo() {
+    return await db.collection('merchant').get();
   }
 };
 

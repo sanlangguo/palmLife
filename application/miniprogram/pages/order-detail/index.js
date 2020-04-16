@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    order:[]
   },
 
   /**
@@ -15,15 +15,20 @@ Page({
     const id = options.id;
     if (id) {
       const res = await API.getOrderDetail(id);
-      console.log(res, '------')
+      res.data.map(async item => {
+        item.status = item.active == 0 ? '待下单' : item.active == 1 ? '待收货': '已收货';
+        item.goods.map(async goods => {
+          const data = [goods.fileId];
+          const fileRes = await API.getTempFileURL(data);
+          goods.coverImg = fileRes.fileList[0].tempFileURL;
+          item.totalPrice = goods.count * goods.originPrice;
+        })
+      })
+      console.log(res.data, '------')
+      this.setData({
+        order: res.data,
+      })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
   },
 
   /**
@@ -34,37 +39,20 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 播放商户电话
    */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  async makePhoneCall() {
+    const res = await API.getMerchantInfo();
+    const merchant = wx.getStorageSync('merchant');
+    let phone = '';
+    if (!merchant) {
+      wx.setStorageSync('merchant', res.data[0]);
+      phone = `${res.data[0].phone}`
+    } else {
+      phone =  `${merchant.phone}`
+    }
+    wx.makePhoneCall({
+      phoneNumber: phone
+    })
   }
 })

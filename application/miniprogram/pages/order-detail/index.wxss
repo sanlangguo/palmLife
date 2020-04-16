@@ -1,3 +1,29 @@
+page {
+  background-color: #f0f4f5;
+}
+
 .value-phone {
   color: #323233 !important;
+}
+
+.value-total-price {
+  color: #ee0a24 !important;
+}
+
+.van-cell-label {
+  flex: 3 !important;
+}
+
+.panel-header {
+  margin-top: 12rpx;
+}
+
+.panel-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6rpx;
+}
+
+.van-col--12{
+  text-align: center;
 }
