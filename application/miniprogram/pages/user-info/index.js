@@ -23,6 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    console.log(options.id, '------')
     wx.showLoading({
       title: '加载中',
     })
@@ -31,6 +32,11 @@ Page({
       this.setData({
         userInfo: wx.getStorageSync('userInfo')
       })
+      if (options.id) {
+        this.setData({
+          orderId: options.id
+        })
+      }
     } else {
       wx.reLaunch({
         url: '../login/index'
@@ -98,6 +104,14 @@ Page({
       delete data._openid;
       delete data.openid;
       delete data._id;
+      console.log(data, '-----')
+      const orderData = {
+        name,
+        phone,
+        receiveCity,
+        receiveDetailedAddress
+      }
+      await API.updateOrder(this.data.orderId, orderData);
       const res = await API.updateUserInfo(_id, data);
       if (res.stats.updated) {
         Notify({ type: 'success', message: '保存成功', duration: 900 });

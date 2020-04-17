@@ -62,7 +62,10 @@ const API = {
   },
   async getMerchantInfo() {
     return await db.collection('merchant').get();
-  }
+  },
+  async updateOrder(id, data) {
+    return await db.collection('order').doc(id).update({data});
+  },
 };
 
 export default API;
