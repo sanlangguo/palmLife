@@ -1,4 +1,5 @@
 import API from '../../api/index';
+import { orderNumber } from '../../tool.js';
 Component({
   properties: {
     active: {
@@ -58,11 +59,29 @@ Component({
     /**
      * 再次购买
      */
-    buyAgainOrder(e) {
+    async buyAgainOrder(e) {
       const {
         id
       } = e.currentTarget.dataset;
-      console.log(id, '---')
+      const { order } = this.data;
+      let data = {};
+      order.map(item => {
+        if (item._id == id) {
+          data.orderNumber = orderNumber()
+          data.active = 1;
+          data.goods = item.goods;
+          data.totalPrice = item.totalPrice;
+          data.name = item.name;
+          data.phone = item.phone;
+          data.receiveCity = item.receiveCity;
+          data.receiveDetailedAddress = item.receiveDetailedAddress;
+          data.createTime = new Date().getTime();
+        }
+      });
+      const res = await API.orderTotal(data);
+      wx.navigateTo({
+        url: '/pages/order-detail/index?id='+res._id,
+      })
     },
 
     /**

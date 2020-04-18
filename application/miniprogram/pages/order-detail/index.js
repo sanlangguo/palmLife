@@ -7,7 +7,8 @@ Page({
    */
   data: {
     order: [],
-    message: ''
+    show: false,
+    payMode: '',
   },
 
   /**
@@ -82,10 +83,17 @@ Page({
    * 提交订单
    */
   async onSubmit() {
-    const { id } = this.data
+    if (!this.data.payMode) {
+      this.setData({
+        show: true
+      })
+      return false
+    }
+    const { id, payMode } = this.data
     const data = {
       active: 2,
       updateTime: new Date().getTime(),
+      payMode,
     }
     const res = await API.updateOrder(id, data);
     if (res.stats.updated == 1) {
@@ -99,5 +107,25 @@ Page({
         }
       });
     }
+  },
+
+  /**
+   * 关闭付款方式弹出层
+   */
+  onClose() {
+    this.setData({
+      show: false
+    })
+  },
+
+  /**
+   * 选择付款方式
+   */
+  seleteaPayMode(e) {
+    const payMode = e.currentTarget.dataset.pay;
+    this.setData({
+      payMode,
+      show: false
+    })
   }
 })

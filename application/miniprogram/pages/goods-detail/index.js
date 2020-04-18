@@ -168,4 +168,11 @@ Page({
   async changeCards(data) {
     return await API.changeCards(data);
   },
+
+  /**
+   * 点击购买
+   */
+  async buy() {
+    console.log(this.data.goods)
+  }
 })

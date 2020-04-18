@@ -26,7 +26,6 @@ Page({
       const card = await this.getUserCardList(userInfo.openid);
       if (card.data && card.data.length) {
         const data = JSON.parse(JSON.stringify(card.data[0]));
-        console.log(data, 'list data')
         delete data._openid;
         delete data.openid;
         delete data._id;

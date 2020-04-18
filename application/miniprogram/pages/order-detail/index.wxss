@@ -25,6 +25,13 @@ page {
   margin-bottom: 6rpx;
 }
 
-.van-col--12{
+.van-col--12 {
   text-align: center;
+}
+
+.selete-pay {
+  text-align: center;
+  line-height: 90rpx;
+  color: #07c160;
+  font-size: 28rpx;
 }
