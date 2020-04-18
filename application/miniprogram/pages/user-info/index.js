@@ -2,6 +2,7 @@ import API from '../../api/index';
 import area from '../../api/area';
 import { checkPhone } from '../../tool';
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 Page({
 
   /**
@@ -114,7 +115,7 @@ Page({
       await API.updateOrder(this.data.orderId, orderData);
       const res = await API.updateUserInfo(_id, data);
       if (res.stats.updated) {
-        Notify({ type: 'success', message: '保存成功', duration: 900 });
+        Toast.success('保存成功');
         const userData = await API.getUserInfo(openid);
         if (userData.data && userData.data.length) {
           wx.setStorageSync('userInfo', userData.data[0]);

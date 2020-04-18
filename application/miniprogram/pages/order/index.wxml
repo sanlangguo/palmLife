@@ -2,10 +2,13 @@
   <van-tab title="全部">
     <order bindmyevent="turnPage" wx:if="{{index == 0}}" active="{{index}}" id="order" ></order>
   </van-tab>
-  <van-tab title="待发货">
+    <van-tab title="待下单">
     <order bindmyevent="turnPage" wx:if="{{index == 1}}"  active="{{index}}" id="order"></order>
   </van-tab>
+  <van-tab title="待发货">
+    <order bindmyevent="turnPage" wx:if="{{index == 2}}"  active="{{index}}" id="order"></order>
+  </van-tab>
   <van-tab title="已收货">
-    <order bindmyevent="turnPage" wx:if="{{index == 2}}" active="{{index}}" id="order"></order>
+    <order bindmyevent="turnPage" wx:if="{{index == 3}}" active="{{index}}" id="order"></order>
   </van-tab>
 </van-tabs>

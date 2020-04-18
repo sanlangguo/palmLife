@@ -16,11 +16,23 @@ Page({
   async onLoad(options) {
     const id = options.id;
     if (id) {
-      const res = await API.getOrderDetail(id);
+      this.setData({
+        id: options.id
+      })
+    } else {
+      wx.reLaunch({
+        url: '../goods-list/index',
+      })
+    }
+  },
+
+  async onShow() {
+    if (this.data.id) {
+      const res = await API.getOrderDetail(this.data.id);
       let title = '';
       res.data.map(async item => {
-        item.status = item.active == 0 ? '待下单' : item.active == 1 ? '待收货': '已收货';
-        title = item.active == 0 ? '待付款的订单' : '订单详情';
+        item.status = item.active == 1 ? '待下单' : item.active == 2 ? '待收货': '已收货';
+        title = item.active == 1 ? '待付款的订单' : '订单详情';
         item.goods.map(async goods => {
           const data = [goods.fileId];
           const fileRes = await API.getTempFileURL(data);
@@ -30,14 +42,9 @@ Page({
       })
       this.setData({
         order: res.data,
-        id: options.id
       })
       wx.setNavigationBarTitle({
         title
-      })
-    } else {
-      wx.reLaunch({
-        url: '../goods-list/index',
       })
     }
   },
@@ -77,8 +84,8 @@ Page({
   async onSubmit() {
     const { id } = this.data
     const data = {
-      active: 1,
-      createTime: new Date().getTime()
+      active: 2,
+      updateTime: new Date().getTime(),
     }
     const res = await API.updateOrder(id, data);
     if (res.stats.updated == 1) {

@@ -1,22 +1,21 @@
 <van-cell-group wx:for="{{order}}" wx:key="_id">
-	<van-cell url="{{'../user-info/index?id='+item._id}}" label-class="van-cell-label" title-class="van-cell-label" title="{{'收货人: '+ item.name}}" icon="location-o" value-class="value-phone" value="15538055695" label="{{'地址: '+item.receiveCity+item.receiveDetailedAddress}}" border="{{false}}" is-link="{{item.active == 0}}" />
+	<van-cell url="{{'../user-info/index?id='+item._id}}" label-class="van-cell-label" title-class="van-cell-label" title="{{'收货人: '+ item.name}}" icon="location-o" value-class="value-phone" value="{{item.phone}}" label="{{'地址: '+item.receiveCity+item.receiveDetailedAddress}}" border="{{false}}" is-link="{{item.active == 1}}" />
 	<van-panel header-class="panel-header" title="汇光皇后卤肉" desc="{{item.active !=0 ? '订单号：' + item.orderNumber : ''}}" status="{{item.status}}" wx:for="{{order}}" wx:key="_id" use-footer-slot>
 		<van-card wx:for="{{item.goods}}" wx:key="index" num="{{item.count}}" price="{{item.originPrice}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{item.coverImg}}" />
-		<van-cell wx:if="{{item.active != 0}}" title="合计" value-class="value-total-price" value="{{'¥'+ item.totalPrice}}" />
+		<van-cell title="合计" value-class="value-total-price" value="{{'¥'+ item.totalPrice}}" />
 	</van-panel>
 	<van-cell custom-class="panel-header" title="配送方式" value="免运费" />
 	<van-field
-		placeholder="有特殊需求请留言"
+		placeholder="有特殊需求请给商家留言"
 		value="{{order[0].message}}"
     label="留言"
     type="textarea"
-    placeholder="请输入留言"
     autosize
 		disabled="{{order[0].active != 0}}"
     border="{{ false }}"
 		bind:change="onChangeMessage"
   />
-	<van-cell wx:if="{{order[0].active != 0}}">
+	<van-cell wx:if="{{order[0].active != 1}}">
 		<van-row>
 			<van-col span="12">
 				<van-button bind:click="makePhoneCall" icon="phone-o" type="default" size="small">拨打电话</van-button>
@@ -28,7 +27,7 @@
 	</van-cell>
 </van-cell-group>
 <van-submit-bar
-	wx:if="{{order[0].active == 0}}"
+	wx:if="{{order[0].active == 1}}"
   price="{{ order[0].totalPrice*100 }}"
   button-text="提交订单"
   bind:submit="onSubmit"

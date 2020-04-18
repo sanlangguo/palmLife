@@ -1,5 +1,6 @@
 page {
   background-color: #f0f4f5;
+  margin-bottom: 100rpx;
 }
 
 .value-phone {

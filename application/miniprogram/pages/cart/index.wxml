@@ -26,21 +26,3 @@
 <van-notify id="van-notify" />
 <!-- 弹出框确认 -->
 <van-dialog id="van-dialog" />
-
-<van-popup
-  show="{{ selectTime }}"
-  position="bottom"
-  custom-style="height: 50%;"
-  bind:close="onClose"
->
-	<van-datetime-picker
-		type="datetime"
-		title="配送时间"
-		value="{{ currentDate }}"
-		min-date="{{ minDate }}"
-		max-date="{{ maxDate }}"
-		bind:confirm="orderTime"
-		bind:cancel="orderTime"
-		loading
-	/>
-</van-popup>

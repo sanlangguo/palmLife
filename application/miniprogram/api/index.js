@@ -43,7 +43,7 @@ const API = {
     return await db.collection('order').add({data});
   },
   async getAllOrderList(page) {
-    return await db.collection('order').orderBy('createTime', 'desc').skip(page).limit(4).get();
+    return await db.collection('order').orderBy('createTime', 'asc').skip(page).limit(4).get();
   },
   async deletOrder(id) {
     return await db.collection('order').doc(id).remove();

@@ -64,6 +64,13 @@
 					"pathName": "pages/order-detail/index",
 					"query": "id=1d1104975e97140d0028883b4ae7e625",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单列表",
+					"pathName": "pages/order/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

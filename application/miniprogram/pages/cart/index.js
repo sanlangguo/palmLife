@@ -1,18 +1,13 @@
 import API from '../../api/index';
-import { orderNumber } from '../../tool.js';
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+import { orderNumber } from '../../tool.js';
 Page({
   data: {
     checkedGoods: [],
     goods: [],
     cart: [],
     totalPrice: 0,
-    currentDate: new Date().getTime(),
-    minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).getTime(),
-    maxDate: new Date(new Date().getMonth()+2 > 12 ? new Date().getFullYear()+1 : new Date().getFullYear(), new Date().getMonth()+1, 1).getTime(),
-    createTime: 0,
-    selectTime: false,
   },
 
   onShow() {
@@ -128,27 +123,19 @@ Page({
    * 提交结算
    */
   async onSubmit() {
-    if (!this.data.createTime) {
-      this.setData({
-        selectTime: true
-      })
-      return false;
-    }
-    wx.showLoading({
-      title: '下单中',
-    })
     const userInfo = wx.getStorageSync('userInfo');
     if (userInfo && userInfo.phone && userInfo.receiveCity && userInfo.name && userInfo.receiveDetailedAddress) {
-      const {checkedGoods, goods, cart, createTime, totalPrice} = this.data;
+      const {checkedGoods, goods, cart, totalPrice} = this.data;
       const orderData = {
-        active: 0,
+        active: 1,
         openid: userInfo.openid,
         phone: userInfo.phone,
         receiveCity: userInfo.receiveCity,
         name: userInfo.name,
         receiveDetailedAddress: userInfo.receiveDetailedAddress,
         goods: [],
-        createTime,
+        createTime: new Date().getTime(),
+        orderNumber: orderNumber(),
         totalPrice: (totalPrice/100),
       };
       if (checkedGoods.length === goods.length) {
@@ -167,15 +154,9 @@ Page({
           goods: cart.goods
         });
       }
-      orderData.orderNumber = orderNumber();
-      await API.orderTotal(orderData)
-      wx.showToast({
-        title: '下单成功',
-        icon: 'none'
-      });
-      wx.hideLoading();
-      wx.reLaunch({
-        url: '../order/index',
+      const res =  await API.orderTotal(orderData);
+      wx.navigateTo({
+        url: '../order-detail/index?id='+res._id,
       })
     } else {
       Dialog.confirm({
@@ -246,13 +227,4 @@ Page({
       this.getGoodsList();
     }
   },
-
-  // 选择配送时间
-  orderTime(event) {
-    console.log(event, 'orderTime')
-    this.setData({
-      createTime: event ? event.detail : new Date().getTime(),
-      selectTime: false
-    });
-  }
 });
