@@ -1,6 +1,7 @@
 import API from '../../api/index';
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+import { orderNumber } from '../../tool.js';
 Page({
 
   data: {
@@ -173,6 +174,32 @@ Page({
    * 点击购买
    */
   async buy() {
+    const { goods, userInfo } = this.data;
+    if (userInfo) {
+      const data = {
+        orderNumber = orderNumber(),
+        active = 1,
+        totalPrice = item.totalPrice,
+        name = item.name,
+        phone = item.phone,
+        receiveCity = item.receiveCity,
+        receiveDetailedAddress = item.receiveDetailedAddress,
+        createTime = new Date().getTime(),
+        goods = [{
+          id: goods._id,
+          count: goods.count,
+          fileId: goods.fileId,
+          desc: goods.desc,
+          name: goods.name,
+          num:  goods.num,
+    
+        }],
+        
+      }
+    } else {
+      
+    }
+    
     console.log(this.data.goods)
   }
 })
