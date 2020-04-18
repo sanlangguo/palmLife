@@ -1,7 +1,9 @@
 page {
   background-color: #f0f4f5;
 }
-.swiper-box, .swiper-item-images{
+
+.swiper-box,
+.swiper-item-images {
   width: 100%;
   height: 700rpx;
 }
@@ -33,7 +35,7 @@ page {
 }
 
 .price-box .price {
-  text-decoration:line-through;
+  text-decoration: line-through;
   color: #9b9b9b;
   font-size: 16rpx;
 }
@@ -55,13 +57,14 @@ page {
   margin: 16rpx 0;
 }
 
-.goods-title text{
+.goods-title text {
   color: #363636;
-  font-size: var(--cell-font-size,14px);
+  font-size: var(--cell-font-size, 14px);
   margin-left: 5%;
 }
 
-.goods-img, .goods-title {
+.goods-img,
+.goods-title {
   background: #fff;
   width: 100%;
   padding: 10rpx 0;
@@ -72,6 +75,28 @@ page {
   margin-left: 5%;
 }
 
-.goods-img image:last-child{
+.goods-img image:last-child {
   margin-bottom: 100rpx;
+}
+
+.van-cell:after,
+.van-hairline--top-bottom:after {
+  border: none !important;
+}
+
+.goods-norm-box {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.goods-norm-box button {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.next-btn {
+  position: fixed !important;
+  bottom: 20rpx;
+  width: 90% !important;
+  margin-left: 5%;
 }

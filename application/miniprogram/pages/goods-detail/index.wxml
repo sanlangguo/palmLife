@@ -34,3 +34,24 @@
 <van-notify id="van-notify" />
 <!-- 弹出框确认 -->
 <van-dialog id="van-dialog" />
+
+<!-- 选择产品 -->
+<van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 50%" bind:close="onClose">
+	<van-panel title="商品规格:">
+		<view class="goods-norm-box">
+			<van-button size="small">按钮</van-button>
+			<van-button size="small" type="danger">按钮</van-button>
+			<van-button size="small">按钮</van-button>
+			<van-button size="small" type="danger">按钮</van-button>
+			<van-button size="small">按钮</van-button>
+			<van-button size="small" type="danger">按钮</van-button>
+			<van-button size="small">按钮</van-button>
+			<van-button size="small" type="danger">按钮</van-button>
+			<van-button size="small">按钮</van-button>
+		</view>
+		<van-cell center title="购买数量" use-label-slot>
+			<van-stepper value="{{ 1 }}" bind:change="onChange" />
+		</van-cell>
+	</van-panel>
+	<van-button custom-class="next-btn" type="danger" round size="large">下一步</van-button>
+</van-popup>
