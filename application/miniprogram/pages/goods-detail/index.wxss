@@ -100,3 +100,7 @@ page {
   width: 90% !important;
   margin-left: 5%;
 }
+
+.header-panel{
+  margin-top: 10%;
+}

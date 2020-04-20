@@ -10,6 +10,7 @@ Page({
     show: true,
     goods: {},
     cartLength: 0,
+    index: 0,
     userInfo: wx.getStorageSync('userInfo')
   },
 

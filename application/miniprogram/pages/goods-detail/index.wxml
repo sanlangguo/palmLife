@@ -37,17 +37,12 @@
 
 <!-- 选择产品 -->
 <van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 50%" bind:close="onClose">
-	<van-panel title="商品规格:">
+	<!-- <van-panel center title="商品价格:" status="9.9"></van-panel> -->
+	<van-panel header-class="header-panel" title="商品规格:" status="¥ {{goods.norm[index].price}}">
 		<view class="goods-norm-box">
-			<van-button size="small">按钮</van-button>
-			<van-button size="small" type="danger">按钮</van-button>
-			<van-button size="small">按钮</van-button>
-			<van-button size="small" type="danger">按钮</van-button>
-			<van-button size="small">按钮</van-button>
-			<van-button size="small" type="danger">按钮</van-button>
-			<van-button size="small">按钮</van-button>
-			<van-button size="small" type="danger">按钮</van-button>
-			<van-button size="small">按钮</van-button>
+		<block wx:for="{{goods.norm}}">
+			<van-button size="small" data-price="{{item.price}}" data-index="{{item.index}}" type="danger">{{item.name}}</van-button>
+		</block>
 		</view>
 		<van-cell center title="购买数量" use-label-slot>
 			<van-stepper value="{{ 1 }}" bind:change="onChange" />
