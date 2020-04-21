@@ -36,16 +36,16 @@
 <van-dialog id="van-dialog" />
 
 <!-- 选择产品 -->
-<van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 50%" bind:close="onClose">
-	<!-- <van-panel center title="商品价格:" status="9.9"></van-panel> -->
-	<van-panel header-class="header-panel" title="商品规格:" status="¥ {{goods.norm[index].price}}">
+<van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 60%" bind:close="onClose">
+	<van-card price="{{goods.norm[key].price * count}}" desc="{{goods.desc}}" title="{{goods.name}}" thumb="{{ goods.coverImg }}" />
+	<van-panel header-class="header-panel" title="商品规格:">
 		<view class="goods-norm-box">
-		<block wx:for="{{goods.norm}}">
-			<van-button size="small" data-price="{{item.price}}" data-index="{{item.index}}" type="danger">{{item.name}}</van-button>
-		</block>
+			<block wx:for="{{goods.norm}}" wx:key="price">
+				<van-button size="small" data-price="{{item.price}}" data-key="{{index}}" type="{{index == key ? 'danger' : 'default'}}" bind:click="seletGoodsNorm">{{item.name}}</van-button>
+			</block>
 		</view>
 		<van-cell center title="购买数量" use-label-slot>
-			<van-stepper value="{{ 1 }}" bind:change="onChange" />
+			<van-stepper value="{{ 1 }}" bind:change="onGoodsCounts" />
 		</van-cell>
 	</van-panel>
 	<van-button custom-class="next-btn" type="danger" round size="large">下一步</van-button>

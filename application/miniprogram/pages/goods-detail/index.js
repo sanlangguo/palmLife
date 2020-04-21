@@ -10,7 +10,8 @@ Page({
     show: true,
     goods: {},
     cartLength: 0,
-    index: 0,
+    key: 0,
+    count: 1,
     userInfo: wx.getStorageSync('userInfo')
   },
 
@@ -27,6 +28,7 @@ Page({
       const infoList = (await API.getTempFileURL(goods.infoList)).fileList;
       goods.topBannerUrl = topBanner;
       goods.infoListUrl = infoList;
+      goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
       this.setData({
         goods,
       }, () => {
@@ -173,6 +175,10 @@ Page({
    * 点击购买
    */
   async buy() {
+    this.setData({
+      show: true
+    })
+    return
     const {
       goods,
       userInfo
@@ -210,6 +216,24 @@ Page({
   onClose() {
     this.setData({
       show: false
+    })
+  },
+
+  /**
+   * 选择产品规格
+   */
+  seletGoodsNorm(e) {
+    const { key } = e.currentTarget.dataset;
+    console.log(key, 'seletGoodsNorm')
+    this.setData({
+      key,
+      count: 1
+    })
+  },
+
+  onGoodsCounts(e) {
+    this.setData({
+      count: e.detail
     })
   }
 })
