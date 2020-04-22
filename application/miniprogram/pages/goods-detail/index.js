@@ -1,5 +1,4 @@
 import API from '../../api/index';
-import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import {
   orderNumber
@@ -7,7 +6,8 @@ import {
 Page({
 
   data: {
-    show: true,
+    currentPrice: 0,
+    show: false,
     goods: {},
     cartLength: 0,
     key: 0,
@@ -26,11 +26,18 @@ Page({
       const goods = (await API.getGoodsDetail(options.id)).data;
       const topBanner = (await API.getTempFileURL(goods.topBanner)).fileList;
       const infoList = (await API.getTempFileURL(goods.infoList)).fileList;
+      if (!goods.norm || !goods.norm.length) {
+        goods.norm = [{
+          price: goods.originPrice,
+          name: goods.unit
+        }]
+      }
       goods.topBannerUrl = topBanner;
       goods.infoListUrl = infoList;
       goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
       this.setData({
         goods,
+        currentPrice: goods.originPrice
       }, () => {
         this.getUserCartLength();
       })
@@ -78,11 +85,11 @@ Page({
         delete data._id;
         const goods = data.goods;
         if (goods.length >= 20) {
-          Notify({
-            type: 'warning',
-            message: '购物车已经加满啦',
-            duration: 1500
-          });
+          wx.showToast({
+            title: '购物车已经加满啦',
+            icon: 'none',
+            mask: true
+          })
         } else {
           const ids = [];
           goods.map((item) => {
@@ -102,18 +109,18 @@ Page({
           }
           const changeCards = await API.changeCards(card.data[0]._id, data);
           if (changeCards.stats.updated == 1) {
-            Notify({
-              type: 'success',
-              message: '添加成功',
-              duration: 900
-            });
+            wx.showToast({
+              title: '添加成功',
+              icon: 'none',
+              mask: true
+            })
             this.getUserCartLength();
           } else {
-            Notify({
-              type: 'warning',
-              message: '添加失败请重新添加',
-              duration: 900
-            });
+            wx.showToast({
+              title: '添加失败请重新添加',
+              icon: 'none',
+              mask: true
+            })
           }
         }
       } else {
@@ -124,18 +131,18 @@ Page({
         }];
         const addGoods = await this.addGoods(data);
         if (addGoods._id) {
-          Notify({
-            type: 'success',
-            message: '添加成功',
-            duration: 900
-          });
+          wx.showToast({
+            title: '添加成功',
+            icon: 'none',
+            mask: true
+          })
           this.getUserCartLength();
         } else {
-          Notify({
-            type: 'warning',
-            message: '添加失败请重新添加',
-            duration: 900
-          });
+          wx.showToast({
+            title: '添加失败请重新添加',
+            icon: 'none',
+            mask: true
+          })
         }
       }
     } else {
@@ -178,16 +185,23 @@ Page({
     this.setData({
       show: true
     })
-    return
+  },
+
+  /**
+   * 下一步
+   */
+  async next() {
     const {
       goods,
-      userInfo
+      userInfo,
+      count,
+      key
     } = this.data;
     if (userInfo) {
       const data = {
         orderNumber: orderNumber(),
         active: 1,
-        totalPrice: goods.totalPrice,
+        totalPrice: goods.norm[key].price * count,
         name: userInfo.name,
         phone: userInfo.phone,
         receiveCity: userInfo.receiveCity,
@@ -195,19 +209,28 @@ Page({
         createTime: new Date().getTime(),
         goods: [{
           id: goods._id,
-          count: goods.count,
+          count: count,
           fileId: goods.fileId,
           desc: goods.desc,
           name: goods.name,
-          num: goods.num,
+          originPrice: goods.originPrice,
+          price: goods.norm[key].price ? goods.norm[key].price : goods.price
         }],
       }
-      console.log(data, '=====')
+      const res = await API.orderTotal(data);
+      wx.navigateTo({
+        url: '/pages/order-detail/index?id='+res._id,
+      })
     } else {
-
+      Dialog.confirm({
+        title: '授权',
+        message: '用户信息不存在，点击确认授权'
+      }).then(() => {
+        wx.navigateTo({
+          url: '../login/index',
+        })
+      });
     }
-
-    console.log(this.data.goods)
   },
 
   /**
@@ -223,17 +246,23 @@ Page({
    * 选择产品规格
    */
   seletGoodsNorm(e) {
+    const { goods } = this.data;
+    if (goods.norm && goods.norm.length == 1) return false;
     const { key } = e.currentTarget.dataset;
-    console.log(key, 'seletGoodsNorm')
+    const currentPrice = (goods.norm[key].price * 1).toFixed(2);
     this.setData({
       key,
-      count: 1
+      count: 1,
+      currentPrice
     })
   },
 
   onGoodsCounts(e) {
+    const { goods, key} = this.data;
+    const currentPrice = (goods.norm[key].price * e.detail).toFixed(2);
     this.setData({
-      count: e.detail
+      count: e.detail,
+      currentPrice
     })
   }
 })

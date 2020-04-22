@@ -5,7 +5,5 @@
     </view>
   </van-card>
 </view>
-<!-- 提示框 -->
-<van-notify id="van-notify" />
 <!-- 弹出框确认 -->
 <van-dialog id="van-dialog" />

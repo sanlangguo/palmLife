@@ -22,7 +22,5 @@
 	<view class='cart-text'>购物车空啦</view>
 	<view class='go-cart-text'>快去挑点宝贝吧</view>
 </view>
-<!-- 提示框 -->
-<van-notify id="van-notify" />
 <!-- 弹出框确认 -->
 <van-dialog id="van-dialog" />

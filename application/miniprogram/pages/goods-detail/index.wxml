@@ -7,12 +7,12 @@
 </swiper>
 <view class="price-dec">
 	<view class="price-box">
-		<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price}}</text></b></p>
+		<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price || 0}}</text></b></p>
 	</view>
 	<view class="dec">{{goods.desc}}</view>
 </view>
 <van-cell-group custom-class="cell-group">
-	<van-cell title="库存数量" value="{{'剩余'+ goods.num}}" icon="eye-o" />
+	<van-cell title="库存数量" value="{{('剩余'+ goods.num) || 0}}" icon="eye-o" />
 </van-cell-group>
 <van-cell-group custom-class="cell-group">
 	<van-cell title="商品规格" value="{{goods.unit}}" icon="cart-circle-o" />
@@ -30,14 +30,13 @@
 	<van-goods-action-button text="加入购物车" type="warning" bind:click="addCart" />
 	<van-goods-action-button text="立即购买" bind:click="buy" />
 </van-goods-action>
-<!-- 提示框 -->
-<van-notify id="van-notify" />
+
 <!-- 弹出框确认 -->
 <van-dialog id="van-dialog" />
 
 <!-- 选择产品 -->
 <van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 60%" bind:close="onClose">
-	<van-card price="{{goods.norm[key].price * count}}" desc="{{goods.desc}}" title="{{goods.name}}" thumb="{{ goods.coverImg }}" />
+	<van-card price="{{ currentPrice || 0}}" desc="{{goods.desc}}" title="{{goods.name}}" thumb="{{ goods.coverImg }}" />
 	<van-panel header-class="header-panel" title="商品规格:">
 		<view class="goods-norm-box">
 			<block wx:for="{{goods.norm}}" wx:key="price">
@@ -45,8 +44,8 @@
 			</block>
 		</view>
 		<van-cell center title="购买数量" use-label-slot>
-			<van-stepper value="{{ 1 }}" bind:change="onGoodsCounts" />
+			<van-stepper value="{{ count }}" bind:change="onGoodsCounts" max="{{goods.num}}"/>
 		</van-cell>
 	</van-panel>
-	<van-button custom-class="next-btn" type="danger" round size="large">下一步</van-button>
+	<van-button custom-class="next-btn" type="danger" round bind:click="next" size="large">下一步</van-button>
 </van-popup>

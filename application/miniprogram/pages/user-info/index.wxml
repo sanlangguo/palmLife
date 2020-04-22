@@ -59,6 +59,3 @@
 </van-popup>
 
 <van-notify id="van-notify" />
-
-<!-- 弹框提示 -->
-<van-toast id="van-toast" />

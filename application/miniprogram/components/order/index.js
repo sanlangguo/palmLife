@@ -160,6 +160,7 @@ Component({
             item.totalPrice = goods.count * goods.originPrice;
           })
         })
+      console.log(res, '---')
         res.data.map(item => {
           if (!item.delete) {
             resouceData.push(item)

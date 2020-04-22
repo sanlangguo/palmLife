@@ -1,5 +1,4 @@
 import API from '../../api/index';
-import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
 
@@ -57,7 +56,11 @@ Page({
         delete data._id;
         const goods = data.goods;
         if (goods.length >=20) {
-          Notify({ type: 'warning', message: '购物车已经加满啦', duration: 1500 });
+          wx.showToast({
+            title: '购物车已经加满啦',
+            icon: 'none',
+            mask: true
+          })
         } else {
           const ids = [];
           goods.map((item) => { ids.push(item.id)});
@@ -75,9 +78,17 @@ Page({
           }
           const changeCards = await API.changeCards(card.data[0]._id, data);
           if (changeCards.stats.updated == 1) {
-            Notify({ type: 'success', message: '添加成功', duration: 900 });
+            wx.showToast({
+              title: '添加成功',
+              icon: 'none',
+              mask: true
+            })
           } else {
-            Notify({ type: 'warning', message: '添加失败请重新添加', duration: 900 });
+            wx.showToast({
+              title: '添加失败请重新添加',
+              icon: 'none',
+              mask: true
+            })
           }
         }
       } else {
@@ -88,9 +99,17 @@ Page({
         }];
         const addGoods = await this.addGoods(data);
         if (addGoods._id) {
-          Notify({ type: 'success', message: '添加成功', duration: 900 });
+          wx.showToast({
+            title: '添加成功',
+            icon: 'none',
+            mask: true
+          })
         } else {
-          Notify({ type: 'warning', message: '添加失败请重新添加', duration: 900 });
+          wx.showToast({
+            title: '添加失败请重新添加',
+            icon: 'none',
+            mask: true
+          })
         }
       }
     } else {

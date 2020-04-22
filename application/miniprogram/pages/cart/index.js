@@ -1,5 +1,4 @@
 import API from '../../api/index';
-import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import { orderNumber } from '../../tool.js';
 Page({
@@ -181,11 +180,11 @@ Page({
       if (item.id == cartId) {
         if (action == 'reduce') {
           if (item.count == 1) {
-            Notify({
-              type: 'warning',
-              message: '左滑删除物品',
-              duration: 900
-            });
+            wx.showToast({
+              title: '左滑删除物品',
+              icon: 'none',
+              mask: true
+            })
           } else {
             item.count -= 1;
           }
@@ -218,11 +217,11 @@ Page({
       } else {
         await API.deletCards(id);
       }
-      Notify({
-        type: 'success',
-        message: '删除成功',
-        duration: 900
-      });
+      wx.showToast({
+        title: '删除成功',
+        icon: 'none',
+        mask: true
+      })
       this.getGoodsList();
     }
   },
