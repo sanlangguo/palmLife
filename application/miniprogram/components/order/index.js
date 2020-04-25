@@ -1,5 +1,7 @@
 import API from '../../api/index';
-import { orderNumber } from '../../tool.js';
+import {
+  orderNumber
+} from '../../tool.js';
 Component({
   properties: {
     active: {
@@ -32,6 +34,7 @@ Component({
     async getAllOrderList() {
       wx.showLoading({
         title: '加载中',
+        mask: true
       })
       const count = await API.getOrderCount();
       const batchTimes = Math.ceil(count.total / 4);
@@ -63,7 +66,9 @@ Component({
       const {
         id
       } = e.currentTarget.dataset;
-      const { order } = this.data;
+      const {
+        order
+      } = this.data;
       let data = {};
       order.map(item => {
         if (item._id == id) {
@@ -80,7 +85,7 @@ Component({
       });
       const res = await API.orderTotal(data);
       wx.navigateTo({
-        url: '/pages/order-detail/index?id='+res._id,
+        url: '/pages/order-detail/index?id=' + res._id,
       })
     },
 
@@ -94,10 +99,13 @@ Component({
         id
       } = e.currentTarget.dataset;
       if (id) {
-        await API.updateOrder(id, { delete: 1 });
+        await API.updateOrder(id, {
+          delete: 1
+        });
         wx.showLoading({
           title: '删除成功',
           icon: 'none',
+          mask: true,
           success() {
             that.setData({
               page: 0,
@@ -134,6 +142,7 @@ Component({
     async filterOrderActive(active) {
       wx.showLoading({
         title: '加载中',
+        mask: true
       })
       const count = await API.getOrderActiveCount(active);
       const batchTimes = Math.ceil(count.total / 4);
@@ -160,12 +169,12 @@ Component({
             item.totalPrice = goods.count * goods.originPrice;
           })
         })
-      console.log(res, '---')
         res.data.map(item => {
           if (!item.delete) {
             resouceData.push(item)
           }
         })
+        console.log(resouceData, '---')
         this.setData({
           batchTimes,
           page: this.data.page + 1,

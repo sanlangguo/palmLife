@@ -18,6 +18,7 @@ Page({
   async onLoad(options) {
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     const countResult = await API.getGoodsCount();
     const batchTimes = Math.ceil(countResult.total / 6);
@@ -35,6 +36,7 @@ Page({
     if (this.data.page < this.data.batchTimes) {
       wx.showLoading({
         title: '加载中',
+        mask: true
       })
       this.getGoodsList();
     }

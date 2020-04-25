@@ -22,6 +22,7 @@ Page({
     if (options && options.id) {
       wx.showLoading({
         title: '加载中',
+        mask: true
       })
       const goods = (await API.getGoodsDetail(options.id)).data;
       const topBanner = (await API.getTempFileURL(goods.topBanner)).fileList;
@@ -191,6 +192,11 @@ Page({
    * 下一步
    */
   async next() {
+    wx.showToast({
+      title: '下单中',
+      icon: 'none',
+      mask: true
+    })
     const {
       goods,
       userInfo,
@@ -209,19 +215,26 @@ Page({
         createTime: new Date().getTime(),
         goods: [{
           id: goods._id,
+          coverImg: goods.coverImg,
           count: count,
           fileId: goods.fileId,
           desc: goods.desc,
           name: goods.name,
-          originPrice: goods.originPrice,
-          price: goods.norm[key].price ? goods.norm[key].price : goods.price
+          unit: goods.norm[key].name ? goods.norm[key].name : goods.unit,
+          price: goods.originPrice,
+          originPrice: goods.norm[key].price ? goods.norm[key].price : goods.price
         }],
       }
       const res = await API.orderTotal(data);
-      wx.navigateTo({
-        url: '/pages/order-detail/index?id='+res._id,
+      wx.hideLoading({
+        complete: () => {
+          wx.navigateTo({
+            url: '/pages/order-detail/index?id='+res._id,
+          })
+        },
       })
     } else {
+      wx.hideLoading();
       Dialog.confirm({
         title: '授权',
         message: '用户信息不存在，点击确认授权'

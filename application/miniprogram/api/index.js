@@ -43,7 +43,7 @@ const API = {
     return await db.collection('order').add({data});
   },
   async getAllOrderList(page) {
-    return await db.collection('order').orderBy('createTime', 'asc').skip(page).limit(4).get();
+    return await db.collection('order').orderBy('createTime', 'desc').skip(page).limit(4).get();
   },
   async deletOrder(id) {
     return await db.collection('order').doc(id).remove();
@@ -52,7 +52,7 @@ const API = {
     return await db.collection('order').count();
   },
   async filterOrder(active, page) {
-    return await db.collection('order').where({active: _.eq(active)}).skip(page).limit(4).get();
+    return await db.collection('order').orderBy('createTime', 'desc').where({active: _.eq(active)}).skip(page).limit(4).get();
   },
   async getOrderActiveCount(active) {
     return await db.collection('order').where({active: _.eq(active)}).count();
@@ -66,6 +66,9 @@ const API = {
   async updateOrder(id, data) {
     return await db.collection('order').doc(id).update({data});
   },
+  async getHomeConfig(){
+    return await db.collection('home-config').get();
+  }
 };
 
 export default API;

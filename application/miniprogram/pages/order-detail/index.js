@@ -28,6 +28,10 @@ Page({
   },
 
   async onShow() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     if (this.data.id) {
       const res = await API.getOrderDetail(this.data.id);
       let title = '';
@@ -41,6 +45,7 @@ Page({
           item.totalPrice = goods.count * goods.originPrice;
         })
       })
+      console.log(res.data, 'order data')
       this.setData({
         order: res.data,
       })
@@ -48,6 +53,7 @@ Page({
         title
       })
     }
+    wx.hideLoading();
   },
 
   /**

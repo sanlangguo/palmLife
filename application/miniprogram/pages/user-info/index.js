@@ -26,6 +26,7 @@ Page({
     console.log(options.id, '------')
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     const userInfo = wx.getStorageSync('userInfo');
     if (userInfo) {

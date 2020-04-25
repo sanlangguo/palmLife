@@ -35,3 +35,8 @@ page {
   color: #07c160;
   font-size: 28rpx;
 }
+
+.tags {
+  color: #ccc;
+  font-size: 22rpx;
+}

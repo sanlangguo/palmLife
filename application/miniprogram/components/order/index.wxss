@@ -27,3 +27,8 @@ page {
   text-align: center;
   color: var(--tab-text-color, #646566);
 }
+
+.tags {
+  color: #ccc;
+  font-size: 22rpx;
+}

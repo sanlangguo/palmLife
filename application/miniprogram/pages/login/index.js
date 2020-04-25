@@ -14,7 +14,8 @@ Page({
    */
   async onLoad(options) {
     wx.showLoading({
-      title: '加载中...',
+      title: '加载中',
+      mask: true
     })
     const res = await API.login();
     const {
@@ -36,6 +37,7 @@ Page({
   async getUserInfo(e) {
     wx.showLoading({
       title: '授权中...',
+      mask: true
     })
     if (!e.detail.userInfo) {
       wx.hideLoading({

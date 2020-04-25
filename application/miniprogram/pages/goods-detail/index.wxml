@@ -12,10 +12,10 @@
 	<view class="dec">{{goods.desc}}</view>
 </view>
 <van-cell-group custom-class="cell-group">
-	<van-cell title="库存数量" value="{{('剩余'+ goods.num) || 0}}" icon="eye-o" />
+	<van-cell title="库存数量" value="{{ goods.num ? ('剩余'+ goods.num) : '剩余0'}}" icon="eye-o" />
 </van-cell-group>
 <van-cell-group custom-class="cell-group">
-	<van-cell title="商品规格" value="{{goods.unit}}" icon="cart-circle-o" />
+	<van-cell title="商品规格" value="{{goods.norm[key].name}}" icon="cart-circle-o" bind:click="buy" is-link/>
 </van-cell-group>
 <view class="goods-title">
 	<text>商品详情</text>

@@ -9,7 +9,8 @@
     "tag": "爆款促销",
     "originPrice": 4.99,
     "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
-    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"]
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{"name": "1串","price": 4.99},{"name": "3串","price": 12.99}]
 }
 {
     "id": "2",
@@ -22,7 +23,8 @@
     "tag": "爆款促销",
     "originPrice": 4.99,
     "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
-    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"]
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{"name": "1个","price": 12.99},{"name": "500g","price": 59.00}]
 }
 {
     "id": "3",
@@ -35,5 +37,6 @@
     "tag": "爆款促销",
     "originPrice": 4.99,
     "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
-    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"]
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{"name": "1串","price": 1.99},{"name": "5串","price": 6.00}]
 }

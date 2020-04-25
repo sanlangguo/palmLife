@@ -60,7 +60,7 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/order-detail/index",
+					"name": "订单详情",
 					"pathName": "pages/goods-detail/index",
 					"query": "id=ZDQDDyM3riMFSWkJ0BDim1PbVHv1V5xfNRDRFyL2fUGKSFXb",
 					"scene": null
@@ -69,6 +69,13 @@
 					"id": -1,
 					"name": "订单列表",
 					"pathName": "pages/order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/home/index",
 					"query": "",
 					"scene": null
 				}

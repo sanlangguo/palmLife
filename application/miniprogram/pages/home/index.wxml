@@ -1,0 +1,9 @@
+<swiper class='swiper-box' indicator-dots="true" autoplay="true" circular="true" interval="2000" duration="500" previous-margin="0px" next-margin="0px">
+	<block wx:for='{{topBanner}}' wx:key='index'>
+		<swiper-item>
+			<navigator url="{{item.url}}" open-type="reLaunch">
+				<image src='{{item.tempFileURL}}' data-url="{{item.url}}" mode='aspectFill' class='swiper-item-images' />
+			</navigator>
+		</swiper-item>
+	</block>
+</swiper>
