@@ -229,3 +229,20 @@
     "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
     "norm": [{"name": "250g","price": 1.99},{"name": "500g","price": 3.00}]
 }
+{
+    "id": "13",
+    "name": "日用品-01",
+    "sort": 3,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.20,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg",
+    "desc": "日用品-01",
+    "tag": "日用品-01",
+    "originPrice": 4.99,
+    "delete": 0,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{"name": "250g","price": 1.99},{"name": "500g","price": 3.00}]
+}
