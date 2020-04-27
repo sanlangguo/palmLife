@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activeKey: 0,
+    sort: 0,
     goodList: [],
     page: 0,
     batchTimes: 0,
@@ -183,6 +183,17 @@ Page({
       }
     })
   },
+
+  /**
+   * 商品分类切换
+   * @param {0-惠选，1-卤菜, 2-生鲜, 3-居家}
+   */
+  switchSort(e) {
+    const { detail } = e;
+    console.log(detail)
+  },
+
+
 
   /**
    * 用户点击右上角分享

@@ -1,21 +1,18 @@
-<van-card wx:for="{{goodList}}" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" tag="{{item.tag}}" price="{{item.originPrice}}" origin-price="{{item.price}}" desc="{{item.unit}}" currency="¥" title="{{item.name}}" thumb="{{item.coverImg}}">
-          <view slot="footer" class="van-card__footer">
-            <van-button size="mini" bind:click="addCart" data-id="{{item._id}}" custom-class='button'>添加购物车</van-button>
-          </view>
-        </van-card>
-<view>
-	<van-sidebar active-key="{{ activeKey }}" bind:change="onChange">
-		<van-sidebar-item title="标签名 1">
-		</van-sidebar-item>
-		<van-sidebar-item title="标签名 2" />
-		<van-sidebar-item title="标签名 3" />
-    
+<view class="pages">
+	<van-sidebar active-key="{{ sort }}" bind:change="switchSort">
+		<van-sidebar-item title="精挑惠选" />
+		<van-sidebar-item title="精品卤菜" />
+		<van-sidebar-item title="美食生鲜" />
+		<van-sidebar-item title="居家好物" />
 	</van-sidebar>
-	<!-- <van-card wx:for="{{goodList}}" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" tag="{{item.tag}}" price="{{item.originPrice}}" origin-price="{{item.price}}" desc="{{item.unit}}" currency="¥" title="{{item.name}}" thumb="{{item.coverImg}}">
-    <view slot="footer" class="van-card__footer">
-      <van-button size="mini" bind:click="addCart" data-id="{{item._id}}" custom-class='button'>添加购物车</van-button>
-    </view>
-  </van-card> -->
+	<view class="card">
+		<van-card wx:for="{{goodList}}" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" tag="{{item.tag}}" price="{{item.originPrice}}" origin-price="{{item.price}}" desc="{{item.unit}}" currency="¥" title="{{item.name}}" thumb="{{item.coverImg}}">
+			<view slot="footer" class="van-card__footer">
+				<van-button size="mini" bind:click="addCart" data-id="{{item._id}}" custom-class='button'>添加购物车</van-button>
+			</view>
+		</van-card>
+	</view>
+
 </view>
 <!-- 弹出框确认 -->
 <van-dialog id="van-dialog" />

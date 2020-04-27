@@ -13,3 +13,12 @@
 .van-card__footer {
   margin-top: 5px;
 }
+
+
+.pages {
+  display: flex;
+}
+
+.card {
+  flex: 1;
+}
