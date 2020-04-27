@@ -22,7 +22,7 @@ Page({
       })
     } else {
       wx.reLaunch({
-        url: '../goods-list/index',
+        url: '../home/index',
       })
     }
   },
@@ -108,7 +108,7 @@ Page({
         message: '提交成功',
         onClose: () => {
           wx.reLaunch({
-            url: '../goods-list/index',
+            url: '../home/index',
           })
         }
       });

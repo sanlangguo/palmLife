@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    activeKey: 0,
     goodList: [],
     page: 0,
     batchTimes: 0,

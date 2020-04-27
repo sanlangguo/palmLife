@@ -6,7 +6,10 @@ Page({
    */
   data: {
     iconList: [],
-    topBanner: []
+    topBanner: [],
+    goodList: [],
+    page: 0,
+    batchTimes: 0,
   },
 
   /**
@@ -28,13 +31,56 @@ Page({
       topBanner
     })
     console.log(topBanner,'---')
+
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    const countResult = await API.getGoodsCount();
+    const batchTimes = Math.ceil(countResult.total / 6);
+    this.setData({
+      batchTimes,
+    }, () => {
+      this.getGoodsList()
+    })
   },
 
+  
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 商品列表
    */
-  onReady: function () {
-
+  async getGoodsList () {
+    const db = wx.cloud.database();
+    if (this.data.page === this.data.batchTimes) {
+      return false;
+    }
+    db.collection('goods-list').skip(this.data.page * 6).limit(6).get({ 
+      success: res => {
+        const fileIds = [];
+        if (res.data && res.data.length) {
+          const goodList = res.data;
+          goodList.map(item => {
+            fileIds.push(item.fileId)
+          })
+          wx.cloud.getTempFileURL({
+            fileList: fileIds,
+            success: res => {
+              res.fileList.map(item => {
+                goodList.map(good => {
+                  good.coverImg = item.tempFileURL;
+                })
+              })
+              wx.hideLoading();
+              console.log(goodList, '----')
+              this.setData({
+                goodList: this.data.goodList.concat(goodList),
+                page: this.data.page+1,
+              })
+            },
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -45,31 +91,24 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
 
   },
 
+
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom() {
+    if (this.data.page < this.data.batchTimes) {
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      this.getGoodsList();
+    }
   },
 
   /**

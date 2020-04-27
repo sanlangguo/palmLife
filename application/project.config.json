@@ -78,6 +78,13 @@
 					"pathName": "pages/home/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品列表",
+					"pathName": "pages/goods-list/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

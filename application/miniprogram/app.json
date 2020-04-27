@@ -26,7 +26,7 @@
       {
         "selectedIconPath": "images/home-hover.png",
         "iconPath": "images/home.png",
-        "pagePath": "pages/goods-list/index",
+        "pagePath": "pages/home/index",
         "text": "首页"
       },
       {

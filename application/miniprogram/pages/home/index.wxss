@@ -3,3 +3,93 @@
   width: 100%;
   height: 450rpx;
 }
+
+.icon-box {
+  width: 100%;
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.icon-box view {
+  color: #7a7a7a;
+  font-size: 24rpx;
+}
+
+.home-goods-box {
+  margin-top: 20rpx;
+  background-color: #f2f3f5;
+}
+
+.goods-tags {
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  line-height: 50rpx;
+  padding-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.goods-tags b {
+  color: #000;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.goods-tags text {
+  margin-left: 20rpx;
+  color: #666769;
+  font-size: 20rpx;
+}
+
+.goods-tags p {
+  float: right;
+  color: #666769;
+  font-size: 20rpx;
+}
+
+.recommend-goods {
+  width: 96%;
+  margin-left: 2%;
+  margin-bottom: 20rpx;
+  background-color: #fff !important;
+  border-radius: 10rpx;
+}
+
+.van-card__thumb,
+.goods-img {
+  width: 224rpx !important;
+  height: 260rpx !important;
+}
+
+.goods-title {
+  margin-top: 20rpx;
+}
+
+.van-card__bottom {
+  margin-bottom: 20rpx;
+}
+
+.goods-originPrice text {
+  font-size: 40rpx !important;
+}
+
+.tags {
+  margin-top: 20rpx;
+}
+
+.van-card__footer {
+  margin-top: 5px;
+}
+
+.button {
+  margin-right: 5px;
+  border-radius: 20rpx !important;
+  background-color: #ee0a24 !important;
+  width: 146rpx;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: -70rpx;
+  line-height: 40rpx;
+  color: #fff !important;
+}

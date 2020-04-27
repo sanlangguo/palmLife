@@ -44,7 +44,7 @@ Page({
       })
     } else {
       wx.reLaunch({
-        url: '../goods-list/index',
+        url: '../home/index',
       })
     }
   },

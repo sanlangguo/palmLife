@@ -4,6 +4,8 @@
     "van-card": "@vant/weapp/card/index",
     "van-button": "@vant/weapp/button/index",
     "van-notify": "@vant/weapp/notify/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index"
   }
 }

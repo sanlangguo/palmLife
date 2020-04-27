@@ -24,7 +24,7 @@
 	<image wx:for="{{goods.infoListUrl}}" wx:key="index" lazy-load src="{{item.tempFileURL}}" />
 </view>
 <van-goods-action custom-class="goods-action-position" safe-area-inset-bottom="{{ false }}">
-	<van-goods-action-icon icon="wap-home-o" text="首页" url="../goods-list/index" link-type="switchTab" />
+	<van-goods-action-icon icon="wap-home-o" text="首页" url="../home/index" link-type="switchTab" />
 	<van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
 	<van-goods-action-icon icon="cart-o" info="{{cartLength}}" data-id="{{goods.id}}" text="购物车" url="../cart/index" link-type="switchTab" />
 	<van-goods-action-button text="加入购物车" type="warning" bind:click="addCart" />
