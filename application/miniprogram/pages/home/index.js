@@ -10,6 +10,8 @@ Page({
     goodList: [],
     page: 0,
     batchTimes: 0,
+    loading: false,
+    sort: 0,
   },
 
   /**
@@ -50,10 +52,13 @@ Page({
    * 商品列表
    */
   async getGoodsList () {
+    console.log(1111)
     const db = wx.cloud.database();
     if (this.data.page === this.data.batchTimes) {
       return false;
     }
+    const res = await API.filterBySortGoodsList(this.data.sort);
+    console.log(res, '---')
     db.collection('goods-list').skip(this.data.page * 6).limit(6).get({ 
       success: res => {
         const fileIds = [];
@@ -73,6 +78,7 @@ Page({
               wx.hideLoading();
               console.log(goodList, '----')
               this.setData({
+                loading: true,
                 goodList: this.data.goodList.concat(goodList),
                 page: this.data.page+1,
               })

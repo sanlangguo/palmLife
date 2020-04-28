@@ -1,7 +1,7 @@
 {
     "id": "1",
     "name": "鸡爪",
-    "sort": 1,
+    "sort": 0,
     "unit": "500g/约20个",
     "price": 5.0,
     "num": 5,
@@ -17,7 +17,7 @@
 {
     "id": "2",
     "name": "猪蹄",
-    "sort": 1,
+    "sort": 0,
     "unit": "500g",
     "price": 6.20,
     "num": 5,
@@ -33,7 +33,7 @@
 {
     "id": "3",
     "name": "鹌鹑蛋",
-    "sort": 1,
+    "sort": 0,
     "delete": 0,
     "unit": "一串5个",
     "price": 6.20,
@@ -49,7 +49,7 @@
 {
     "id": "4",
     "name": "鹌鹑蛋",
-    "sort": 1,
+    "sort": 0,
     "unit": "一串5个",
     "delete": 0,
     "price": 6.20,
@@ -66,7 +66,7 @@
     "id": "5",
     "name": "鹌鹑蛋",
     "delete": 0,
-    "sort": 1,
+    "sort": 0,
     "unit": "一串5个",
     "price": 6.20,
     "num": 5,

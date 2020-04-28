@@ -30,6 +30,9 @@ const API = {
       _id: _.in(ids),
     }).get();
   },
+  async filterBySortGoodsList(sort){
+    return await db.collection('goods-list').where({sort: _.eq(sort)}).skip(0).limit(5).get();
+  },
   async getGoodsCount() {
     return await db.collection('goods-list').count();
   },

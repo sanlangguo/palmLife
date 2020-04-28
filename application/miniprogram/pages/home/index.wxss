@@ -93,3 +93,8 @@
   line-height: 40rpx;
   color: #fff !important;
 }
+
+.vant-loading {
+  width: 100%;
+  text-align: center;
+}
