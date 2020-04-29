@@ -17,6 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    if (options) {
+      console.log(options)
+    }
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -58,7 +61,7 @@ Page({
         delete data.openid;
         delete data._id;
         const goods = data.goods;
-        if (goods.length >=20) {
+        if (goods.length >= 20) {
           wx.showToast({
             title: '购物车已经加满啦',
             icon: 'none',
@@ -66,11 +69,13 @@ Page({
           })
         } else {
           const ids = [];
-          goods.map((item) => { ids.push(item.id)});
+          goods.map((item) => {
+            ids.push(item.id)
+          });
           if (ids.includes(gid)) {
             goods.map((item) => {
-              if (item.id == gid ) {
-                item.count+=1;
+              if (item.id == gid) {
+                item.count += 1;
               }
             });
           } else {
@@ -151,37 +156,33 @@ Page({
   /**
    * 商品列表
    */
-  async getGoodsList () {
-    const db = wx.cloud.database();
+  async getGoodsList() {
     if (this.data.page === this.data.batchTimes) {
       return false;
     }
-    db.collection('goods-list').skip(this.data.page * 6).limit(6).get({ 
-      success: res => {
-        const fileIds = [];
-        if (res.data && res.data.length) {
-          const goodList = res.data;
-          goodList.map(item => {
-            fileIds.push(item.fileId)
+    const res = await API.filterBySortGoodsList(this.data.sort, this.data.page * 6);
+    const fileIds = [];
+    if (res.data && res.data.length) {
+      const goodList = res.data;
+      goodList.map(item => {
+        fileIds.push(item.fileId)
+      })
+      wx.cloud.getTempFileURL({
+        fileList: fileIds,
+        success: res => {
+          res.fileList.map(item => {
+            goodList.map(good => {
+              good.coverImg = item.tempFileURL;
+            })
           })
-          wx.cloud.getTempFileURL({
-            fileList: fileIds,
-            success: res => {
-              res.fileList.map(item => {
-                goodList.map(good => {
-                  good.coverImg = item.tempFileURL;
-                })
-              })
-              wx.hideLoading();
-              this.setData({
-                goodList: this.data.goodList.concat(goodList),
-                page: this.data.page+1,
-              })
-            },
+          this.setData({
+            goodList: this.data.goodList.concat(goodList),
+            page: this.data.page + 1,
           })
-        }
-      }
-    })
+        },
+      })
+    }
+    wx.hideLoading();
   },
 
   /**
@@ -189,8 +190,16 @@ Page({
    * @param {0-惠选，1-卤菜, 2-生鲜, 3-居家}
    */
   switchSort(e) {
-    const { detail } = e;
-    console.log(detail)
+    const {
+      detail
+    } = e;
+    this.setData({
+      sort: detail,
+      page: 0
+    }, () => {
+      this.getGoodsList();
+    })
+    
   },
 
 

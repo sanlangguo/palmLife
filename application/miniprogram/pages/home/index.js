@@ -8,10 +8,14 @@ Page({
     iconList: [],
     topBanner: [],
     goodList: [],
-    page: 0,
     batchTimes: 0,
     loading: false,
-    sort: 0,
+    sort: -1,
+    groupBuy: [],
+    preferred: [], //惠选
+    braisedMeat: [], // 卤肉
+    fresh: [], // 生鲜
+    dailyUse: [] // 日用
   },
 
   /**
@@ -19,7 +23,10 @@ Page({
    */
   async onLoad() {
     const res = await API.getHomeConfig();
-    const {topBanner, iconList} = res.data[0];
+    const {
+      topBanner,
+      iconList
+    } = res.data[0];
     console.log(topBanner, iconList, '---')
     const fileIds = [];
     topBanner.map(item => {
@@ -32,88 +39,93 @@ Page({
     this.setData({
       topBanner
     })
-    console.log(topBanner,'---')
+    console.log(topBanner, '---')
 
     wx.showLoading({
       title: '加载中',
       mask: true
     })
-    const countResult = await API.getGoodsCount();
-    const batchTimes = Math.ceil(countResult.total / 6);
-    this.setData({
-      batchTimes,
-    }, () => {
-      this.getGoodsList()
-    })
+    this.getGoodsList();
   },
 
-  
+
   /**
    * 商品列表
    */
-  async getGoodsList () {
-    console.log(1111)
-    const db = wx.cloud.database();
-    if (this.data.page === this.data.batchTimes) {
-      return false;
-    }
-    const res = await API.filterBySortGoodsList(this.data.sort);
-    console.log(res, '---')
-    db.collection('goods-list').skip(this.data.page * 6).limit(6).get({ 
-      success: res => {
-        const fileIds = [];
-        if (res.data && res.data.length) {
-          const goodList = res.data;
-          goodList.map(item => {
-            fileIds.push(item.fileId)
+  async getGoodsList() {
+    const res = this.data.sort == -1 ? await API.getGroupBuyGoods(true) : await API.filterBySortGoodsList(this.data.sort);
+    const fileIds = [];
+    if (res.data && res.data.length) {
+      const goodList = res.data;
+      goodList.map(item => {
+        fileIds.push(item.fileId)
+      })
+      const filesData = await API.getTempFileURL(fileIds);
+      filesData.fileList.map(item => {
+        goodList.map(good => {
+          good.coverImg = item.tempFileURL;
+        })
+      });
+      switch (this.data.sort) {
+        case -1:
+          this.setData({
+            groupBuy: goodList,
           })
-          wx.cloud.getTempFileURL({
-            fileList: fileIds,
-            success: res => {
-              res.fileList.map(item => {
-                goodList.map(good => {
-                  good.coverImg = item.tempFileURL;
-                })
-              })
-              wx.hideLoading();
-              console.log(goodList, '----')
-              this.setData({
-                loading: true,
-                goodList: this.data.goodList.concat(goodList),
-                page: this.data.page+1,
-              })
-            },
+          break
+        case 0:
+          this.setData({
+            preferred: goodList,
           })
-        }
+          break;
+        case 1:
+          this.setData({
+            braisedMeat: goodList,
+          })
+          break;
+        case 2:
+          this.setData({
+            fresh: goodList,
+          })
+          break;
+        case 3:
+          this.setData({
+            dailyUse: goodList,
+          })
+          break;
+        default:
+          break;
       }
-    })
+      wx.hideLoading();
+      this.setData({
+        loading: true,
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    if (this.data.page < this.data.batchTimes) {
-      wx.showLoading({
-        title: '加载中',
+    let {
+      sort
+    } = this.data;
+    if (sort == 3) {
+      wx.showToast({
+        title: '点击更多查看',
+        icon: 'none',
         mask: true
       })
-      this.getGoodsList();
+    } else {
+      sort += 1;
+      this.setData({
+        sort
+      }, () => {
+        wx.showLoading({
+          title: '加载中',
+          mask: true
+        })
+        this.getGoodsList();
+      })
     }
   },
 

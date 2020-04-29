@@ -30,8 +30,11 @@ const API = {
       _id: _.in(ids),
     }).get();
   },
-  async filterBySortGoodsList(sort){
-    return await db.collection('goods-list').where({sort: _.eq(sort)}).skip(0).limit(5).get();
+  async filterBySortGoodsList(sort, page){
+    return await db.collection('goods-list').where({sort: _.eq(sort)}).skip(page).limit(6).get();
+  },
+  async getGroupBuyGoods(groupBuy){
+    return await db.collection('goods-list').where({groupBuy: _.eq(groupBuy)}).skip(0).limit(5).get();
   },
   async getGoodsCount() {
     return await db.collection('goods-list').count();
