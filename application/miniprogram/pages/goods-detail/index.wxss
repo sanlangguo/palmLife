@@ -13,9 +13,21 @@ page {
   background-color: #fff;
 }
 
-.price-dec view {
+.price-dec .price-box, .price-dec .dec{
   width: 90%;
   margin-left: 5%;
+}
+
+.price-dec .group-buy {
+  width: 100%;
+  line-height: 60rpx;
+  background-color: #ee0a24;
+  color: #fff;
+  margin-bottom: 10rpx;
+}
+
+.group-buy-price {
+  width: 62%;
 }
 
 .price-dec .price-box {
@@ -51,6 +63,11 @@ page {
   color: #000;
   font-size: 32rpx;
   padding-bottom: 14rpx;
+}
+
+.group-buy {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .cell-group {

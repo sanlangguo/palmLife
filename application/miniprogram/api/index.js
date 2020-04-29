@@ -31,13 +31,13 @@ const API = {
     }).get();
   },
   async filterBySortGoodsList(sort, page){
-    return await db.collection('goods-list').where({sort: _.eq(sort)}).skip(page).limit(6).get();
+    return await db.collection('goods-list').where({sort: _.eq(sort)}).skip(page || 0).limit(6).get();
   },
   async getGroupBuyGoods(groupBuy){
     return await db.collection('goods-list').where({groupBuy: _.eq(groupBuy)}).skip(0).limit(5).get();
   },
-  async getGoodsCount() {
-    return await db.collection('goods-list').count();
+  async getGoodsCount(sort) {
+    return await db.collection('goods-list').where({sort: _.eq(sort)}).count();
   },
   async getGoodsDetail(id) {
     return await db.collection('goods-list').doc(id).get();

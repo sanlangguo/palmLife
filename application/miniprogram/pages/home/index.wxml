@@ -10,24 +10,34 @@
 	</swiper>
 	<van-row>
 		<van-col span="4" custom-class="icon-box" offset="1">
-			<van-image round width="2.4rem" height="2.4rem" src="/images/group-buy.png" />
-			<view>超值团购</view>
+			<navigator url="{{'../goods-list/index?sort=1'}}">
+				<van-image round width="2.4rem" height="2.4rem" src="/images/group-buy.png" />
+				<view>超值团购</view>
+			</navigator>
 		</van-col>
 		<van-col span="5" custom-class="icon-box">
-			<van-image round width="2.4rem" height="2.4rem" src="/images/recommend.png" lazy-load />
-			<view>精挑惠选</view>
+			<navigator url="{{'../goods-list/index?sort=0'}}">
+				<van-image round width="2.4rem" height="2.4rem" src="/images/recommend.png" lazy-load />
+				<view>精挑惠选</view>
+			</navigator>
 		</van-col>
 		<van-col span="4" custom-class="icon-box">
-			<van-image round width="2.4rem" height="2.4rem" src="/images/braised-meat.png" />
-			<view>精品卤菜</view>
+			<navigator url="{{'../goods-list/index?sort=1'}}">
+				<van-image round width="2.4rem" height="2.4rem" src="/images/braised-meat.png" />
+				<view>精品卤菜</view>
+			</navigator>
 		</van-col>
 		<van-col span="5" custom-class="icon-box">
-			<van-image round width="2.4rem" height="2.4rem" src="/images/fresh.png" />
-			<view>美食生鲜</view>
+			<navigator url="{{'../goods-list/index?sort=2'}}">
+				<van-image round width="2.4rem" height="2.4rem" src="/images/fresh.png" />
+				<view>美食生鲜</view>
+			</navigator>
 		</van-col>
 		<van-col span="4" custom-class="icon-box">
-			<van-image round width="2.4rem" height="2.4rem" src="/images/daily-use.png" />
-			<view>居家好物</view>
+			<navigator url="{{'../goods-list/index?sort=3'}}">
+				<van-image round width="2.4rem" height="2.4rem" src="/images/daily-use.png" />
+				<view>居家好物</view>
+			</navigator>
 		</van-col>
 	</van-row>
 	<view class="home-goods-box">
@@ -46,7 +56,9 @@
 		</block>
 		<block wx:if="{{preferred.length}}">
 			<view class="goods-tags"><b>精挑惠选</b><text>小店优选好物</text>
-				<p><navigator url="{{'../goods-list/index?sort=0'}}">更多精挑惠选></navigator></p>
+				<p>
+					<navigator url="{{'../goods-list/index?sort=0'}}">更多精挑惠选></navigator>
+				</p>
 			</view>
 			<van-card wx:for="{{preferred}}" custom-class="recommend-goods" thumb-class="goods-img" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" price="{{item.originPrice}}" price-class="goods-originPrice" origin-price="{{item.price}}" title-class="goods-title" currency="¥" title="{{ '['+item.name + '] ' + item.unit}}" thumb="{{item.coverImg}}">
 				<view slot="tags" class="tags">
@@ -56,7 +68,9 @@
 		</block>
 		<block wx:if="{{braisedMeat.length}}">
 			<view class="goods-tags"><b>精品卤菜</b><text>小店爆款卤菜</text>
-				<p><navigator url="{{'../goods-list/index?sort=1'}}">更多精品卤菜></navigator></p>
+				<p>
+					<navigator url="{{'../goods-list/index?sort=1'}}">更多精品卤菜></navigator>
+				</p>
 			</view>
 			<van-card wx:for="{{braisedMeat}}" custom-class="recommend-goods" thumb-class="goods-img" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" price="{{item.originPrice}}" price-class="goods-originPrice" origin-price="{{item.price}}" title-class="goods-title" currency="¥" title="{{ '['+item.name + '] ' + item.unit}}" thumb="{{item.coverImg}}">
 				<view slot="tags" class="tags">
@@ -66,7 +80,9 @@
 		</block>
 		<block wx:if="{{fresh.length}}">
 			<view class="goods-tags"><b>美食生鲜</b><text>小店畅销生鲜</text>
-				<p><navigator url="{{'../goods-list/index?sort=2'}}">更多美食生鲜></navigator></p>
+				<p>
+					<navigator url="{{'../goods-list/index?sort=2'}}">更多美食生鲜></navigator>
+				</p>
 			</view>
 			<van-card wx:for="{{fresh}}" custom-class="recommend-goods" thumb-class="goods-img" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" price="{{item.originPrice}}" price-class="goods-originPrice" origin-price="{{item.price}}" title-class="goods-title" currency="¥" title="{{ '['+item.name + '] ' + item.unit}}" thumb="{{item.coverImg}}">
 				<view slot="tags" class="tags">
@@ -76,7 +92,9 @@
 		</block>
 		<block wx:if="{{dailyUse.length}}">
 			<view class="goods-tags"><b>居家好物</b><text>居家实用好物</text>
-				<p><navigator url="{{'../goods-list/index?sort=3'}}">更多居家好物></navigator></p>
+				<p>
+					<navigator url="{{'../goods-list/index?sort=3'}}">更多居家好物></navigator>
+				</p>
 			</view>
 			<van-card wx:for="{{dailyUse}}" custom-class="recommend-goods" thumb-class="goods-img" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" price="{{item.originPrice}}" price-class="goods-originPrice" origin-price="{{item.price}}" title-class="goods-title" currency="¥" title="{{ '['+item.name + '] ' + item.unit}}" thumb="{{item.coverImg}}">
 				<view slot="tags" class="tags">

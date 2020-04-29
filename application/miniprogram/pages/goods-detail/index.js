@@ -36,6 +36,7 @@ Page({
       goods.topBannerUrl = topBanner;
       goods.infoListUrl = infoList;
       goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
+      console.log(goods, '----')
       this.setData({
         goods,
         currentPrice: goods.originPrice

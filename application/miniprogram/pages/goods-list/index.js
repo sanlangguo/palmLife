@@ -17,14 +17,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    if (options) {
-      console.log(options)
+    const { sort } = this.data;
+    if (options && options.sort) {
+      this.setData({
+        sort: options.sort
+      })
     }
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-    const countResult = await API.getGoodsCount();
+    this.pagination(options && options.sort ? options.sort : sort);
+  },
+
+  /**
+   * 分页
+   */
+  async pagination(sort) {
+    const countResult = await API.getGoodsCount(parseInt(sort));
     const batchTimes = Math.ceil(countResult.total / 6);
     this.setData({
       batchTimes,
@@ -33,16 +39,29 @@ Page({
     })
   },
 
+
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    if (this.data.page < this.data.batchTimes) {
-      wx.showLoading({
-        title: '加载中',
-        mask: true
-      })
+    const { page , batchTimes, sort} = this.data;
+    if (page < batchTimes) {
       this.getGoodsList();
+    } else {
+      if (sort == 3) {
+        wx.showToast({
+          title: '没有更多',
+          icon: 'none',
+          mask: true
+        })
+      } else {
+        this.setData({
+          sort: sort+1,
+          page: 0,
+        }, () => {
+          this.pagination(sort+1);
+        })
+      }
     }
   },
 
@@ -157,10 +176,14 @@ Page({
    * 商品列表
    */
   async getGoodsList() {
-    if (this.data.page === this.data.batchTimes) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    if (this.data.page !=0 && this.data.page === this.data.batchTimes) {
       return false;
     }
-    const res = await API.filterBySortGoodsList(this.data.sort, this.data.page * 6);
+    const res = await API.filterBySortGoodsList(parseInt(this.data.sort), this.data.page * 6);
     const fileIds = [];
     if (res.data && res.data.length) {
       const goodList = res.data;
@@ -195,13 +218,12 @@ Page({
     } = e;
     this.setData({
       sort: detail,
-      page: 0
+      page: 0,
+      goodList: []
     }, () => {
-      this.getGoodsList();
+      this.pagination(detail)
     })
-    
   },
-
 
 
   /**
