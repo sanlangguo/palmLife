@@ -6,8 +6,20 @@
 	</block>
 </swiper>
 <view class="price-dec">
-	<view class="price-box">
+	<view class="price-box" wx:if="{{false}}">
 		<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price || 0}}</text></b></p>
+	</view>
+	<view class='group-buy' wx:else >
+		<view class="group-buy-price">
+			<view>2人拼团价</view>
+			<view>
+				<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price || 0}}</text></b></p>
+			</view>
+		</view>
+		<view class="group-buy-countdown">
+			<view>1</view>
+			<view>2</view>
+		</view>
 	</view>
 	<view class="dec">{{goods.desc}}</view>
 </view>
@@ -15,7 +27,7 @@
 	<van-cell title="库存数量" value="{{ goods.num ? ('剩余'+ goods.num) : '剩余0'}}" icon="eye-o" />
 </van-cell-group>
 <van-cell-group custom-class="cell-group">
-	<van-cell title="商品规格" value="{{goods.norm[key].name}}" icon="cart-circle-o" bind:click="buy" is-link/>
+	<van-cell title="商品规格" value="{{goods.norm[key].name}}" icon="cart-circle-o" bind:click="buy" is-link />
 </van-cell-group>
 <view class="goods-title">
 	<text>商品详情</text>
@@ -44,7 +56,7 @@
 			</block>
 		</view>
 		<van-cell center title="购买数量" use-label-slot>
-			<van-stepper value="{{ count }}" bind:change="onGoodsCounts" max="{{goods.num}}"/>
+			<van-stepper value="{{ count }}" bind:change="onGoodsCounts" max="{{goods.num}}" />
 		</van-cell>
 	</van-panel>
 	<van-button custom-class="next-btn" type="danger" round bind:click="next" size="large">下一步</van-button>

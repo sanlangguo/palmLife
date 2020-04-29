@@ -85,6 +85,13 @@
 					"pathName": "pages/goods-list/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "订单详情",
+					"pathName": "pages/goods-detail/index",
+					"query": "id=E4i5TbhLququNerK086bKgAU1P7D9epZNsWxRi8aSeEHkPJR",
+					"scene": null
 				}
 			]
 		}
