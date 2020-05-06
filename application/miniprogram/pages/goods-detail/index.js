@@ -6,6 +6,7 @@ import {
 Page({
 
   data: {
+    time: 30 * 60 * 60 * 1000,
     currentPrice: 0,
     show: false,
     goods: {},
@@ -33,10 +34,12 @@ Page({
           name: goods.unit
         }]
       }
+      if (goods.groupBuy && goods.expireTime - new Date().getTime() > 0) {
+        goods.countdown = goods.expireTime - new Date().getTime();
+      }
       goods.topBannerUrl = topBanner;
       goods.infoListUrl = infoList;
       goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
-      console.log(goods, '----')
       this.setData({
         goods,
         currentPrice: goods.originPrice
@@ -278,5 +281,18 @@ Page({
       count: e.detail,
       currentPrice
     })
-  }
+  },
+
+  /**
+   * 活动结束时触发
+   */
+  async activityEnds() {
+    await wx.cloud.callFunction({
+      name: 'editGoods',
+      data: {
+        _id: this.data.goods._id,
+        data: { groupBuy: false },
+      },
+    })
+  },
 })

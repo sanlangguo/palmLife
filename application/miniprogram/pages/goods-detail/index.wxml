@@ -6,21 +6,28 @@
 	</block>
 </swiper>
 <view class="price-dec">
-	<view class="price-box" wx:if="{{false}}">
-		<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price || 0}}</text></b></p>
-	</view>
-	<view class='group-buy' wx:else >
+<view class='group-buy' wx:if="{{goods.groupBuy}}">
 		<view class="group-buy-price">
 			<view>2人拼团价</view>
-			<view>
+			<view class="group-buy-price-box">
 				<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price || 0}}</text></b></p>
 			</view>
 		</view>
 		<view class="group-buy-countdown">
-			<view>1</view>
-			<view>2</view>
+			<view>距离活动结束</view>
+			<view>
+				<van-count-down
+					time="{{ goods.countdown }}"
+					format="HH 时 mm 分 ss 秒 "
+					bind:finish="activityEnds"
+				/>
+			</view>
 		</view>
 	</view>
+	<view class="price-box" wx:else>
+		<p><b class='origin-price'>¥ <text>{{goods.originPrice}}</text></b><b class='price'>¥ <text>{{goods.price || 0}}</text></b></p>
+	</view>
+	
 	<view class="dec">{{goods.desc}}</view>
 </view>
 <van-cell-group custom-class="cell-group">

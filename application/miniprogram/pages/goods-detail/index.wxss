@@ -28,6 +28,30 @@ page {
 
 .group-buy-price {
   width: 62%;
+  font-size: 28rpx;
+}
+
+.group-buy-price view {
+  letter-spacing: 2rpx;
+  margin-left: 8%;
+}
+
+.group-buy-price-box .price {
+  text-decoration: line-through;
+  color: #f8b5a5;
+  margin-left: 20rpx;
+}
+
+.group-buy-price-box .origin-price text {
+  font-size: 40rpx;
+}
+
+.group-buy-countdown {
+  font-size: 28rpx;
+}
+
+.van-count-down {
+  color: #fff !important;
 }
 
 .price-dec .price-box {
