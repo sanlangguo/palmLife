@@ -1,4 +1,11 @@
 <van-cell-group wx:for="{{order}}" wx:key="_id">
+	<van-steps
+		custom-class="steps-box"
+		wx:if="{{order[0].groupbuy}}"
+		steps="{{ steps }}"
+		active="{{order[0].active-1}}"
+  	active-color="#ee0a24"
+	/>
 	<van-cell url="{{'../user-info/index?id='+item._id}}" label-class="van-cell-label" title-class="van-cell-label" title="{{'收货人: '+ item.name}}" icon="location-o" value-class="value-phone" value="{{item.phone}}" label="{{'地址: '+item.receiveCity+item.receiveDetailedAddress}}" border="{{false}}" is-link="{{item.active == 1}}" />
 	<van-panel header-class="panel-header" title="汇光皇后卤肉" desc="{{item.active !=0 ? '订单号：' + item.orderNumber : ''}}" status="{{item.status}}" wx:for="{{order}}" wx:key="_id" use-footer-slot>
 		<van-card wx:for="{{item.goods}}" wx:key="index" num="{{item.count}}" price="{{item.originPrice}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{item.coverImg}}" tags="{{item.unit}}">
@@ -7,7 +14,6 @@
 			</view>
 		</van-card>
 		<van-cell title="合计" value-class="value-total-price" value="{{'¥'+ item.totalPrice}}" />
-
 	</van-panel>
 	<van-cell custom-class="panel-header" title="配送方式" value="免运费" />
 	<van-cell title="支付方式" value="{{order[0].payMode || '货到付款'}}" />

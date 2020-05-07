@@ -11,6 +11,7 @@
     "van-submit-bar": "@vant/weapp/submit-bar/index",
     "van-field": "@vant/weapp/field/index",
     "van-toast": "@vant/weapp/toast/index",
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "van-steps": "@vant/weapp/steps/index"
   }
 }

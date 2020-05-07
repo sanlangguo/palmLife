@@ -9,6 +9,17 @@ Page({
     order: [],
     show: false,
     payMode: '',
+    steps: [
+      {
+        text: '发起拼团',
+      },
+      {
+        text: '邀请好友拼团',
+      },
+      {
+        text: '拼团成功',
+      }
+    ],
   },
 
   /**

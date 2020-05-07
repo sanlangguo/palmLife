@@ -16,6 +16,7 @@
     "van-goods-action-button": "@vant/weapp/goods-action-button/index",
     "van-stepper": "@vant/weapp/stepper/index",
     "van-card": "@vant/weapp/card/index",
-    "van-count-down": "@vant/weapp/count-down/index"
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-tag": "@vant/weapp/tag/index"
   }
 }

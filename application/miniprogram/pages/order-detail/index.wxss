@@ -3,6 +3,11 @@ page {
   margin-bottom: 100rpx;
 }
 
+.steps-box {
+  margin-top: 12rpx;
+  margin-bottom: 12rpx;
+}
+
 .value-phone {
   color: #323233 !important;
 }

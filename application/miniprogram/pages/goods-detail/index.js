@@ -13,7 +13,8 @@ Page({
     cartLength: 0,
     key: 0,
     count: 1,
-    userInfo: wx.getStorageSync('userInfo')
+    userInfo: wx.getStorageSync('userInfo'),
+    groupbuy: false
   },
 
   /**
@@ -186,9 +187,16 @@ Page({
   /**
    * 点击购买
    */
-  async buy() {
+  async buy(e) {
+    let { groupbuy } = e.currentTarget.dataset;
+    groupbuy = groupbuy === "false" ? false : true;
+    console.log(groupbuy, '---')
+    const { goods } = this.data;
     this.setData({
-      show: true
+      groupbuy,
+      show: true,
+      count: 1,
+      currentPrice: groupbuy ? goods.groupPurchasePrice: goods.originPrice,
     })
   },
 
@@ -205,13 +213,15 @@ Page({
       goods,
       userInfo,
       count,
-      key
+      key,
+      groupbuy,
+      currentPrice
     } = this.data;
     if (userInfo) {
       const data = {
         orderNumber: orderNumber(),
         active: 1,
-        totalPrice: goods.norm[key].price * count,
+        totalPrice: currentPrice * 1,
         name: userInfo.name,
         phone: userInfo.phone,
         receiveCity: userInfo.receiveCity,
@@ -226,8 +236,13 @@ Page({
           name: goods.name,
           unit: goods.norm[key].name ? goods.norm[key].name : goods.unit,
           price: goods.originPrice,
-          originPrice: goods.norm[key].price ? goods.norm[key].price : goods.price
+          originPrice: groupbuy ? goods.groupPurchasePrice :goods.norm[key].price ? goods.norm[key].price : goods.price
         }],
+      }
+      if (groupbuy) {
+        data.groupbuy = true;
+        data.groupPurchaseNumber = goods.groupPurchaseNumber;
+        data.groupPurchasePrice = goods.groupPurchasePrice
       }
       const res = await API.orderTotal(data);
       wx.hideLoading({
@@ -275,12 +290,22 @@ Page({
   },
 
   onGoodsCounts(e) {
-    const { goods, key} = this.data;
-    const currentPrice = (goods.norm[key].price * e.detail).toFixed(2);
+    const { goods, key, groupbuy} = this.data;
+    const currentPrice = groupbuy ? (e.detail * goods.groupPurchasePrice).toFixed(2) : (goods.norm[key].price * e.detail).toFixed(2);
     this.setData({
       count: e.detail,
       currentPrice
     })
+  },
+
+  addCounts(e) {
+    if (e.detail == "plus") {
+      wx.showToast({
+        title: '就这几件啦',
+        icon: 'none',
+        mask: true
+      })
+    }
   },
 
   /**

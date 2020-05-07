@@ -94,6 +94,11 @@ page {
   flex-wrap: nowrap;
 }
 
+.group-buy-cell {
+  padding-bottom: 14rpx;
+  font-size: 28rpx;
+}
+
 .cell-group {
   margin: 16rpx 0;
 }

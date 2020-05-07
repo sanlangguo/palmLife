@@ -60,9 +60,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "订单详情",
+					"name": "拼团商品详情",
 					"pathName": "pages/goods-detail/index",
-					"query": "id=ZDQDDyM3riMFSWkJ0BDim1PbVHv1V5xfNRDRFyL2fUGKSFXb",
+					"query": "id=E4i5TbhLququNerK086bKgAU1P7D9epZNsWxRi8aSeEHkPJR",
 					"scene": null
 				},
 				{
@@ -88,9 +88,30 @@
 				},
 				{
 					"id": 4,
-					"name": "订单详情",
+					"name": "商品详情",
 					"pathName": "pages/goods-detail/index",
 					"query": "id=E4i5TbhLququNerK086bKgAU1P7D9epZNsWxRi8aSeEHkPJR",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "拼团介绍",
+					"pathName": "pages/group-buy-introduction/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "pages/order-detail/index",
+					"pathName": "pages/order-detail/index",
+					"query": "id=a9bfcffc5eb3d7f00030b6cc04359fd9",
 					"scene": null
 				}
 			]
