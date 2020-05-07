@@ -190,7 +190,6 @@ Page({
   async buy(e) {
     let { groupbuy } = e.currentTarget.dataset;
     groupbuy = groupbuy === "false" ? false : true;
-    console.log(groupbuy, '---')
     const { goods } = this.data;
     this.setData({
       groupbuy,
