@@ -70,9 +70,7 @@ const API = {
   async updateGoodsInfo(_id, data) {
     console.log(wx.cloud, 'wx.cloud')
     return wx.cloud.callFunction({
-      // 云函数名称
       name: 'editGoods',
-      // 传给云函数的参数
       data: {
         _id,
         data,
@@ -124,6 +122,14 @@ const API = {
   async getHomeConfig() {
     return await db.collection('home-config').get();
   },
+  async checkUserGroup(uid, gid) {
+    return await db.collection('order')
+      .where({
+        'group.id': uid,
+        groupbuy: true,
+        'goods.id': gid
+      }).get()
+  }
 };
 
 export default API;

@@ -15,6 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad (options) {
+    console.log(options, '--')
     const order = await (await API.getOrderDetail(options.id)).data[0];
     let time = 0;
     order.goods.map(async item => {

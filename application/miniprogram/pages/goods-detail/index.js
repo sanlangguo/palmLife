@@ -13,7 +13,9 @@ Page({
     key: 0,
     count: 1,
     userInfo: wx.getStorageSync('userInfo'),
-    groupbuy: false
+    groupbuy: false,
+    hasUserGroup: false, // 当前团购商品是否正在开团抢购
+    orderId: null,
   },
 
   /**
@@ -35,6 +37,18 @@ Page({
         }]
       }
       if (goods.groupBuy && goods.expireTime - new Date().getTime() > 0) {
+        if (this.data.userInfo.openid) {
+          const group =  await API.checkUserGroup(this.data.userInfo.openid, options.id);
+          if (group.data && group.data.length) {
+            const data = group.data[0];
+            if (data.groupExpireTime - new Date().getTime() > 0) {
+              this.setData({
+                hasUserGroup: true,
+                orderId: data._id
+              })
+            }
+          }
+        }
         goods.countdown = goods.expireTime - new Date().getTime();
       }
       goods.topBannerUrl = topBanner;
@@ -194,13 +208,21 @@ Page({
    * 点击购买
    */
   async buy(e) {
+    const {
+      goods,
+      hasUserGroup,
+      orderId
+    } = this.data;
+    if (hasUserGroup && orderId) {
+      wx.navigateTo({
+        url: '../group-details/index?id=' + orderId,
+      })
+      return false
+    }
     let {
       groupbuy
     } = e.currentTarget.dataset;
     groupbuy = groupbuy === "false" ? false : true;
-    const {
-      goods
-    } = this.data;
     this.setData({
       groupbuy,
       show: true,
