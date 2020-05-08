@@ -1,0 +1,23 @@
+<view class="pages">
+	<view class="main">
+		<van-card wx:for="{{order.goods}}" wx:key="index" price="{{item.originPrice}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{item.coverImg}}" tags="{{item.unit}}" thumb-link="{{'../goods-detail/index?id=' + item.id}}">
+			<view slot="tags" class="tags">
+				{{order.groupPurchaseNumber}}人团
+			</view>
+		</van-card>
+		<van-divider contentPosition="center" custom-style="border-color:#eb544d;color:#eb544d;width:80%;margin-left:10%;font-size:31rpx;font-weight:600;">拼团剩余时间</van-divider>
+		<van-count-down use-slot time="{{ time }}" bind:change="onChange" class="count-down">
+			<text class="item">{{ timeData.days }}</text>:
+			<text class="item">{{ timeData.hours }}</text>:
+			<text class="item">{{ timeData.minutes }}</text>:
+			<text class="item">{{ timeData.seconds }}</text>
+		</van-count-down>
+		<view wx:for="{{order.group}}" wx:key="id" class="avatar-list">
+			<van-image width="80" height="80" round src="{{item.avatarUrl}}" />
+			<view wx:if="{{order.group.length < order.groupPurchaseNumber }}" class="dotted-line"></view>
+		</view>
+		<view wx:if="{{order.group.length < order.groupPurchaseNumber }}"class="group-processing">距离拼团成功还差<text>{{order.groupPurchaseNumber -order.group.length}}</text>人</view>
+		<view wx:else class="group-success"><text>拼团成功</text></view>
+		<van-button type="danger" size="large" custom-class="btn" round>邀请好友参团</van-button>
+	</view>
+</view>

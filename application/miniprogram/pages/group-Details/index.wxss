@@ -1,0 +1,74 @@
+.pages {
+  height: 100vh;
+  width: 100%;
+  background-color: #f2f3f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  box-shadow: 2rpx 15rpx 20rpx 0rpx #ccc;
+  width: 90%;
+  height: 90%;
+  background-color: #fff;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.count-down {
+  display: flex;
+  justify-content: center;
+}
+
+.van-count-down {
+  color: #ee0a24 !important;
+}
+
+.item {
+  display: inline-block;
+  width: 22px;
+  margin-right: 5px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  background-color: #ee0a24;
+  border-radius: 2px;
+}
+
+.avatar-list {
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.dotted-line {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 2rpx #ee0a24 dashed;
+  background-image: url(http://qa0apt1hz.bkt.clouddn.com/default-avatar.png);
+  background-position: center;
+  background-size: 100% 100%;
+  margin-left: -54rpx;
+}
+
+.group-success, .group-processing {
+  margin-top: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.group-success text,.group-processing text{
+  color: #e25657;
+  margin-left: 6rpx;
+  margin-right: 6rpx;
+}
+
+.btn {
+  width: 90% !important;
+  position: absolute !important;
+  margin-left: 5%;
+  bottom: 80rpx;
+}

@@ -6,7 +6,6 @@ import {
 Page({
 
   data: {
-    time: 30 * 60 * 60 * 1000,
     currentPrice: 0,
     show: false,
     goods: {},
@@ -53,6 +52,13 @@ Page({
       })
     }
   },
+
+  onChange(e) {
+    this.setData({
+      timeData: e.detail
+    });
+  },
+
 
   /**
    * 用户点击右上角分享
@@ -188,14 +194,18 @@ Page({
    * 点击购买
    */
   async buy(e) {
-    let { groupbuy } = e.currentTarget.dataset;
+    let {
+      groupbuy
+    } = e.currentTarget.dataset;
     groupbuy = groupbuy === "false" ? false : true;
-    const { goods } = this.data;
+    const {
+      goods
+    } = this.data;
     this.setData({
       groupbuy,
       show: true,
       count: 1,
-      currentPrice: groupbuy ? goods.groupPurchasePrice: goods.originPrice,
+      currentPrice: groupbuy ? goods.groupPurchasePrice : goods.originPrice,
     })
   },
 
@@ -235,7 +245,7 @@ Page({
           name: goods.name,
           unit: goods.norm[key].name ? goods.norm[key].name : goods.unit,
           price: goods.originPrice,
-          originPrice: groupbuy ? goods.groupPurchasePrice :goods.norm[key].price ? goods.norm[key].price : goods.price
+          originPrice: groupbuy ? goods.groupPurchasePrice : goods.norm[key].price ? goods.norm[key].price : goods.price
         }],
       }
       if (groupbuy) {
@@ -247,7 +257,7 @@ Page({
       wx.hideLoading({
         complete: () => {
           wx.navigateTo({
-            url: '/pages/order-detail/index?id='+res._id,
+            url: '/pages/order-detail/index?id=' + res._id,
           })
         },
       })
@@ -277,9 +287,13 @@ Page({
    * 选择产品规格
    */
   seletGoodsNorm(e) {
-    const { goods } = this.data;
+    const {
+      goods
+    } = this.data;
     if (goods.norm && goods.norm.length == 1) return false;
-    const { key } = e.currentTarget.dataset;
+    const {
+      key
+    } = e.currentTarget.dataset;
     const currentPrice = (goods.norm[key].price * 1).toFixed(2);
     this.setData({
       key,
@@ -289,7 +303,11 @@ Page({
   },
 
   onGoodsCounts(e) {
-    const { goods, key, groupbuy} = this.data;
+    const {
+      goods,
+      key,
+      groupbuy
+    } = this.data;
     const currentPrice = groupbuy ? (e.detail * goods.groupPurchasePrice).toFixed(2) : (goods.norm[key].price * e.detail).toFixed(2);
     this.setData({
       count: e.detail,
@@ -315,7 +333,9 @@ Page({
       name: 'editGoods',
       data: {
         _id: this.data.goods._id,
-        data: { groupBuy: false },
+        data: {
+          groupBuy: false
+        },
       },
     })
   },
