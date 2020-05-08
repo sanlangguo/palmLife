@@ -146,3 +146,23 @@ page {
   width: 90% !important;
   margin-left: 5%;
 }
+
+.count-down {
+  display: flex;
+  justify-content: center;
+}
+
+.van-count-down {
+  color: #fff !important;
+}
+
+.item {
+  display: inline-block;
+  width: 22px;
+  margin-right: 5px;
+  color: #ee0a24;
+  font-size: 12px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 2px;
+}

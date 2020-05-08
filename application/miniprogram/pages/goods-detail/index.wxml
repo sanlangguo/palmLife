@@ -17,7 +17,13 @@
 			<view class="group-buy-countdown">
 				<view>距离活动结束</view>
 				<view>
-					<van-count-down time="{{ goods.countdown }}" format="HH 时 mm 分 ss 秒 " bind:finish="activityEnds" />
+					<van-count-down use-slot time="{{ goods.countdown }}" bind:change="onChange" class="count-down" bind:finish="activityEnds">
+						<text class="item">{{ timeData.days }}</text>:
+						<text class="item">{{ timeData.hours }}</text>:
+						<text class="item">{{ timeData.minutes }}</text>:
+						<text class="item">{{ timeData.seconds }}</text>
+					</van-count-down>
+					<!-- <van-count-down time="{{ goods.countdown }}" format="DD 天 HH 时 mm 分 ss 秒 " /> -->
 				</view>
 			</view>
 		</view>
@@ -77,7 +83,7 @@
 				</block>
 			</view>
 			<van-cell center title="购买数量" use-label-slot>
-				<van-stepper value="{{ count }}" bind:change="onGoodsCounts" max="{{goods.num}}" bind:overlimit="addCounts"/>
+				<van-stepper value="{{ count }}" bind:change="onGoodsCounts" max="{{goods.num}}" bind:overlimit="addCounts" />
 			</van-cell>
 		</van-panel>
 		<van-button custom-class="next-btn" type="danger" round bind:click="next" size="large">下一步</van-button>
