@@ -12,12 +12,18 @@
 			<text class="item">{{ timeData.minutes }}</text>:
 			<text class="item">{{ timeData.seconds }}</text>
 		</van-count-down>
-		<view wx:for="{{order.group}}" wx:key="id" class="avatar-list">
-			<van-image width="80" height="80" round src="{{item.avatarUrl}}" />
+		<view class="avatar-list">
+			<van-image wx:for="{{order.group}}" wx:key="id" width="80" height="80" round src="{{item.avatarUrl}}" />
 			<view wx:if="{{order.group.length < order.groupPurchaseNumber }}" class="dotted-line"></view>
 		</view>
 		<view wx:if="{{order.group.length < order.groupPurchaseNumber }}"class="group-processing">距离拼团成功还差<text>{{order.groupPurchaseNumber -order.group.length}}</text>人</view>
 		<view wx:else class="group-success"><text>拼团成功</text></view>
-		<van-button type="danger" size="large" custom-class="btn" round>邀请好友参团</van-button>
+		<van-button type="danger" size="large" custom-class="btn" round open-type="share" wx:if="{{hasUserGroup}}">邀请好友参团</van-button>
+		<van-button wx:else type="danger" size="large" custom-class="btn" round  bind:click="joinFightTogether">我要一起拼</van-button>
 	</view>
 </view>
+
+<!-- 确认弹出框 -->
+<van-dialog id="van-dialog" />
+
+

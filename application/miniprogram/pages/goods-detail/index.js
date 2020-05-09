@@ -172,6 +172,7 @@ Page({
         }
       }
     } else {
+      console.log(this.data.userInfo, '--sssss--')
       Dialog.confirm({
         title: '授权',
         message: '用户信息不存在，点击确认授权'

@@ -1,3 +1,5 @@
+<!-- 弹出框确认 -->
+<van-dialog id="van-dialog" />
 <block wx:if="{{JSON.stringify(goods) != '{}'}}">
 	<swiper class='swiper-box' indicator-dots="true" autoplay="true" circular="true" interval="2000" duration="500" previous-margin="0px" next-margin="0px">
 		<block wx:for='{{goods.topBannerUrl}}' wx:key='index'>
@@ -64,10 +66,6 @@
 			<van-goods-action-button text="立即购买" bind:click="buy" />
 		</van-goods-action>
 	</block>
-
-	<!-- 弹出框确认 -->
-	<van-dialog id="van-dialog" />
-
 	<!-- 选择产品 -->
 	<van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 60%" bind:close="onClose">
 		<van-card price="{{ currentPrice || 0}}" desc="{{goods.desc}}" title="{{goods.name}}" thumb="{{ goods.coverImg }}">

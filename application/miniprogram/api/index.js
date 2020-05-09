@@ -66,17 +66,6 @@ const API = {
   async getGoodsDetail(id) {
     return await db.collection('goods-list').doc(id).get();
   },
-  // 更新商品信息
-  async updateGoodsInfo(_id, data) {
-    console.log(wx.cloud, 'wx.cloud')
-    return wx.cloud.callFunction({
-      name: 'editGoods',
-      data: {
-        _id,
-        data,
-      },
-    })
-  },
   async getTempFileURL(fileList) {
     return await wx.cloud.getTempFileURL({
       fileList: fileList

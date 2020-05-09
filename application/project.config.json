@@ -101,23 +101,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/my/index",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": 7,
-					"name": "pages/order-detail/index",
-					"pathName": "pages/order-detail/index",
-					"query": "id=a9bfcffc5eb3d7f00030b6cc04359fd9",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "拼团详情",
-					"pathName": "pages/group-Details/index",
+					"pathName": "pages/group-details/index",
 					"query": "id=a9bfcffc5eb3d7f00030b6cc04359fd9",
 					"scene": null
 				}
