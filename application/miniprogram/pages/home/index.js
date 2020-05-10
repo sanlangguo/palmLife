@@ -68,9 +68,22 @@ Page({
       });
       switch (this.data.sort) {
         case -1:
-          this.setData({
-            groupBuy: goodList,
+          const data = [];
+          goodList.map(item => {
+            if (item.groupBuy && item.expireTime - new Date().getTime() > 0) {
+              data.push(item)
+            }
           })
+          this.setData({
+            groupBuy: data,
+          })
+          if (data.length <=2) {
+            this.setData({
+              sort:1
+            }, () => {
+              this.getGoodsList();
+            })
+          } 
           break
         case 0:
           this.setData({
@@ -127,6 +140,14 @@ Page({
         this.getGoodsList();
       })
     }
+  },
+
+  // 查看团购详情
+  viewGoods(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '../goods-detail/index?id='+id,
+    })
   },
 
   /**

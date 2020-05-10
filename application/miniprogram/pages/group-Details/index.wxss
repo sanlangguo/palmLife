@@ -42,6 +42,10 @@
   justify-content: center;
 }
 
+.avatar-list .avatar-img {
+  margin-right: -50rpx;
+}
+
 .dotted-line {
   height: 80px;
   width: 80px;
@@ -50,17 +54,18 @@
   background-image: url(http://qa0apt1hz.bkt.clouddn.com/default-avatar.png);
   background-position: center;
   background-size: 100% 100%;
-  margin-left: -54rpx;
 }
 
-.group-success, .group-processing {
+.group-success,
+.group-processing {
   margin-top: 40rpx;
   text-align: center;
   font-size: 32rpx;
   font-weight: 600;
 }
 
-.group-success text,.group-processing text{
+.group-success text,
+.group-processing text {
   color: #e25657;
   margin-left: 6rpx;
   margin-right: 6rpx;
@@ -71,4 +76,26 @@
   position: absolute !important;
   margin-left: 5%;
   bottom: 80rpx;
+}
+
+.goods-norm-box {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.goods-norm-box button {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.next-btn {
+  position: fixed !important;
+  bottom: 20rpx;
+  width: 90% !important;
+  margin-left: 5%;
+}
+
+.van-cell:after,
+.van-hairline--top-bottom:after {
+  border: none !important;
 }

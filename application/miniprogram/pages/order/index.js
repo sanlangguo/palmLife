@@ -6,6 +6,7 @@ Page({
   data: {
     index: 0,
   },
+
   /**
    *  切换tabs
    */

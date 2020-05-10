@@ -38,7 +38,7 @@ Page({
       }
       if (goods.groupBuy && goods.expireTime - new Date().getTime() > 0) {
         if (this.data.userInfo.openid) {
-          const group =  await API.checkUserGroup(this.data.userInfo.openid, options.id);
+          const group = await API.checkUserGroup(this.data.userInfo.openid, options.id);
           if (group.data && group.data.length) {
             const data = group.data[0];
             if (data.groupExpireTime - new Date().getTime() > 0) {
@@ -50,6 +50,8 @@ Page({
           }
         }
         goods.countdown = goods.expireTime - new Date().getTime();
+      } else {
+        goods.groupBuy = false;
       }
       goods.topBannerUrl = topBanner;
       goods.infoListUrl = infoList;
@@ -71,14 +73,6 @@ Page({
     this.setData({
       timeData: e.detail
     });
-  },
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
 
   /**
@@ -208,9 +202,8 @@ Page({
   /**
    * 点击购买
    */
-  async buy(e) {
+  async viewGroup(e) {
     const {
-      goods,
       hasUserGroup,
       orderId
     } = this.data;
@@ -218,12 +211,18 @@ Page({
       wx.navigateTo({
         url: '../group-details/index?id=' + orderId,
       })
-      return false
     }
+  },
+
+  // 购买
+  async buyNow(e) {
+    const {
+      goods
+    } = this.data;
     let {
       groupbuy
     } = e.currentTarget.dataset;
-    groupbuy = groupbuy === "false" ? false : true;
+    groupbuy = (groupbuy === "false")? false : true;
     this.setData({
       groupbuy,
       show: true,
@@ -362,4 +361,13 @@ Page({
       },
     })
   },
+
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+
 })
