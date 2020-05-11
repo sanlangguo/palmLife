@@ -1,0 +1,10 @@
+.title {
+  text-align: center;
+}
+
+view {
+  padding-left: 5%;
+  text-align: left;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}

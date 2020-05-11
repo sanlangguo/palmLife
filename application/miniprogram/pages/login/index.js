@@ -1,5 +1,4 @@
 import API from "../../api/index.js";
-import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 Page({
 
   /**
@@ -13,8 +12,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    console.log(options, 'lo')
+    if (options.id) {
+      this.setData({
+        id: options.id
+      })
+    }
     wx.showLoading({
-      title: '加载中...',
+      title: '加载中',
+      mask: true
     })
     const res = await API.login();
     const {
@@ -35,11 +41,17 @@ Page({
   async getUserInfo(e) {
     wx.showLoading({
       title: '授权中...',
+      mask: true
     })
     if (!e.detail.userInfo) {
       wx.hideLoading({
         complete: () => {
-          Notify({ type: 'warning', message: '授权失败请重试', duration: 900 });
+          wx.showToast({
+            title: '授权失败请重试',
+            icon: 'none',
+            duration: 900,
+            mask: true
+          })
         },
       })
       return
@@ -66,11 +78,32 @@ Page({
    * 查询成功回调
    */
   selectSuccessCallBack() {
-    Notify({ type: 'success', message: '授权成功', duration: 900 });
-    setTimeout(() => {
-      wx.reLaunch({
-        url: '../my/index'
-      })
-    }, 1000)
+    const that = this;
+    wx.showToast({
+      title: '授权成功',
+      icon: 'success',
+      duration: 900,
+      mask: true,
+      success() {
+        if (that.data.id) {
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            id: that.data.id
+          })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }, 1000)
+        } else {
+          setTimeout(() => {
+            wx.reLaunch({
+              url: '../my/index'
+            })
+          }, 1000)
+        }
+      }
+    })
   }
 })

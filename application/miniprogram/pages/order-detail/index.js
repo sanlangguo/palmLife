@@ -1,0 +1,163 @@
+import API from '../../api/index';
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    order: [],
+    show: false,
+    payMode: '',
+    steps: [
+      {
+        text: '发起拼团',
+      },
+      {
+        text: '邀请好友拼团',
+      },
+      {
+        text: '拼团成功',
+      }
+    ],
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  async onLoad(options) {
+    const id = options.id;
+    if (id) {
+      this.setData({
+        id: options.id
+      })
+    } else {
+      wx.reLaunch({
+        url: '../home/index',
+      })
+    }
+  },
+
+  async onShow() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    if (this.data.id) {
+      const res = await API.getOrderDetail(this.data.id);
+      let title = '';
+      res.data.map(async item => {
+        switch (item.active) {
+          case 1:
+            item.status = '待下单';
+            break;
+          case 2:
+            item.status = '待成团';
+            break;
+          case 3:
+            item.status = '待发货';
+            break;
+          case 4:
+            item.status = '已收货';
+            break;
+          default:
+            break;
+        }
+        title = item.active == 1 ? '待付款的订单' : '订单详情';
+        item.goods.map(async goods => {
+          const data = [goods.fileId];
+          const fileRes = await API.getTempFileURL(data);
+          goods.coverImg = fileRes.fileList[0].tempFileURL;
+          item.totalPrice = goods.count * goods.originPrice;
+        })
+      })
+      console.log(res.data, 'order data')
+      this.setData({
+        order: res.data,
+      })
+      wx.setNavigationBarTitle({
+        title
+      })
+    }
+    wx.hideLoading();
+  },
+
+  /**
+   * 播放商户电话
+   */
+  async makePhoneCall() {
+    const res = await API.getMerchantInfo();
+    const merchant = wx.getStorageSync('merchant');
+    let phone = '';
+    if (!merchant) {
+      wx.setStorageSync('merchant', res.data[0]);
+      phone = `${res.data[0].phone}`
+    } else {
+      phone =  `${merchant.phone}`
+    }
+    wx.makePhoneCall({
+      phoneNumber: phone
+    })
+  },
+
+  /**
+   * 修改留言
+   */
+  async onChangeMessage(event) {
+    const { id } = this.data
+    const data = {
+      message: event.detail
+    }
+    await API.updateOrder(id, data);    
+  },
+
+  /**
+   * 提交订单
+   */
+  async onSubmit() {
+    if (!this.data.payMode) {
+      this.setData({
+        show: true
+      })
+      return false
+    }
+    const { id, payMode, order } = this.data
+    const data = {
+      active: order[0].active == 2 ? 2: 3,
+      updateTime: new Date().getTime(),
+      payMode,
+    }
+    const res = await API.updateOrder(id, data);
+    if (res.stats.updated == 1) {
+      Toast({
+        type: 'success',
+        message: '提交成功',
+        onClose: () => {
+          wx.reLaunch({
+            url: '../home/index',
+          })
+        }
+      });
+    }
+  },
+
+  /**
+   * 关闭付款方式弹出层
+   */
+  onClose() {
+    this.setData({
+      show: false
+    })
+  },
+
+  /**
+   * 选择付款方式
+   */
+  seleteaPayMode(e) {
+    const payMode = e.currentTarget.dataset.pay;
+    this.setData({
+      payMode,
+      show: false
+    })
+  }
+})

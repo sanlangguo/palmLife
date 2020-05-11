@@ -1,0 +1,23 @@
+<block wx:if="{{order.length}}">
+	<van-panel footer-class="panel-footer" header-class="panel-header" title="汇光皇后卤肉" desc="{{'订单号：' + item.orderNumber}}" status="{{item.status}}" wx:for="{{order}}" wx:key="_id" use-footer-slot>
+		<van-card wx:for="{{item.goods}}" wx:key="index" num="{{item.count}}" price="{{item.originPrice}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{item.coverImg}}">
+			<view slot="tags" class="tags">
+				{{item.unit}}
+			</view>
+		</van-card>
+		<van-cell title="合计" value-class="value-total-price" value="{{'¥'+ item.totalPrice}}" />
+		<view slot="footer">
+			<van-button size="small" wx:if="{{item.active == 1}}" plain hairline custom-class="btn-style" data-id="{{item._id}}" bind:click="deletOrder">取消订单</van-button>
+			<van-button size="small" plain hairline custom-class="btn-style" data-id="{{item._id}}" data-groupid="{{item.groupId}}" bind:click="viewOrderDetails">查看{{item.active == 2 ? '拼团': ''}}详情</van-button>
+			<block wx:if="{{item.active == 4}}">
+				<van-button size="small" bind:click="deletOrder" plain hairline custom-class="btn-style" data-id="{{item._id}}">删除订单</van-button>
+				<van-button size="small" bind:click="buyAgainOrder" plain hairline color="red" custom-class="btn-style" data-id="{{item._id}}">再次购买</van-button>
+			</block>
+		</view>
+	</van-panel>
+</block>
+<block wx:else>
+	<view class="no-order">
+		暂无订单
+	</view>
+</block>

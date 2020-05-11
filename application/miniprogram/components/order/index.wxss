@@ -1,0 +1,34 @@
+page {
+  background-color: #f0f4f5;
+}
+
+.panel-header {
+  margin-top: 12rpx;
+}
+
+.panel-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6rpx;
+}
+
+.btn-style {
+  margin: 0 5px;
+}
+
+.value-total-price {
+  color: #ee0a24 !important;
+}
+
+.no-order {
+  font-size: 30rpx;
+  margin-top: 100rpx;
+  width: 100%;
+  text-align: center;
+  color: var(--tab-text-color, #646566);
+}
+
+.tags {
+  color: #ccc;
+  font-size: 22rpx;
+}

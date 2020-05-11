@@ -1,0 +1,1063 @@
+{
+    "_id": "09x2imCEc6ALWztjXS4YHQCYpZ1NzbyTfXi13NdDg0y7ipNs",
+    "id": "13",
+    "name": "日用品-01",
+    "sort": 3,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg",
+    "desc": "日用品-01",
+    "tag": "日用品-01",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "1RgefixkvbRHlxDixvCfJP4G6DiompD9XkYrNRaNJTW28EfV",
+    "id": "12",
+    "name": "生鲜-05",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg",
+    "desc": "蔬菜05",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "26V3LPcpmVRQzxV2sR1asGYydsyeJ8QmKmQ8L9ornKBQ0WT9",
+    "id": "11",
+    "name": "生鲜-04",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg",
+    "desc": "蔬菜04",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "3m9awUh7lF9FUqNw40nXuPQjkoAWDPCyfX7MNhvWi0iASYe7",
+    "id": "3",
+    "name": "鹌鹑蛋",
+    "sort": 0,
+    "delete": 0,
+    "unit": "一串5个",
+    "price": 6.2,
+    "groupBuy": true,
+    "expireTime": {
+        "$numberLong": "1588262400000"
+    },
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "5HvV9Da9ScWzrDDsHNeVyW0EO35kCdTpc2nHKJJjNl5V3t9h",
+    "id": "12",
+    "name": "生鲜-07",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg",
+    "desc": "蔬菜07",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "8L2QaHOCV1lC7Vu2lB4bHHCRZutjuPQbyoLRIF1BSNw7mgcC",
+    "id": "2",
+    "name": "猪蹄",
+    "sort": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "delete": 0,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1个",
+        "price": 12.99
+    }, {
+        "name": "500g",
+        "price": 59.0
+    }]
+} {
+    "_id": "9skxIfzU4H9E1ny1Trh4eRzeeYZsCa2Pnsyf2E71CPUQh3nb",
+    "id": "12",
+    "name": "生鲜-07",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg",
+    "desc": "蔬菜07",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "DMK7m6t28fysa4aDLW9wBxG9Kc645mumUdBd12HpSyh3ZAch",
+    "id": "7",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "unit": "一串5个",
+    "price": 6.2,
+    "delete": 0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "E4i5TbhLququNerK086bKgAU1P7D9epZNsWxRi8aSeEHkPJR",
+    "id": "1",
+    "name": "鸡爪",
+    "sort": 0,
+    "unit": "500g/约20个",
+    "price": 5.0,
+    "num": 5,
+    "delete": 0,
+    "groupBuy": true,
+    "expireTime": {
+        "$numberLong": "1588262400000"
+    },
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 4.99
+    }, {
+        "name": "3串",
+        "price": 12.99
+    }]
+} {
+    "_id": "EpqKPyEQTTlOWLnwAG2ekyWbQrPueuugFk0jqdjZpORrYnJJ",
+    "id": "2",
+    "name": "猪蹄",
+    "sort": 0,
+    "groupBuy": true,
+    "expireTime": {
+        "$numberLong": "1588262400000"
+    },
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "delete": 0,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1个",
+        "price": 12.99
+    }, {
+        "name": "500g",
+        "price": 59.0
+    }]
+} {
+    "_id": "Eys0nQqCwR7hb4IWIReGNWhVO2scbmvmwBFOWtGTnvS6IcbE",
+    "id": "3",
+    "name": "鹌鹑蛋",
+    "sort": 0,
+    "delete": 0,
+    "unit": "一串5个",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "Gm4FJZSK7zRLQua3W3FCbN1CHQY7pqkT8qtsj7QySCyHUaIs",
+    "id": "13",
+    "name": "日用品-01",
+    "sort": 3,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg",
+    "desc": "日用品-01",
+    "tag": "日用品-01",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "IPptzzYZwp0MfXkZnhCgNB1FX3SVxS0PwDfksCo2GPJddKuo",
+    "id": "1",
+    "name": "鸡爪",
+    "unit": "500g/约20个",
+    "price": 5.0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 4.99
+    }, {
+        "name": "3串",
+        "price": 12.99
+    }]
+} {
+    "_id": "IrG0D58bVSLMLF06GpHbiQz35F5QqiRmPYb5wxvAominFlA5",
+    "id": "2",
+    "name": "猪蹄",
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1个",
+        "price": 12.99
+    }, {
+        "name": "500g",
+        "price": 59.0
+    }]
+} {
+    "_id": "KEp2ezgOFaXR3vJfmutAdgil7tRv7E68RHeq8HUKWNiN3cBV",
+    "id": "8",
+    "name": "生鲜-01",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg",
+    "desc": "蔬菜01",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "KzJyHs1IS7Uvy3tGko4Em6zybKI5DRR4jkYugwWPZknM3t2Q",
+    "id": "3",
+    "name": "鹌鹑蛋",
+    "unit": "一串5个",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "LD0D1CBdY0vvFemJumkYAanvhDzCTrcoTl8lm6XwWTWCfkRL",
+    "id": "12",
+    "name": "生鲜-05",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg",
+    "desc": "蔬菜05",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "LgpEfJpwlrtefJ9uPgkWJpuelprMyYEHT0ui1lw4GwLr7Buc",
+    "id": "1",
+    "name": "鸡爪",
+    "sort": 1,
+    "unit": "500g/约20个",
+    "price": 5.0,
+    "num": 5,
+    "delete": 0,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 4.99
+    }, {
+        "name": "3串",
+        "price": 12.99
+    }]
+} {
+    "_id": "OBDF5geIXHrGrBCekcXiKMyNcbKen7qwZYiNexxiS9MGQgzY",
+    "id": "11",
+    "name": "生鲜-04",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg",
+    "desc": "蔬菜04",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "OosgNtbKNE2bt9guGi8yEctE1ZHScxfpR6yUaYR1N6Gzv12L",
+    "id": "11",
+    "name": "生鲜-04",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg",
+    "desc": "蔬菜04",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "TpLAUONejNOLH2ObMPgkjFcgL0UTPRZkMmPhlj86rmJN3pgX",
+    "id": "6",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "unit": "一串5个",
+    "price": 6.2,
+    "delete": 0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "VAhlWKlsUMYNONVQ1ksNS3KluReLSvQKIX7zO0AiOxIjVihG",
+    "id": "4",
+    "name": "鹌鹑蛋",
+    "sort": 0,
+    "unit": "一串5个",
+    "delete": 0,
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "XI94nO83rM94nhCDPRYirFEiIlILniv27frk8ebE2P6hwG92",
+    "id": "4",
+    "name": "鹌鹑蛋",
+    "sort": 0,
+    "unit": "一串5个",
+    "delete": 0,
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "azD9EubfPqVOQ6aSqTKEVVx4f7aZceMhoP99gPF4cJ1U7XHR",
+    "id": "1",
+    "name": "鸡爪",
+    "sort": 0,
+    "unit": "500g/约20个",
+    "price": 5.0,
+    "num": 5,
+    "delete": 0,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 4.99
+    }, {
+        "name": "3串",
+        "price": 12.99
+    }]
+} {
+    "_id": "cLoVaZf6PqsAedDBiag8xCMLTHnVsu3Pd0PdgjzAePpSxtKF",
+    "id": "12",
+    "name": "生鲜-05",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg",
+    "desc": "蔬菜05",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/close-up-of-fruits-in-bowl-327098.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "cXkuOVwVMzE5r106U7KzanpB421U8DSH1PNtymJnOxlI2dyc",
+    "id": "2",
+    "name": "猪蹄",
+    "sort": 1,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "delete": 0,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1个",
+        "price": 12.99
+    }, {
+        "name": "500g",
+        "price": 59.0
+    }]
+} {
+    "_id": "ciKcTV6tIXb3faCep9AlIWwL9RiGtthmHkaF9dtvNlWJcDJB",
+    "id": "6",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "unit": "一串5个",
+    "price": 6.2,
+    "delete": 0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "dKTKFUqOPu9W5A12wdgm7zIpXPMBiol4Sc3XRD8C1XwTk6LA",
+    "id": "10",
+    "name": "生鲜-03",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg",
+    "desc": "蔬菜03",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "dzYrjD7hejQUCpnlvhf7lr7xB9LJICI4qmiBaMDdDE0I55BA",
+    "id": "3",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "delete": 0,
+    "unit": "一串5个",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "gKntqocborO0sMAIJp2uBMkBkWcRQjVKgSsCmTiKo0RyTABl",
+    "id": "10",
+    "name": "生鲜-03",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg",
+    "desc": "蔬菜03",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "gNr6zV1dXhsPc0u5mES9imjB3RSsjp1iPSiaulcwiVuCNBfk",
+    "id": "12",
+    "name": "生鲜-06",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg",
+    "desc": "蔬菜06",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "hj00hqGdmFzhV3bmLmCqgMXM8JFdoB1cyDlyXxnyTsNyMDuV",
+    "id": "12",
+    "name": "生鲜-06",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg",
+    "desc": "蔬菜06",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "iDSDwi0L6ZGrD3N9vAOmdhur2o5bWD7dplxe7vQMeXIwEpOp",
+    "id": "8",
+    "name": "生鲜-01",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg",
+    "desc": "蔬菜01",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "ierEsBMvl90HTQpMwwEF5bygyua4naTUUp4l6zlLde4BjRch",
+    "id": "9",
+    "name": "生鲜-02",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg",
+    "desc": "蔬菜02",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "kgL7KB5R8GozYf0lBH1JxoCZagEU78LX7bTcxdTuP8oklHDL",
+    "id": "13",
+    "name": "日用品-01",
+    "sort": 3,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg",
+    "desc": "日用品-01",
+    "tag": "",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/daily-use/subtle-cinematics-FrklpJtUCpo-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "lhJ4I48l6aTgCFrqaoMYsMWlZGuZX7roI63sJwe4gHcaEfLT",
+    "id": "4",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "unit": "一串5个",
+    "delete": 0,
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "pnJyUI4bd1DMuTnnzMGclP48lrUIUD7raCMTpkAOdxRBrXvs",
+    "id": "6",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "unit": "一串5个",
+    "price": 6.2,
+    "delete": 0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "qJmb5l5e3vcmVHVMvpOoi5NcmuReOSpmm1wssFN7PTRuhtvN",
+    "id": "5",
+    "name": "鹌鹑蛋",
+    "delete": 0,
+    "sort": 1,
+    "unit": "一串5个",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "qhjrqPl6202o96SO6kkR3ge73FYmndYKldrhAb61oYNXJp5w",
+    "id": "7",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "unit": "一串5个",
+    "price": 6.2,
+    "delete": 0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "sp3nmd67qzcl0YP3qwEBL4Jo1UyAHHFuXZdT6W7IvQUbGzVy",
+    "id": "8",
+    "name": "生鲜-01",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg",
+    "desc": "蔬菜01",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/julian-hanslmaier-bWg-BeVJPG4-unsplash.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "ssUvesJnctUHhaPywTgialbALmEgL9pwUQLXxkOHiKUUyjgw",
+    "id": "5",
+    "name": "鹌鹑蛋",
+    "delete": 0,
+    "sort": 0,
+    "unit": "一串5个",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "tBS5nTycaGZHou8ThtrSqJOLGqHCfv5V2uQMPDR0irPusN0T",
+    "id": "9",
+    "name": "生鲜-02",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg",
+    "desc": "蔬菜02",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "tXoBZ1AzF2n7XAKKKFBvLlOK65RolngvaNSX1wZXXcXwOucS",
+    "id": "12",
+    "name": "生鲜-07",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg",
+    "desc": "蔬菜07",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/syd-wachs-epqNIYI6S7E-unsplash.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "wcfRGxc8R4YTiJPfJAgk6bLugQ2bCheQPWU56XKU5Aurw9xj",
+    "id": "9",
+    "name": "生鲜-02",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg",
+    "desc": "蔬菜02",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/food-healthy-nature-water-129574.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "wdac3n0ByO5sFBZJZdFj2YNR3H4F9VJPrzT8OtzGF2vZMhkE",
+    "id": "12",
+    "name": "生鲜-06",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg",
+    "desc": "蔬菜06",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/abundance-agriculture-bananas-batch-264537.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/variety-of-fruits-890507.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+} {
+    "_id": "zE8GLEZed8vFmrcFwdEJgSXHoVwwgSXMi59PKoasb1r640et",
+    "id": "7",
+    "name": "鹌鹑蛋",
+    "sort": 1,
+    "unit": "一串5个",
+    "price": 6.2,
+    "delete": 0,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "zGcyiqb9VXxYazmBpayQloZgC39gyRAEgZJcNZIlZ5AexE0E",
+    "id": "5",
+    "name": "鹌鹑蛋",
+    "delete": 0,
+    "sort": 0,
+    "unit": "一串5个",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg",
+    "desc": "很好吃的鸡爪1",
+    "tag": "爆款促销",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/goods-list/10141584450128_.pic.jpg"],
+    "norm": [{
+        "name": "1串",
+        "price": 1.99
+    }, {
+        "name": "5串",
+        "price": 6.0
+    }]
+} {
+    "_id": "zimGOFA2bJKS30Xe9nU2pXBLSvWLKaA6jqhVwIOUTcq2ShnZ",
+    "id": "10",
+    "name": "生鲜-03",
+    "sort": 2,
+    "delete": 0,
+    "unit": "500g",
+    "price": 6.2,
+    "num": 5,
+    "fileId": "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg",
+    "desc": "蔬菜03",
+    "tag": "畅销蔬菜",
+    "originPrice": 4.99,
+    "topBanner": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg"],
+    "infoList": ["cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg", "cloud://dev-o45qm.6465-dev-o45qm-1301624908/fresh/photography-of-tomatoes-near-basil-leaves-1391487.jpg"],
+    "norm": [{
+        "name": "250g",
+        "price": 1.99
+    }, {
+        "name": "500g",
+        "price": 3.0
+    }]
+}

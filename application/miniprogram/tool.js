@@ -9,3 +9,17 @@ export function checkPhone(phone){
   } 
 }
 
+/**
+ * 订单号
+ */
+export function orderNumber() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day= date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const milliseconds = date.getMilliseconds();
+  return `E${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
+}

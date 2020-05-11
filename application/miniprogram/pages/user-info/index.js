@@ -23,16 +23,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    this.setData({
-      userInfo: wx.getStorageSync('userInfo')
+    console.log(options.id, '------')
+    wx.showLoading({
+      title: '加载中',
+      mask: true
     })
+    const userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      this.setData({
+        userInfo: wx.getStorageSync('userInfo')
+      })
+      if (options.id) {
+        this.setData({
+          orderId: options.id
+        })
+      }
+    } else {
+      wx.reLaunch({
+        url: '../login/index'
+      })
+    }
+    wx.hideLoading();
   },
 
   /**
    * 选择地址
    */
   confirmArea(e) {
-    console.log(e)
     let receiveCity = '';
     const detail = e.detail.values;
     const areaCode = detail[detail.length-1].code;
@@ -66,7 +83,6 @@ Page({
     })
   },
 
-
   onChange(event) {
     const userInfo = this.data.userInfo;
     userInfo[event.currentTarget.dataset.type] = event.detail;
@@ -79,7 +95,7 @@ Page({
    * 保存修改
    */
   async save() {
-    const {_id, name, phone, receiveCity,receiveDetailedAddress, openid} = this.data.userInfo;
+    const {_id, name, phone, receiveCity,receiveDetailedAddress, openid, orderId} = this.data.userInfo;
     if (name && phone && receiveCity && receiveDetailedAddress ) {
       if (checkPhone(phone)) {
         Notify({ type: 'danger', message: '请输入正确的手机号', duration: 900 });
@@ -89,10 +105,15 @@ Page({
       delete data._openid;
       delete data.openid;
       delete data._id;
+      const orderData = {
+        name,
+        phone,
+        receiveCity,
+        receiveDetailedAddress
+      }
+      if (orderId) await API.updateOrder(orderId, orderData);
       const res = await API.updateUserInfo(_id, data);
-      console.log(res, this.data.userInfo, '----')
       if (res.stats.updated) {
-        Notify({ type: 'success', message: '保存成功', duration: 900 });
         const userData = await API.getUserInfo(openid);
         if (userData.data && userData.data.length) {
           wx.setStorageSync('userInfo', userData.data[0]);
@@ -100,9 +121,12 @@ Page({
             userInfo: userData.data[0]
           })
         }
-      } else {
-        Notify({ type: 'primary', message: '无内容更新', duration: 900 });
       }
+      wx.showToast({
+        title: '保存成功',
+        icon: 'none',
+        mask: true
+      })
     } else {
       Notify({ type: 'danger', message: '请完善个人信息', duration: 900 });
     }

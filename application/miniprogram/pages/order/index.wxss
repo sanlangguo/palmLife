@@ -1,1 +1,21 @@
-/* pages/order/index.wxss */
+page{
+  background-color: #f0f4f5;
+}
+
+.panel-header {
+  margin-top: 12rpx;
+}
+
+.panel-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6rpx;
+}
+
+.btn-style {
+  margin: 0 5px;
+}
+
+.value-total-price {
+  color: #ee0a24 !important;
+}

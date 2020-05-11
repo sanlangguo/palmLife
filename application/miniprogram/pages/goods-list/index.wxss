@@ -6,10 +6,19 @@
   display: block;
   float: right;
   text-align: center;
-  margin-top: -40rpx;
+  margin-top: -115rpx;
   line-height: 40rpx;
 }
 
 .van-card__footer {
   margin-top: 5px;
+}
+
+
+.pages {
+  display: flex;
+}
+
+.card {
+  flex: 1;
 }

@@ -1,12 +1,18 @@
 {
-    "_id": 1,
-    "openid": "oMC2q5W34cqM3wriQvCcdCi2zBVQ",
-    "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI7TxsKD0XXEbdmGaT17KuWMtNLaXTpJ43LvUkOcxA991T0N9iboA6gl5Q1HFIicwibXeHzjo5GBIwKw/132",
-    "city": "Zhoukou",
-    "country": "China",
-    "gender": 1,
-    "language": "zh_CN",
-    "nickName": "Run man",
-    "province": "Henan",
-    "phone": 17601279524
+  "_id": "6aebd2215e91d4130079bc0e08a11171",
+  "nickName": "Run man",
+  "gender": 1.0,
+  "openid": "oMC2q5W34cqM3wriQvCcdCi2zBVQ",
+  "_openid": "oMC2q5W34cqM3wriQvCcdCi2zBVQ",
+  "language": "zh_CN",
+  "province": "Henan",
+  "country": "China",
+  "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI7TxsKD0XXEbdmGaT17KuWMtNLaXTpJ43LvUkOcxA991T0N9iboA6gl5Q1HFIicwibXeHzjo5GBIwKw/132",
+  "areaCode": "410184",
+  "city": "Zhoukou",
+  "name": "陈宗强",
+  "phone": "17601279524",
+  "receiveCity": "河南省郑州市新郑市",
+  "receiveDetailedAddress": "万科美景魅力之城",
+  "managers": ["oMC2q5W34cqM3wriQvCcdCi2zBVQ"]
 }
