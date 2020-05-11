@@ -1,6 +1,8 @@
 import API from "../../api/index"
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
-
+import {
+  orderNumber
+} from '../../tool.js';
 Page({
 
   /**
@@ -190,7 +192,7 @@ Page({
     const {
       order
     } = this.data;
-    const currentPrice = (order.goods.price * e.detail).toFixed(2);
+    const currentPrice = (order.goods.originPrice * e.detail).toFixed(2);
     this.setData({
       count: e.detail,
       currentPrice
@@ -201,7 +203,11 @@ Page({
    * 下一步确认加入拼团
    */
   async next() {
-    const { id, count, userInfo, order } = this.data;
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    const { id, count, userInfo, order, currentPrice } = this.data;
     const data = {
       id: userInfo.openid,
       nickName: userInfo.userInfo,
@@ -222,21 +228,38 @@ Page({
       }));
     }
     const res = await API.editGroupOrder(id, data);
-    if (res) {
-      delete order._id;
-      delete order._openid;
-      order.active = active;
-      order.name = userInfo.name;
-      order.phone = userInfo.phone;
-      order.receiveCity = userInfo.receiveCity;
-      order.receiveDetailedAddress = userInfo.receiveDetailedAddress;
-      order.areaCode = userInfo.areaCode;
-      order.createTime = new Date().getTime();
-      order.group.push(data);
-      const addOrder = await API.orderTotal(order);
-      console.log(addOrder, '--addOrder')
+    delete order._id;
+    delete order._openid;
+    delete order.groupPurchaseNumber;
+    order.active = active;
+    order.name = userInfo.name;
+    order.phone = userInfo.phone;
+    order.receiveCity = userInfo.receiveCity;
+    order.receiveDetailedAddress = userInfo.receiveDetailedAddress;
+    order.areaCode = userInfo.areaCode;
+    order.createTime = new Date().getTime();
+    order.goods = [{...order.goods, count}];
+    order.totalPrice = currentPrice;
+    order.orderNumber = orderNumber();
+    order.group = true;
+    await API.orderTotal(order);
+    if (res.stats.updated == 1) {
+      wx.hideLoading({
+        complete: (res) => {
+          wx.showToast({
+            title: '拼团成功',
+            mask: true,
+            duration: 4000,
+            success() {
+              wx.reLaunch({
+                url: '../order/index',
+              })
+            }
+          })
+          
+        },
+      })
     }
-
     console.log(res, 'res')
   }
 })
