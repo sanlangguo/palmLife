@@ -7,9 +7,12 @@ const db = cloud.database();
 const _ = db.command
 exports.main = async (event, context) => {
   return await db
-    .collection("order").doc(event.id).update({
+    .collection("order").doc(event.id).where({
+      groupId: event.id
+    }).update({
       data: {
-        group: _.push(event.data),
+        active: event.active,
+        updateTime: event.updateTime
       }
     });
 };

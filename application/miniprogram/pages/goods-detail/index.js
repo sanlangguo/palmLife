@@ -203,13 +203,25 @@ Page({
    * 点击购买
    */
   async viewGroup(e) {
+    console.log(e)
+    let {
+      groupbuy
+    } = e.currentTarget.dataset;
+    groupbuy = (groupbuy === "false") ? false : true;
     const {
       hasUserGroup,
-      orderId
+      orderId,
+      goods
     } = this.data;
     if (hasUserGroup && orderId) {
       wx.navigateTo({
         url: '../group-details/index?id=' + orderId,
+      })
+    } else {
+      this.setData({
+        show: true,
+        groupbuy,
+        currentPrice: groupbuy ? goods.groupPurchasePrice : goods.originPrice,
       })
     }
   },
@@ -222,7 +234,7 @@ Page({
     let {
       groupbuy
     } = e.currentTarget.dataset;
-    groupbuy = (groupbuy === "false")? false : true;
+    groupbuy = (groupbuy === "false") ? false : true;
     this.setData({
       groupbuy,
       show: true,
@@ -249,31 +261,55 @@ Page({
       currentPrice
     } = this.data;
     if (userInfo) {
+      const commentGoods = {
+        id: goods._id,
+        coverImg: goods.coverImg,
+        fileId: goods.fileId,
+        desc: goods.desc,
+        name: goods.name,
+        unit: goods.norm[key].name ? goods.norm[key].name : goods.unit,
+        price: goods.originPrice,
+      };
+      let group = {};
+      if (groupbuy) {
+        const groupData = {
+          goods: {
+            ...commentGoods,
+            originPrice: goods.groupPurchasePrice
+          },
+          group: [{
+            id: userInfo.openid,
+            avatarUrl: userInfo.avatarUrl,
+            nickName: userInfo.nickName,
+            roles: '团长',
+            count: count,
+          }],
+          groupPurchaseNumber: goods.groupPurchaseNumber,
+          createTime: new Date().getTime(),
+          expireTime: goods.expireTime,
+          groupExpireTime: new Date().getTime() + 86400000
+        };
+        group = await API.addGroupOrder(groupData);
+      }
+
       const data = {
         orderNumber: orderNumber(),
-        active: 1,
+        active: 2,
         totalPrice: currentPrice * 1,
         name: userInfo.name,
         phone: userInfo.phone,
         receiveCity: userInfo.receiveCity,
         receiveDetailedAddress: userInfo.receiveDetailedAddress,
+        areaCode: userInfo.areaCode,
         createTime: new Date().getTime(),
         goods: [{
-          id: goods._id,
-          coverImg: goods.coverImg,
+          ...commentGoods,
           count: count,
-          fileId: goods.fileId,
-          desc: goods.desc,
-          name: goods.name,
-          unit: goods.norm[key].name ? goods.norm[key].name : goods.unit,
-          price: goods.originPrice,
           originPrice: groupbuy ? goods.groupPurchasePrice : goods.norm[key].price ? goods.norm[key].price : goods.price
         }],
       }
-      if (groupbuy) {
-        data.groupbuy = true;
-        data.groupPurchaseNumber = goods.groupPurchaseNumber;
-        data.groupPurchasePrice = goods.groupPurchasePrice
+      if (group._id) {
+        data.groupId = group._id;
       }
       const res = await API.orderTotal(data);
       wx.hideLoading({

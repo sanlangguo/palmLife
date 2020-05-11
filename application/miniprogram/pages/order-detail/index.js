@@ -47,7 +47,22 @@ Page({
       const res = await API.getOrderDetail(this.data.id);
       let title = '';
       res.data.map(async item => {
-        item.status = item.active == 1 ? '待下单' : item.active == 2 ? '待收货': '已收货';
+        switch (item.active) {
+          case 1:
+            item.status = '待下单';
+            break;
+          case 2:
+            item.status = '待成团';
+            break;
+          case 3:
+            item.status = '待发货';
+            break;
+          case 4:
+            item.status = '已收货';
+            break;
+          default:
+            break;
+        }
         title = item.active == 1 ? '待付款的订单' : '订单详情';
         item.goods.map(async goods => {
           const data = [goods.fileId];
@@ -106,9 +121,9 @@ Page({
       })
       return false
     }
-    const { id, payMode } = this.data
+    const { id, payMode, order } = this.data
     const data = {
-      active: 2,
+      active: order[0].active == 2 ? 2: 3,
       updateTime: new Date().getTime(),
       payMode,
     }

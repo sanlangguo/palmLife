@@ -118,7 +118,25 @@ const API = {
         groupbuy: true,
         'goods.id': gid
       }).get()
+  },
+  // 添加拼团订单
+  async addGroupOrder(data) {
+    return await db.collection('group').add({
+      data
+    })
+  },
+  // 编辑拼团订单
+  async editGroupOrder(id, data) {
+    return await db.collection('group').doc(id).update({
+      data: {
+        group: _.push(data),
+      }
+    });
+  },
+  async getGroupOrderDetail(id) {
+    return await db.collection('group').doc(id).get();
   }
+
 };
 
 export default API;

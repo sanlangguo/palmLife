@@ -37,8 +37,9 @@ Component({
         mask: true
       })
       const count = await API.getOrderCount();
+      console.log(count, '0count')
       const batchTimes = Math.ceil(count.total / 4);
-      if (this.data.page === batchTimes) {
+      if (this.data.page === batchTimes || count.total == 0) {
         wx.hideLoading();
         return false;
       }
@@ -102,10 +103,11 @@ Component({
         await API.updateOrder(id, {
           delete: 1
         });
-        wx.showLoading({
+        wx.showToast({
           title: '删除成功',
           icon: 'none',
           mask: true,
+          duration: 2000,
           success() {
             that.setData({
               page: 0,
@@ -128,16 +130,23 @@ Component({
      */
     viewOrderDetails(e) {
       const {
-        id
+        id,
+        groupid
       } = e.currentTarget.dataset;
-      wx.navigateTo({
-        url: '/pages/order-detail/index?id=' + id,
-      })
+      if (groupid) {
+        wx.navigateTo({
+          url: '/pages/group-details/index?id=' + groupid,
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/order-detail/index?id=' + id,
+        })
+      }
     },
 
     /**
      * 筛选 active 订单
-     * @param { 1 待下单 2 待发货 3 已收货订单}
+     * @param { 1 待下单 2 待成团 3 待发货 4 已收货订单}
      */
     async filterOrderActive(active) {
       wx.showLoading({
@@ -146,7 +155,7 @@ Component({
       })
       const count = await API.getOrderActiveCount(active);
       const batchTimes = Math.ceil(count.total / 4);
-      if (this.data.page === batchTimes) {
+      if (this.data.page === batchTimes || count.total == 0) {
         wx.hideLoading();
         return false;
       }
@@ -161,7 +170,23 @@ Component({
       if (res.data && res.data.length) {
         const resouceData = [];
         res.data.map(async item => {
-          item.status = item.active == 1 ? '待下单' : item.active == 2 ? '待发货' : '已收货'
+          switch (item.active) {
+            case 1:
+              item.status = '待下单';
+              break;
+            case 2:
+              item.status = '待成团';
+              break;
+            case 3:
+              item.status = '待发货';
+              break;
+            case 4:
+              item.status = '已收货';
+              break;
+            default:
+              break;
+          }
+
           item.goods.map(async goods => {
             const data = [goods.fileId];
             const fileRes = await API.getTempFileURL(data);
@@ -174,7 +199,6 @@ Component({
             resouceData.push(item)
           }
         })
-        console.log(resouceData, '---')
         this.setData({
           batchTimes,
           page: this.data.page + 1,
@@ -190,6 +214,5 @@ Component({
       }
       wx.hideLoading();
     }
-
   }
 })

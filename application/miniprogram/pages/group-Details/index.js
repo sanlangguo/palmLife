@@ -9,6 +9,7 @@ Page({
   data: {
     goods: {},
     count: 1,
+    groupGoodsCount: 0,
     show: false,
     order: {},
     time: 0,
@@ -28,37 +29,32 @@ Page({
     })
     if (options && options.id) {
       const userInfo = wx.getStorageSync('userInfo');
-      const order = (await wx.cloud.callFunction({
-        name: 'getOrders',
-        data: {
-          id: options.id,
-        },
-      })).result.data[0];
+      const order = (await API.getGroupOrderDetail(options.id)).data;
+      const fileRes = await API.getTempFileURL([order.goods.fileId]);
+      order.goods.coverImg = fileRes.fileList[0].tempFileURL;
+      console.log(order, '----')
       let time = 0;
-      order.goods.map(async item => {
-        const fileRes = await API.getTempFileURL([item.fileId]);
-        item.coverImg = fileRes.fileList[0].tempFileURL;
-      })
-
-      if (order.group && order.group.length && userInfo) {
-        order.group.map(item => {
-          if (item.id == userInfo.openid) {
-            this.setData({
-              hasUserGroup: true
-            })
-          }
-        })
-      }
-
+      let groupGoodsCount = 0;
       if (order.groupExpireTime - new Date().getTime() > 0) {
         time = order.groupExpireTime - new Date().getTime();
       }
+      order.group.map(item => {
+        if (item.id == userInfo.openid) {
+          this.setData({
+            hasUserGroup: true
+          })
+        }
+        groupGoodsCount += item.count;
+      })
       this.setData({
+        groupGoodsCount,
         order,
         time,
         id: options.id,
         userInfo,
+        currentPrice: order.goods.originPrice
       })
+      wx.hideLoading();
     } else {
       wx.reLaunch({
         url: '../home/index',
@@ -76,16 +72,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage() {
     const {
       order,
       id,
       userInfo
     } = this.data;
     return {
-      title: `【${userInfo.nickName ? userInfo.nickName : '好友'}@我】开来拼 ${order.goods[0].name}`,
+      title: `【${userInfo.nickName ? userInfo.nickName : '好友'}@我】开来拼 ${order.goods.name}`,
       path: '/pages/group-details/index?id=' + id,
-      imageUrl: `${order.goods[0].coverImg}`,
+      imageUrl: `${order.goods.coverImg}`,
     }
   },
 
@@ -96,7 +92,6 @@ Page({
     const {
       id,
       order,
-      goods
     } = this.data;
     const userInfo = this.data.userInfo || wx.getStorageSync('userInfo');
     if (userInfo && userInfo.openid) {
@@ -110,18 +105,10 @@ Page({
         title: '加载中',
         mask: true
       })
-      const goods = (await API.getGoodsDetail(order.goods[0].id)).data;
-      if (!goods.norm || !goods.norm.length) {
-        goods.norm = [{
-          price: goods.originPrice,
-          name: goods.unit
-        }]
-      }
-      goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
+      const goods = (await API.getGoodsDetail(order.goods.id)).data;
       this.setData({
         goods,
         show: true,
-        currentPrice: goods.originPrice
       })
       wx.hideLoading();
       return false
@@ -182,4 +169,74 @@ Page({
       show: false
     })
   },
+
+  /**
+   * 大于库存时提示
+   */
+  addCounts(e) {
+    if (e.detail == "plus") {
+      wx.showToast({
+        title: '就这几件啦',
+        icon: 'none',
+        mask: true
+      })
+    }
+  },
+
+  /**
+   * 更改数量
+   */
+  onGoodsCounts(e) {
+    const {
+      order
+    } = this.data;
+    const currentPrice = (order.goods.price * e.detail).toFixed(2);
+    this.setData({
+      count: e.detail,
+      currentPrice
+    })
+  },
+
+  /**
+   * 下一步确认加入拼团
+   */
+  async next() {
+    const { id, count, userInfo, order } = this.data;
+    const data = {
+      id: userInfo.openid,
+      nickName: userInfo.userInfo,
+      avatarUrl: userInfo.avatarUrl,
+      roles: '团员',
+      count
+    }
+    let active = 2;
+    if ((order.groupPurchaseNumber - order.group.length) == 1) {
+      active = 3;
+      const res = (await wx.cloud.callFunction({
+        name: 'editOrder',
+        data: {
+          id,
+          active,
+          updateTime: new Date().getTime(),
+        },
+      }));
+    }
+    const res = await API.editGroupOrder(id, data);
+    if (res) {
+      delete order._id;
+      delete order._openid;
+      order.active = active;
+      order.name = userInfo.name;
+      order.phone = userInfo.phone;
+      order.receiveCity = userInfo.receiveCity;
+      order.receiveDetailedAddress = userInfo.receiveDetailedAddress;
+      order.areaCode = userInfo.areaCode;
+      order.createTime = new Date().getTime();
+      order.group.push(data);
+      const addOrder = await API.orderTotal(order);
+      console.log(addOrder, '--addOrder')
+    }
+
+    console.log(res, 'res')
+  }
 })

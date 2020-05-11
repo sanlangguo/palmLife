@@ -101,10 +101,10 @@
 					"scene": null
 				},
 				{
-					"id": 7,
+					"id": 6,
 					"name": "拼团详情",
 					"pathName": "pages/group-details/index",
-					"query": "id=a9bfcffc5eb3d7f00030b6cc04359fd9",
+					"query": "id=37e26adb5eb922470080c1a0775438cd",
 					"scene": null
 				}
 			]
