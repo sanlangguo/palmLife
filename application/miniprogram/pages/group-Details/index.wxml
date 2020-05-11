@@ -1,6 +1,6 @@
 <view class="pages" wx:if="{{ JSON.stringify(order) != '{}' }}">
 	<view class="main">
-		<van-card price="{{order.goods.originPrice}}" desc="{{order.goods.desc}}" title="{{order.goods.name}}" thumb="{{order.goods.coverImg}}" tags="{{order.goods.unit}}" thumb-link="{{'../goods-detail/index?id=' + order.goods.id}}">
+		<van-card price="{{order.goods.originPrice}}" origin-price="{{order.goods.price}}" desc="{{order.goods.desc}}" title="{{order.goods.name}}" thumb="{{order.goods.coverImg}}" tags="{{order.goods.unit}}" thumb-link="{{'../goods-detail/index?id=' + order.goods.id}}">
 			<view slot="tags" class="tags">
 				{{order.groupPurchaseNumber}}人团
 			</view>

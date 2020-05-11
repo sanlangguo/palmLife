@@ -199,6 +199,7 @@ Component({
             resouceData.push(item)
           }
         })
+        console.log(resouceData, 'resouceData')
         this.setData({
           batchTimes,
           page: this.data.page + 1,
