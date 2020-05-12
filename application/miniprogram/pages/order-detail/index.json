@@ -12,6 +12,7 @@
     "van-field": "@vant/weapp/field/index",
     "van-toast": "@vant/weapp/toast/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-steps": "@vant/weapp/steps/index"
+    "van-steps": "@vant/weapp/steps/index",
+    "van-tag": "@vant/weapp/tag/index"
   }
 }
