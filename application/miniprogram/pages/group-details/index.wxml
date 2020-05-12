@@ -1,0 +1,47 @@
+<view class="pages" wx:if="{{ JSON.stringify(order) != '{}' }}">
+	<view class="main">
+		<van-card price="{{order.goods.originPrice}}" origin-price="{{order.goods.price}}" desc="{{order.goods.desc}}" title="{{order.goods.name}}" thumb="{{order.goods.coverImg}}" tags="{{order.goods.unit}}" thumb-link="{{'../goods-detail/index?id=' + order.goods.id}}">
+			<view slot="tags" class="tags">
+				{{order.groupPurchaseNumber}}人团
+			</view>
+		</van-card>
+		<van-divider contentPosition="center" custom-style="border-color:#eb544d;color:#eb544d;width:80%;margin-left:10%;font-size:31rpx;font-weight:600;">拼团剩余时间</van-divider>
+		<van-count-down use-slot time="{{ time }}" bind:change="onChange" class="count-down">
+			<text class="item">{{ timeData.days }}</text>:
+			<text class="item">{{ timeData.hours }}</text>:
+			<text class="item">{{ timeData.minutes }}</text>:
+			<text class="item">{{ timeData.seconds }}</text>
+		</van-count-down>
+		<view class="avatar-list">
+			<van-image wx:for="{{order.group}}" custom-class="avatar-img" wx:key="index" width="80" height="80" round src="{{item.avatarUrl}}" />
+			<view wx:if="{{order.group.length < order.groupPurchaseNumber }}" class="dotted-line"></view>
+		</view>
+		<view wx:if="{{order.group.length < order.groupPurchaseNumber }}"class="group-processing">距离拼团成功还差<text>{{order.groupPurchaseNumber -order.group.length}}</text>人</view>
+		<view wx:else class="group-success"><text>拼团成功</text></view>
+		<van-button type="danger" size="large" custom-class="btn" round open-type="share" wx:if="{{hasUserGroup && order.group.length < order.groupPurchaseNumber }}">邀请好友参团</van-button>
+		<van-button wx:elif="{{hasUserGroup && order.group.length >= order.groupPurchaseNumber }}" type="danger" size="large" custom-class="btn" round  bind:click="viewGroupOrder">查看拼团订单</van-button>
+		<van-button wx:else type="danger" size="large" custom-class="btn" round  bind:click="joinFightTogether">我要一起拼</van-button>
+	</view>
+		<!-- 选择产品 -->
+	<van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 60%" bind:close="onClose">
+		<van-card price="{{ currentPrice || 0}}" desc="{{order.goods.desc}}" title="{{order.goods.name}}" thumb="{{ order.goods.coverImg }}">
+			<view slot="tags">
+				<van-tag type="danger">{{ order.groupPurchaseNumber + '拼团价' }}</van-tag>
+			</view>
+		</van-card>
+		<van-panel header-class="header-panel" title="商品规格:">
+			<view class="goods-norm-box">
+				<van-button size="small" data-price="{{order.goods.price}}" data-key="{{index}}" type="danger" bind:click="seletGoodsNorm">{{order.goods.name}}</van-button>
+			</view>
+			<van-cell center title="购买数量" use-label-slot>
+				<van-stepper value="{{ count }}" bind:change="onGoodsCounts" max="{{goods.num - groupGoodsCount}}" bind:overlimit="addCounts" />
+			</van-cell>
+		</van-panel>
+		<van-button custom-class="next-btn" type="danger" round bind:click="next" size="large">下一步</van-button>
+	</van-popup>
+</view>
+
+<!-- 确认弹出框 -->
+<van-dialog id="van-dialog" />
+
+

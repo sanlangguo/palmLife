@@ -282,7 +282,9 @@ Page({
       count,
       key,
       groupbuy,
-      currentPrice
+      currentPrice,
+      groupId,
+      orderId,
     } = this.data;
 
 
@@ -292,9 +294,9 @@ Page({
         icon: 'none',
         mask: true
       })
-      // 查看更新之前的订单
+      // 更新之前的订单
       if (groupbuy) {
-
+        
       } else {
 
       }
