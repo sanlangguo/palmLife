@@ -5,8 +5,10 @@
 				{{order.groupPurchaseNumber}}人团
 			</view>
 		</van-card>
-		<van-divider contentPosition="center" custom-style="border-color:#eb544d;color:#eb544d;width:80%;margin-left:10%;font-size:31rpx;font-weight:600;">拼团剩余时间</van-divider>
-		<van-count-down use-slot time="{{ time }}" bind:change="onChange" class="count-down">
+		<van-divider contentPosition="center" custom-style="border-color:#eb544d;color:#eb544d;width:80%;margin-left:10%;font-size:31rpx;font-weight:600;">
+			{{(order.group.length < order.groupPurchaseNumber) && time ? '拼团剩余时间' : time ? '拼团成功' : '拼团失败'}}
+		</van-divider>
+		<van-count-down wx:if="{{order.group.length < order.groupPurchaseNumber }}" use-slot time="{{ time }}" bind:change="onChange" class="count-down">
 			<text class="item">{{ timeData.days }}</text>:
 			<text class="item">{{ timeData.hours }}</text>:
 			<text class="item">{{ timeData.minutes }}</text>:
@@ -16,8 +18,7 @@
 			<van-image wx:for="{{order.group}}" custom-class="avatar-img" wx:key="index" width="80" height="80" round src="{{item.avatarUrl}}" />
 			<view wx:if="{{order.group.length < order.groupPurchaseNumber }}" class="dotted-line"></view>
 		</view>
-		<view wx:if="{{order.group.length < order.groupPurchaseNumber }}"class="group-processing">距离拼团成功还差<text>{{order.groupPurchaseNumber -order.group.length}}</text>人</view>
-		<view wx:else class="group-success"><text>拼团成功</text></view>
+		<view wx:if="{{order.group.length < order.groupPurchaseNumber && time}}"class="group-processing">距离拼团成功还差<text>{{order.groupPurchaseNumber -order.group.length}}</text>人</view>
 		<van-button type="danger" size="large" custom-class="btn" round open-type="share" wx:if="{{hasUserGroup && order.group.length < order.groupPurchaseNumber }}">邀请好友参团</van-button>
 		<van-button wx:elif="{{hasUserGroup && order.group.length >= order.groupPurchaseNumber }}" type="danger" size="large" custom-class="btn" round  bind:click="viewGroupOrder">查看拼团订单</van-button>
 		<van-button wx:else type="danger" size="large" custom-class="btn" round  bind:click="joinFightTogether">我要一起拼</van-button>

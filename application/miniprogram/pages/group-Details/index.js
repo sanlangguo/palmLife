@@ -34,11 +34,13 @@ Page({
       const order = (await API.getGroupOrderDetail(options.id)).data;
       const fileRes = await API.getTempFileURL([order.goods.fileId]);
       order.goods.coverImg = fileRes.fileList[0].tempFileURL;
-      console.log(order, '----')
+      console.log(order, 'order ----')
       let time = 0;
       let groupGoodsCount = 0;
       if (order.groupExpireTime - new Date().getTime() > 0) {
         time = order.groupExpireTime - new Date().getTime();
+      } else {
+
       }
       order.group.map(item => {
         if (item.id == userInfo.openid) {
@@ -97,6 +99,18 @@ Page({
     } = this.data;
     const userInfo = this.data.userInfo || wx.getStorageSync('userInfo');
     if (userInfo && userInfo.openid) {
+      if (!userInfo.phone || !userInfo.name) {
+        Dialog.confirm({
+          title: '收货信息',
+          message: '请填写收货地址'
+        }).then(() => {
+          wx.navigateTo({
+            url: '../user-info/index?groupId=' + id,
+          })
+        }).catch(() => {})
+        return false
+      }
+
       if (Object.keys(this.data.goods).length != 0) {
         this.setData({
           show: true
@@ -113,35 +127,6 @@ Page({
         show: true,
       })
       wx.hideLoading();
-      return false
-      wx.navigateTo({
-        url: '../goods-detail/index?id=' + order.goods[0].id,
-      })
-      if (order.group && order.group.length) {
-        const isHaveJoin = order.group.find(o => o.id === userInfo.openid);
-        if (isHaveJoin && Object.keys(isHaveJoin).length) {
-          wx.showToast({
-            title: '您已经参加拼团',
-            mask: true,
-            icon: 'none',
-          })
-          return false
-        }
-      }
-      const data = {
-        id: userInfo.openid,
-        nickName: userInfo.userInfo,
-        avatarUrl: userInfo.avatarUrl,
-        roles: '团员'
-      }
-      const res = (await wx.cloud.callFunction({
-        name: 'editOrder',
-        data: {
-          id,
-          data,
-        },
-      }));
-      console.log(res, '---')
     } else {
       Dialog.confirm({
         title: '授权',
@@ -218,14 +203,16 @@ Page({
     let active = 2;
     if ((order.groupPurchaseNumber - order.group.length) == 1) {
       active = 3;
-      const res = (await wx.cloud.callFunction({
+      // 更新订单状态
+      await wx.cloud.callFunction({
         name: 'editOrder',
         data: {
           id,
           active,
           updateTime: new Date().getTime(),
         },
-      }));
+      });
+      
     }
     const res = await API.editGroupOrder(id, data);
     delete order._id;

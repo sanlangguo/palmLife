@@ -27,7 +27,6 @@ Page({
       topBanner,
       iconList
     } = res.data[0];
-    console.log(topBanner, iconList, '---')
     const fileIds = [];
     topBanner.map(item => {
       fileIds.push(item.fileId);
@@ -39,8 +38,6 @@ Page({
     this.setData({
       topBanner
     })
-    console.log(topBanner, '---')
-
     wx.showLoading({
       title: '加载中',
       mask: true

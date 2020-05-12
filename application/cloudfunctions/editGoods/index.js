@@ -8,9 +8,11 @@ exports.main = async (event, context) => {
   return await db
     .collection("goods-list")
     .where({
-      _id: event._id,
+      _id: event.id,
     })
     .update({
-      data: event.data,
+      data: {
+        num: event.num
+      },
     });
 };

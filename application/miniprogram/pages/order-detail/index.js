@@ -26,6 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    console.log(options, "options group")
     const id = options.id;
     if (id) {
       this.setData({
@@ -59,6 +60,9 @@ Page({
             break;
           case 4:
             item.status = '已收货';
+            break;
+          case 5:
+            item.status = '拼团失败';
             break;
           default:
             break;

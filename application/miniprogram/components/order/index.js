@@ -183,6 +183,9 @@ Component({
             case 4:
               item.status = '已收货';
               break;
+            case 5:
+              item.status = '拼团失败';
+              break;
             default:
               break;
           }

@@ -23,50 +23,79 @@ Page({
    */
   async onLoad(options) {
     if (options && options.id) {
-      wx.showLoading({
-        title: '加载中',
-        mask: true
-      })
-      const goods = (await API.getGoodsDetail(options.id)).data;
-      const topBanner = (await API.getTempFileURL(goods.topBanner)).fileList;
-      const infoList = (await API.getTempFileURL(goods.infoList)).fileList;
-      if (!goods.norm || !goods.norm.length) {
-        goods.norm = [{
-          price: goods.originPrice,
-          name: goods.unit
-        }]
-      }
-      if (goods.groupBuy && goods.expireTime - new Date().getTime() > 0) {
-        if (this.data.userInfo.openid) {
-          const group = await API.checkUserGroup(this.data.userInfo.openid, options.id);
-          if (group.data && group.data.length) {
-            const data = group.data[0];
-            if (data.groupExpireTime - new Date().getTime() > 0) {
-              this.setData({
-                hasUserGroup: true,
-                orderId: data._id
-              })
-            }
-          }
-        }
-        goods.countdown = goods.expireTime - new Date().getTime();
-      } else {
-        goods.groupBuy = false;
-      }
-      goods.topBannerUrl = topBanner;
-      goods.infoListUrl = infoList;
-      goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
-      this.setData({
-        goods,
-        currentPrice: goods.originPrice
-      }, () => {
-        this.getUserCartLength();
-      })
+     this.setData({
+       id: options.id,
+     })
     } else {
       wx.reLaunch({
         url: '../home/index',
       })
     }
+  },
+
+  /**
+   * 查询之前有没有下过订单
+   */ 
+  async checkBeforeHasOrder(groupBuy, id) {
+    // 团购订单
+    if (groupBuy) {
+      const res = await API.checkHasOrder({
+        active: 2,
+        group: true,
+        'goods.id': id,
+      });
+      if (res.data && res.data.length) {
+        this.setData({
+          hasUserGroup: true,
+          groupId: res.data[0].groupId
+        })
+      }
+    }
+    // 单独订单
+    const res = await API.checkHasOrder({
+      active: 1,
+      'goods.id': id,
+    });
+    if (res.data && res.data.length) {
+      this.setData({
+        orderId: res.data[0]._id
+      })
+    }
+  },
+
+  async onShow() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    const { id } = this.data;
+    const goods = (await API.getGoodsDetail(id)).data;
+    const topBanner = (await API.getTempFileURL(goods.topBanner)).fileList;
+    const infoList = (await API.getTempFileURL(goods.infoList)).fileList;
+    if (!goods.norm || !goods.norm.length) {
+      goods.norm = [{
+        price: goods.originPrice,
+        name: goods.unit
+      }]
+    }
+    if (goods.groupBuy && goods.expireTime - new Date().getTime() > 0) {
+      goods.countdown = goods.expireTime - new Date().getTime();
+    } else {
+      goods.groupBuy = false;
+    }
+
+    this.checkBeforeHasOrder(goods.groupBuy, id)
+
+    goods.topBannerUrl = topBanner;
+    goods.infoListUrl = infoList;
+    goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
+    this.setData({
+      goods,
+      currentPrice: goods.originPrice,
+      show: false,
+    }, () => {
+      this.getUserCartLength();
+    })
   },
 
   onChange(e) {
@@ -210,12 +239,12 @@ Page({
     groupbuy = (groupbuy === "false") ? false : true;
     const {
       hasUserGroup,
-      orderId,
+      groupId,
       goods
     } = this.data;
-    if (hasUserGroup && orderId) {
+    if (hasUserGroup && groupId) {
       wx.navigateTo({
-        url: '../group-details/index?id=' + orderId,
+        url: '../group-details/index?id=' + groupId,
       })
     } else {
       this.setData({
@@ -247,11 +276,6 @@ Page({
    * 下一步
    */
   async next() {
-    wx.showToast({
-      title: '下单中',
-      icon: 'none',
-      mask: true
-    })
     const {
       goods,
       userInfo,
@@ -260,7 +284,22 @@ Page({
       groupbuy,
       currentPrice
     } = this.data;
-    if (userInfo) {
+
+
+    if (userInfo.name && userInfo.phone) {
+      wx.showToast({
+        title: '下单中',
+        icon: 'none',
+        mask: true
+      })
+      // 查看更新之前的订单
+      if (groupbuy) {
+
+      } else {
+
+      }
+
+
       const commentGoods = {
         id: goods._id,
         coverImg: goods.coverImg,
@@ -271,6 +310,7 @@ Page({
         price: goods.originPrice,
       };
       let group = {};
+      let active = 1;
       if (groupbuy) {
         const groupData = {
           goods: {
@@ -290,11 +330,12 @@ Page({
           groupExpireTime: new Date().getTime() + 86400000
         };
         group = await API.addGroupOrder(groupData);
+        active = 2;
       }
 
       const data = {
         orderNumber: orderNumber(),
-        active: 2,
+        active: active,
         totalPrice: currentPrice * 1,
         name: userInfo.name,
         phone: userInfo.phone,
@@ -310,6 +351,7 @@ Page({
       }
       if (group._id) {
         data.groupId = group._id;
+        data.group = true;
       }
       const res = await API.orderTotal(data);
       wx.hideLoading({
@@ -320,7 +362,6 @@ Page({
         },
       })
     } else {
-      wx.hideLoading();
       Dialog.confirm({
         title: '授权',
         message: '用户信息不存在，点击确认授权'

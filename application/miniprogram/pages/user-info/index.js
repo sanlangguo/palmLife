@@ -10,6 +10,7 @@ Page({
   data: {
     areaList: area,
     showArea: false,
+    groupId: null,
     userInfo: {
       name:  null,
       phone: null,
@@ -23,7 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    console.log(options.id, '------')
+    console.log(options, '------')
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -36,6 +37,11 @@ Page({
       if (options.id) {
         this.setData({
           orderId: options.id
+        })
+      }
+      if (options.groupId) {
+        this.setData({
+          groupId: options.groupId
         })
       }
     } else {
@@ -86,6 +92,7 @@ Page({
   onChange(event) {
     const userInfo = this.data.userInfo;
     userInfo[event.currentTarget.dataset.type] = event.detail;
+    console.log(userInfo, 'userInfo---')
     this.setData({
       userInfo
     })
@@ -95,7 +102,8 @@ Page({
    * 保存修改
    */
   async save() {
-    const {_id, name, phone, receiveCity,receiveDetailedAddress, openid, orderId} = this.data.userInfo;
+    const {groupId,userInfo, orderId} = this.data;
+    const {_id, name, phone, receiveCity,receiveDetailedAddress, openid} = userInfo;
     if (name && phone && receiveCity && receiveDetailedAddress ) {
       if (checkPhone(phone)) {
         Notify({ type: 'danger', message: '请输入正确的手机号', duration: 900 });
@@ -119,14 +127,28 @@ Page({
           wx.setStorageSync('userInfo', userData.data[0]);
           this.setData({
             userInfo: userData.data[0]
+          },() => {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'none',
+              mask: true,
+              duration: 6000,
+              success() {
+                if (groupId) {
+                  wx.reLaunch({
+                    url: '../group-details/index?id=' + groupId,
+                  })
+                }
+              }
+            })
           })
         }
+      } else {
+        wx.showToast({
+          title: '更新成功',
+          mask: true
+        })
       }
-      wx.showToast({
-        title: '保存成功',
-        icon: 'none',
-        mask: true
-      })
     } else {
       Notify({ type: 'danger', message: '请完善个人信息', duration: 900 });
     }
