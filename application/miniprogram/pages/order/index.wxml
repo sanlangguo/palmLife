@@ -14,4 +14,7 @@
   <van-tab title="已收货">
     <order bindmyevent="turnPage" wx:if="{{index == 4}}" active="{{index}}" id="order"></order>
   </van-tab>
+  <van-tab title="拼团失败">
+    <order bindmyevent="turnPage" wx:if="{{index == 5}}" active="{{index}}" id="order"></order>
+  </van-tab>
 </van-tabs>

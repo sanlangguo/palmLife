@@ -111,12 +111,10 @@ const API = {
   async getHomeConfig() {
     return await db.collection('home-config').get();
   },
-  async checkUserGroup(uid, gid) {
+  async checkHasOrder(data) {
     return await db.collection('order')
       .where({
-        'group.id': uid,
-        groupbuy: true,
-        'goods.id': gid
+        ...data
       }).get()
   },
   // 添加拼团订单
