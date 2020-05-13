@@ -104,7 +104,21 @@
 					"id": 6,
 					"name": "拼团详情",
 					"pathName": "pages/group-details/index",
-					"query": "id=37e26adb5eb922470080c1a0775438cd",
+					"query": "id=a9bfcffc5ebb8b1400844dec1d929490",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/order-detail/index",
+					"query": "id=37e26adb5ebb8c2e00a2f72c4a2e3d48",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团购商品列表",
+					"pathName": "pages/group-goods-list/index",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -5,7 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    iconList: [],
     topBanner: [],
     goodList: [],
     batchTimes: 0,
@@ -24,8 +23,7 @@ Page({
   async onLoad() {
     const res = await API.getHomeConfig();
     const {
-      topBanner,
-      iconList
+      topBanner
     } = res.data[0];
     const fileIds = [];
     topBanner.map(item => {
@@ -45,7 +43,6 @@ Page({
     this.getGoodsList();
   },
 
-
   /**
    * 商品列表
    */
@@ -54,7 +51,10 @@ Page({
     const fileIds = [];
     if (res.data && res.data.length) {
       const goodList = res.data;
-      goodList.map(item => {
+      goodList.map((item, index) => {
+        if (item.num <= 0) {
+          goodList.splice(index ,1)
+        }
         fileIds.push(item.fileId)
       })
       const filesData = await API.getTempFileURL(fileIds);

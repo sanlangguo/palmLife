@@ -18,3 +18,5 @@
     <order bindmyevent="turnPage" wx:if="{{index == 5}}" active="{{index}}" id="order"></order>
   </van-tab>
 </van-tabs>
+<!-- 确认弹出框 -->
+<van-dialog id="van-dialog" />

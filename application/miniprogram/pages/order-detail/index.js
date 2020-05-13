@@ -9,8 +9,7 @@ Page({
     order: [],
     show: false,
     payMode: '',
-    steps: [
-      {
+    steps: [{
         text: '发起拼团',
       },
       {
@@ -26,7 +25,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    console.log(options, "options group")
     const id = options.id;
     if (id) {
       this.setData({
@@ -78,6 +76,7 @@ Page({
       console.log(res.data, 'order data')
       this.setData({
         order: res.data,
+        payMode: res.data[0].payMode
       })
       wx.setNavigationBarTitle({
         title
@@ -97,7 +96,7 @@ Page({
       wx.setStorageSync('merchant', res.data[0]);
       phone = `${res.data[0].phone}`
     } else {
-      phone =  `${merchant.phone}`
+      phone = `${merchant.phone}`
     }
     wx.makePhoneCall({
       phoneNumber: phone
@@ -108,41 +107,69 @@ Page({
    * 修改留言
    */
   async onChangeMessage(event) {
-    const { id } = this.data
+    const {
+      id
+    } = this.data
     const data = {
       message: event.detail
     }
-    await API.updateOrder(id, data);    
+    await API.updateOrder(id, data);
   },
 
   /**
    * 提交订单
    */
   async onSubmit() {
+    wx.showLoading({
+      title: '提交订单',
+      mask: true
+    })
     if (!this.data.payMode) {
       this.setData({
         show: true
       })
       return false
     }
-    const { id, payMode, order } = this.data
+    const {
+      id,
+      payMode,
+      order
+    } = this.data;
     const data = {
-      active: order[0].active == 2 ? 2: 3,
+      active: order[0].active == 2 ? order[0].active : 3,
       updateTime: new Date().getTime(),
       payMode,
     }
-    const res = await API.updateOrder(id, data);
-    if (res.stats.updated == 1) {
-      Toast({
-        type: 'success',
-        message: '提交成功',
-        onClose: () => {
-          wx.reLaunch({
-            url: '../home/index',
-          })
-        }
-      });
-    }
+    // 更新库存数量
+    order[0].goods.map(async item => {
+      const res = await API.getGoodsDetail(item.id);
+      let num = 0;
+      if (res.data.num - item.count <=0 ) {
+        item.count = res.data.num;
+        num = 0;
+      } else {
+        num = res.data.num - item.count;
+      }
+      await API.editGoodsDetails(item.id, { num })
+      order[0].totalPrice += item.count * item.originPrice * 1;
+    })
+    data.goods = order[0].goods;
+    data.totalPrice =  (order[0].totalPrice * 1).toFixed(2)
+    await API.updateOrder(id, data);
+    wx.hideLoading({
+      complete: () => {
+        Toast({
+          type: 'success',
+          message: '提交成功',
+          onClose: () => {
+            wx.reLaunch({
+              url: '../home/index',
+            })
+          }
+        });
+      },
+    })
+    
   },
 
   /**
@@ -157,11 +184,20 @@ Page({
   /**
    * 选择付款方式
    */
-  seleteaPayMode(e) {
+  selectPayMode(e) {
     const payMode = e.currentTarget.dataset.pay;
     this.setData({
       payMode,
       show: false
     })
+  },
+
+  openPayMode(e) {
+    const active = e.currentTarget.dataset.active;
+    if (active == 1 || active == 2) {
+      this.setData({
+        show: true
+      })
+    }
   }
 })

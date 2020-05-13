@@ -132,7 +132,7 @@ Page({
               title: '保存成功',
               icon: 'none',
               mask: true,
-              duration: 6000,
+              duration: 4000,
               success() {
                 if (groupId) {
                   wx.reLaunch({

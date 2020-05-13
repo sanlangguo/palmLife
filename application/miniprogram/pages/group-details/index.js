@@ -113,35 +113,6 @@ Page({
         show: true,
       })
       wx.hideLoading();
-      return false
-      wx.navigateTo({
-        url: '../goods-detail/index?id=' + order.goods[0].id,
-      })
-      if (order.group && order.group.length) {
-        const isHaveJoin = order.group.find(o => o.id === userInfo.openid);
-        if (isHaveJoin && Object.keys(isHaveJoin).length) {
-          wx.showToast({
-            title: '您已经参加拼团',
-            mask: true,
-            icon: 'none',
-          })
-          return false
-        }
-      }
-      const data = {
-        id: userInfo.openid,
-        nickName: userInfo.userInfo,
-        avatarUrl: userInfo.avatarUrl,
-        roles: '团员'
-      }
-      const res = (await wx.cloud.callFunction({
-        name: 'editOrder',
-        data: {
-          id,
-          data,
-        },
-      }));
-      console.log(res, '---')
     } else {
       Dialog.confirm({
         title: '授权',
@@ -207,7 +178,21 @@ Page({
       title: '加载中',
       mask: true
     })
-    const { id, count, userInfo, order, currentPrice } = this.data;
+    const { id, count, userInfo, order, currentPrice, goods, groupGoodsCount } = this.data;
+    // 查看用户是否填写收货信息
+    if (!userInfo.name || !userInfo.phone || !userInfo.receiveCity || !userInfo.receiveDetailedAddress) {
+      wx.hideLoading();
+      Dialog.confirm({
+        title: '收货信息',
+        message: '请完善收货信息'
+      }).then(() => {
+        wx.navigateTo({
+          url: '../user-info/index?groupId=' + id,
+        })
+      }).catch(() => {});
+      return false;
+    }
+
     const data = {
       id: userInfo.openid,
       nickName: userInfo.userInfo,
@@ -218,14 +203,16 @@ Page({
     let active = 2;
     if ((order.groupPurchaseNumber - order.group.length) == 1) {
       active = 3;
-      const res = (await wx.cloud.callFunction({
+      await wx.cloud.callFunction({
         name: 'editOrder',
         data: {
           id,
           active,
           updateTime: new Date().getTime(),
         },
-      }));
+      });
+      // 更新商品库存数量
+      await API.editGoodsDetails(goods._id, {num: goods.num - (groupGoodsCount + count) <= 0 ? goods.num : goods.num - (groupGoodsCount + count)});
     }
     const res = await API.editGroupOrder(id, data);
     delete order._id;
@@ -245,7 +232,7 @@ Page({
     await API.orderTotal(order);
     if (res.stats.updated == 1) {
       wx.hideLoading({
-        complete: (res) => {
+        complete: () => {
           wx.showToast({
             title: '拼团成功',
             mask: true,
@@ -256,7 +243,6 @@ Page({
               })
             }
           })
-          
         },
       })
     }

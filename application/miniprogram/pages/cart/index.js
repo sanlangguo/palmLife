@@ -160,12 +160,12 @@ Page({
     } else {
       Dialog.confirm({
         title: '收货信息',
-        message: '收货信息不完善，请填写收货人信息'
+        message: '请完善收货信息'
       }).then(() => {
         wx.navigateTo({
           url: '../user-info/index',
         })
-      });
+      }).catch(() => {});
     }
   },
 

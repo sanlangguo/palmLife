@@ -10,7 +10,7 @@
 	</swiper>
 	<van-row>
 		<van-col span="4" custom-class="icon-box" offset="1">
-			<navigator url="{{'../goods-list/index?sort=1'}}">
+			<navigator url="{{'../group-goods-list/index'}}">
 				<van-image round width="2.4rem" height="2.4rem" src="/images/group-buy.png" />
 				<view>超值团购</view>
 			</navigator>
@@ -43,7 +43,9 @@
 	<view class="home-goods-box">
 		<block wx:if="{{groupBuy.length}}">
 			<view class="goods-tags"><b>超值团购</b><text>团购更优惠</text>
-				<p>更多超值团购></p>
+				<p>
+					<navigator url="{{'../group-goods-list/index'}}">更多超值团购></navigator>
+				</p>
 			</view>
 			<van-card wx:for="{{groupBuy}}" custom-class="recommend-goods" thumb-class="goods-img" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" price="{{item.originPrice}}" price-class="goods-originPrice" origin-price="{{item.price}}" title-class="goods-title" currency="¥" title="{{ '['+item.name + '] ' + item.unit}}" thumb="{{item.coverImg}}">
 				<view slot="tags" class="tags">

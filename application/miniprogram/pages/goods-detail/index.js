@@ -195,7 +195,6 @@ Page({
         }
       }
     } else {
-      console.log(this.data.userInfo, '--sssss--')
       Dialog.confirm({
         title: '授权',
         message: '用户信息不存在，点击确认授权'
@@ -203,7 +202,7 @@ Page({
         wx.navigateTo({
           url: '../login/index',
         })
-      });
+      }).catch(() => {});
     }
   },
 
@@ -232,7 +231,6 @@ Page({
    * 点击购买
    */
   async viewGroup(e) {
-    console.log(e)
     let {
       groupbuy
     } = e.currentTarget.dataset;
@@ -248,8 +246,10 @@ Page({
       })
     } else {
       this.setData({
+        key: 0,
         show: true,
         groupbuy,
+        count: 1,
         currentPrice: groupbuy ? goods.groupPurchasePrice : goods.originPrice,
       })
     }
@@ -268,6 +268,7 @@ Page({
       groupbuy,
       show: true,
       count: 1,
+      key: 0,
       currentPrice: groupbuy ? goods.groupPurchasePrice : goods.originPrice,
     })
   },
@@ -276,6 +277,11 @@ Page({
    * 下一步
    */
   async next() {
+    wx.showToast({
+      title: '加载中',
+      icon: 'none',
+      mask: true
+    })
     const {
       goods,
       userInfo,
@@ -287,79 +293,101 @@ Page({
       orderId,
     } = this.data;
 
+    // 查看用户是否填写收货信息
+    if (!userInfo.name || !userInfo.phone || !userInfo.receiveCity || !userInfo.receiveDetailedAddress) {
+      Dialog.confirm({
+        title: '收货信息',
+        message: '请完善收货信息'
+      }).then(() => {
+        wx.navigateTo({
+          url: '../user-info/index',
+        })
+      }).catch(() => {});
+      return false;
+    }
 
-    if (userInfo.name && userInfo.phone) {
-      wx.showToast({
-        title: '下单中',
-        icon: 'none',
-        mask: true
+    const commentGoods = {
+      id: goods._id,
+      coverImg: goods.coverImg,
+      fileId: goods.fileId,
+      desc: goods.desc,
+      name: goods.name,
+      unit: goods.norm[key].name ? goods.norm[key].name : goods.unit,
+      price: goods.originPrice,
+    };
+
+    const data = {
+      orderNumber: orderNumber(),
+      totalPrice: currentPrice * 1,
+      name: userInfo.name,
+      phone: userInfo.phone,
+      receiveCity: userInfo.receiveCity,
+      receiveDetailedAddress: userInfo.receiveDetailedAddress,
+      areaCode: userInfo.areaCode,
+      createTime: new Date().getTime(),
+      goods: [{
+        ...commentGoods,
+        count: count,
+        originPrice: groupbuy ? goods.groupPurchasePrice : goods.norm[key].price ? goods.norm[key].price : goods.price
+      }],
+    }
+    if (orderId) {
+      data.updateTime = new Date().getTime();
+      await API.updateOrder(orderId, data);
+      wx.hideLoading({
+        complete: () => {
+          wx.navigateTo({
+            url: '../order-detail/index?id=' + orderId,
+          })
+        },
       })
-      // 更新之前的订单
-      if (groupbuy) {
-        
-      } else {
-
-      }
-
-
-      const commentGoods = {
-        id: goods._id,
-        coverImg: goods.coverImg,
-        fileId: goods.fileId,
-        desc: goods.desc,
-        name: goods.name,
-        unit: goods.norm[key].name ? goods.norm[key].name : goods.unit,
-        price: goods.originPrice,
-      };
-      let group = {};
-      let active = 1;
-      if (groupbuy) {
-        const groupData = {
-          goods: {
-            ...commentGoods,
-            originPrice: goods.groupPurchasePrice
-          },
-          group: [{
-            id: userInfo.openid,
-            avatarUrl: userInfo.avatarUrl,
-            nickName: userInfo.nickName,
-            roles: '团长',
-            count: count,
-          }],
-          groupPurchaseNumber: goods.groupPurchaseNumber,
-          createTime: new Date().getTime(),
-          expireTime: goods.expireTime,
-          groupExpireTime: new Date().getTime() + 86400000
-        };
-        group = await API.addGroupOrder(groupData);
-        active = 2;
-      }
-
-      const data = {
-        orderNumber: orderNumber(),
-        active: active,
-        totalPrice: currentPrice * 1,
-        name: userInfo.name,
-        phone: userInfo.phone,
-        receiveCity: userInfo.receiveCity,
-        receiveDetailedAddress: userInfo.receiveDetailedAddress,
-        areaCode: userInfo.areaCode,
-        createTime: new Date().getTime(),
-        goods: [{
-          ...commentGoods,
-          count: count,
-          originPrice: groupbuy ? goods.groupPurchasePrice : goods.norm[key].price ? goods.norm[key].price : goods.price
-        }],
-      }
-      if (group._id) {
-        data.groupId = group._id;
-        data.group = true;
-      }
+    } else if (!groupbuy && !orderId) {
+      data.active = 1;
+      data.payMode = "货到付款";
       const res = await API.orderTotal(data);
       wx.hideLoading({
         complete: () => {
           wx.navigateTo({
-            url: '/pages/order-detail/index?id=' + res._id,
+            url: '../order-detail/index?id=' + res._id,
+          })
+        },
+      })
+    } else if (groupbuy && groupId) {
+      wx.hideLoading({
+        complete: () => {
+          wx.navigateTo({
+            url: '../group-details/index?id=' + groupId,
+          })
+        },
+      })
+    } else if (groupbuy && !groupId) {
+      const groupData = {
+        goods: {
+          ...commentGoods,
+          originPrice: goods.groupPurchasePrice
+        },
+        group: [{
+          id: userInfo.openid,
+          avatarUrl: userInfo.avatarUrl,
+          nickName: userInfo.nickName,
+          roles: '团长',
+          count: count,
+        }],
+        groupPurchaseNumber: goods.groupPurchaseNumber,
+        createTime: new Date().getTime(),
+        expireTime: goods.expireTime,
+        groupExpireTime: new Date().getTime() + 86400000
+      };
+      const res = await API.addGroupOrder(groupData);
+      data.active = 2;
+      data.groupId = res._id;
+      data.group = true;
+      data.payMode = "货到付款";
+      const addOrder = await API.orderTotal(data);
+      wx.hideLoading({
+        complete: () => {
+          wx.navigateTo({
+            url: '/pages/order-detail/index?id=' + addOrder._id,
           })
         },
       })

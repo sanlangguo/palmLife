@@ -66,6 +66,12 @@ const API = {
   async getGoodsDetail(id) {
     return await db.collection('goods-list').doc(id).get();
   },
+  // 编辑商品信息
+  async editGoodsDetails(id, data) {
+    return await db.collection('goods-list').doc(id).update({
+      data
+    });
+  },
   async getTempFileURL(fileList) {
     return await wx.cloud.getTempFileURL({
       fileList: fileList
@@ -133,8 +139,7 @@ const API = {
   },
   async getGroupOrderDetail(id) {
     return await db.collection('group').doc(id).get();
-  }
-
+  },
 };
 
 export default API;

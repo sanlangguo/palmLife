@@ -1,4 +1,5 @@
 import API from '../../api/index';
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import {
   orderNumber
 } from '../../tool.js';
@@ -95,34 +96,38 @@ Component({
      * @param { 0不删除 1 删除}
      */
     async deletOrder(e) {
-      const that = this;
-      const {
-        id
-      } = e.currentTarget.dataset;
-      if (id) {
-        await API.updateOrder(id, {
-          delete: 1
-        });
-        wx.showToast({
-          title: '删除成功',
-          icon: 'none',
-          mask: true,
-          duration: 2000,
-          success() {
-            that.setData({
-              page: 0,
-              order: [],
-            }, () => {
-              if (that.data.active == 0) {
-                that.getAllOrderList();
-              } else {
-                that.filterOrderActive(that.data.active);
-              }
-            })
-          }
-        })
-
-      }
+      Dialog.confirm({
+        title: '取消订单',
+        message: '你确定取消订单吗'
+      }).then(async() => {
+        const that = this;
+        const {
+          id
+        } = e.currentTarget.dataset;
+        if (id) {
+          await API.updateOrder(id, {
+            delete: 1
+          });
+          wx.showToast({
+            title: '删除成功',
+            icon: 'none',
+            mask: true,
+            duration: 2000,
+            success() {
+              that.setData({
+                page: 0,
+                order: [],
+              }, () => {
+                if (that.data.active == 0) {
+                  that.getAllOrderList();
+                } else {
+                  that.filterOrderActive(that.data.active);
+                }
+              })
+            }
+          })
+        }
+      }).catch(() => {});
     },
 
     /**

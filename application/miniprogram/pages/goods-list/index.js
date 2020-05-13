@@ -187,7 +187,10 @@ Page({
     const fileIds = [];
     if (res.data && res.data.length) {
       const goodList = res.data;
-      goodList.map(item => {
+      goodList.map((item, index) => {
+        if (item.num <= 0) {
+          goodList.splice(index ,1)
+        }
         fileIds.push(item.fileId)
       })
       wx.cloud.getTempFileURL({
