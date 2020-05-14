@@ -5,8 +5,14 @@ cloud.init({
 })
 const db = cloud.database();
 exports.main = async (event, context) => {
-  return await db.collection('order').where({
+  const data = {
     groupId: event.id
+  }
+  if (event.active == 5) {
+    data.active = 2;
+  }
+  return await db.collection('order').where({
+    ...data
   }).update({
     data: {
       active: event.active,

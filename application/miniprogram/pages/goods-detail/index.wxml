@@ -40,7 +40,7 @@
 		<van-cell title="商品规格" value="{{goods.norm[key].name}}" icon="cart-circle-o" data-groupbuy="false" bind:click="buyNow" is-link />
 	</van-cell-group>
 	<van-cell-group custom-class="group-buy-cell" wx:if="{{goods.groupBuy}}">
-		<view class="goup-row" wx:for="{{groupList}}">
+		<view class="goup-row" wx:for="{{groupList}}" wx:key="id">
 			<view class="img-box">
 				<van-image
 					round
@@ -49,7 +49,7 @@
 					src="{{item.group[0].avatarUrl}}"
 				/>
 			</view>
-			<view><p>还差<text>{{item.groupPurchaseNumber - item.group.length}}</text>人成团 </p><van-button round size="small" type="danger">去参团</van-button></view>
+			<view><p>还差<text>{{item.groupPurchaseNumber - item.group.length}}</text>人成团 </p><van-button round size="small" type="danger" bind:click="goJoin" data-id="{{item._id}}">去参团</van-button></view>
 		</view>
 		<van-cell title="玩法" icon="friends-o" title="开团/参团·邀请好友·满员成团 (不满不发货)" is-link url="../group-buy-introduction/index" />
 	</van-cell-group>

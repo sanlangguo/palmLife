@@ -34,12 +34,22 @@ Page({
       const order = (await API.getGroupOrderDetail(options.id)).data;
       const fileRes = await API.getTempFileURL([order.goods.fileId]);
       order.goods.coverImg = fileRes.fileList[0].tempFileURL;
-      console.log(order, '----')
       let time = 0;
       let groupGoodsCount = 0;
-      if (order.groupExpireTime - new Date().getTime() > 0) {
+      if (order.groupExpireTime - new Date().getTime() > 0 && order.expireTime - new Date().getTime() > 0) {
         time = order.groupExpireTime - new Date().getTime();
+      } else {
+        // 更新订单状态(拼团失败)
+        wx.cloud.callFunction({
+          name: 'editOrder',
+          data: {
+            id: options.id,
+            active: 5,
+            updateTime: new Date().getTime(),
+          },
+        })
       }
+
       order.group.map(item => {
         if (item.id == userInfo.openid) {
           this.setData({
@@ -246,6 +256,5 @@ Page({
         },
       })
     }
-    console.log(res, 'res')
   }
 })

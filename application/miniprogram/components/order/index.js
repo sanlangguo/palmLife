@@ -38,7 +38,6 @@ Component({
         mask: true
       })
       const count = await API.getOrderCount();
-      console.log(count, '0count')
       const batchTimes = Math.ceil(count.total / 4);
       if (this.data.page === batchTimes || count.total == 0) {
         wx.hideLoading();

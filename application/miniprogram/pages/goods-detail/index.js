@@ -6,6 +6,7 @@ import {
 Page({
 
   data: {
+    id: null,
     currentPrice: 0,
     show: false,
     goods: {},
@@ -244,6 +245,18 @@ Page({
    */
   async changeCards(data) {
     return await API.changeCards(data);
+  },
+
+  /**
+   * 去参团
+   */
+  goJoin(e) {
+    let {
+      id
+    } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: '../group-details/index?id=' + id,
+    })
   },
 
   /**
@@ -492,8 +505,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage () {
+    const {
+      goods,
+      id,
+    } = this.data;
+    return {
+      title: `${goods.name}`,
+      path: '/pages/goods-detail/index?id=' + id,
+      imageUrl: `${goods.coverImg}`,
+    }
   },
 
 })

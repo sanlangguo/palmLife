@@ -6,7 +6,7 @@
     <van-cell icon="records" title="订单" is-link data-url="order" bindtap="login" />
     <van-cell icon="shopping-cart-o" title="购物车" is-link data-url="cart" bindtap="login" />
     <van-cell icon="user-o" title="收货地址" is-link data-url="user-info" bindtap="login" />
-    <van-cell icon="user-o" title="用户订单" is-link data-url="user-info" bindtap="login" />
+    <van-cell wx:if="{{userInfo.isManager}}" icon="shop-o" title="商城管理" is-link data-url="user-info" bindtap="login" />
     <van-cell title="客服" icon="chat-o">
      <van-button type="default" size="small" open-type="contact" >联系客服</van-button>
     </van-cell>
