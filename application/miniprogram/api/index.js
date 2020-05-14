@@ -140,6 +140,13 @@ const API = {
   async getGroupOrderDetail(id) {
     return await db.collection('group').doc(id).get();
   },
+  // 查询拼团列表
+  async getGroupsList(pagination) {
+    const time = new Date().getTime()
+    return await db.collection('group').where({
+      expireTime: _.gt(time),
+    }).skip(pagination.page).limit(pagination.size).get();
+  }
 };
 
 export default API;

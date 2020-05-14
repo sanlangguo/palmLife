@@ -40,6 +40,17 @@
 		<van-cell title="商品规格" value="{{goods.norm[key].name}}" icon="cart-circle-o" data-groupbuy="false" bind:click="buyNow" is-link />
 	</van-cell-group>
 	<van-cell-group custom-class="group-buy-cell" wx:if="{{goods.groupBuy}}">
+		<view class="goup-row" wx:for="{{groupList}}">
+			<view class="img-box">
+				<van-image
+					round
+					width="2.5rem"
+					height="2.5rem"
+					src="{{item.group[0].avatarUrl}}"
+				/>
+			</view>
+			<view><p>还差<text>{{item.groupPurchaseNumber - item.group.length}}</text>人成团 </p><van-button round size="small" type="danger">去参团</van-button></view>
+		</view>
 		<van-cell title="玩法" icon="friends-o" title="开团/参团·邀请好友·满员成团 (不满不发货)" is-link url="../group-buy-introduction/index" />
 	</van-cell-group>
 	<view class="goods-title">
@@ -53,8 +64,8 @@
 			<van-goods-action-icon icon="wap-home-o" text="首页" url="../home/index" link-type="switchTab" />
 			<van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
 			<van-goods-action-icon icon="cart-o" info="{{cartLength}}" data-id="{{goods.id}}" text="购物车" url="../cart/index" link-type="switchTab" />
-			<van-goods-action-button text="单独购买" type="warning" data-groupbuy="false" bind:click="buyNow" />
-			<van-goods-action-button text="{{hasUserGroup ? '查看我的团': '开团购买'}}" data-groupbuy="true" bind:click="viewGroup" />
+			<van-goods-action-button disabled="{{!goods.num}}" text="单独购买" type="warning" data-groupbuy="false" bind:click="buyNow" />
+			<van-goods-action-button disabled="{{!goods.num}}" text="{{hasUserGroup ? '查看我的团': '开团购买'}}" data-groupbuy="true" bind:click="viewGroup" />
 		</van-goods-action>
 	</block>
 	<block wx:else>
@@ -62,8 +73,8 @@
 			<van-goods-action-icon icon="wap-home-o" text="首页" url="../home/index" link-type="switchTab" />
 			<van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
 			<van-goods-action-icon icon="cart-o" info="{{cartLength}}" data-id="{{goods.id}}" text="购物车" url="../cart/index" link-type="switchTab" />
-			<van-goods-action-button text="加入购物车" type="warning" bind:click="addCart" />
-			<van-goods-action-button text="立即购买" data-groupbuy="false" bind:click="buyNow" />
+			<van-goods-action-button disabled="{{!goods.num}}" text="加入购物车" type="warning" bind:click="addCart" />
+			<van-goods-action-button disabled="{{!goods.num}}" text="立即购买" data-groupbuy="false" bind:click="buyNow" />
 		</van-goods-action>
 	</block>
 	<!-- 选择产品 -->

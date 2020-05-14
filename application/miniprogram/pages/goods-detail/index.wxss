@@ -166,3 +166,33 @@ page {
   background-color: #fff;
   border-radius: 2px;
 }
+
+.goup-row {
+  background-color: #fff;
+  line-height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.goup-row .img-box {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  line-height: 100%;
+}
+
+.goup-row view:nth-child(2) {
+  text-align: right;
+  flex: 1;
+  padding-right: 5%;
+}
+
+.goup-row view:nth-child(2) p {
+  margin-right: 24rpx;
+}
+
+.goup-row text {
+  color: #ee0a24;
+}

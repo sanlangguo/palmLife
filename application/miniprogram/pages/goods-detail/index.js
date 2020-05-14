@@ -16,6 +16,7 @@ Page({
     groupbuy: false,
     hasUserGroup: false, // 当前团购商品是否正在开团抢购
     orderId: null,
+    groupList: [],
   },
 
   /**
@@ -80,12 +81,12 @@ Page({
     }
     if (goods.groupBuy && goods.expireTime - new Date().getTime() > 0) {
       goods.countdown = goods.expireTime - new Date().getTime();
+      this.getGroupList();
     } else {
       goods.groupBuy = false;
     }
-
+    // 查用户是否已经加入团购
     this.checkBeforeHasOrder(goods.groupBuy, id)
-
     goods.topBannerUrl = topBanner;
     goods.infoListUrl = infoList;
     goods.coverImg = (await API.getTempFileURL([goods.fileId])).fileList[0].tempFileURL;
@@ -96,6 +97,24 @@ Page({
     }, () => {
       this.getUserCartLength();
     })
+  },
+
+  /**
+   * 查看团购列表
+   */
+  async getGroupList() {
+    const res = await API.getGroupsList({size: 100, page: 0});
+    if (res.data && res.data.length) {
+      res.data.map((item, index) => {
+        if (item.group.length >= item.groupPurchaseNumber || item.groupExpireTime < new Date().getTime()) {
+          res.data.splice(index, 1);
+        }
+      })
+      this.setData({
+        groupList: res.data
+      })
+    }
+    console.log(res, '----')
   },
 
   onChange(e) {
