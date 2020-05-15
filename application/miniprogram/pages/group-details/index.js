@@ -36,7 +36,7 @@ Page({
       order.goods.coverImg = fileRes.fileList[0].tempFileURL;
       let time = 0;
       let groupGoodsCount = 0;
-      if (order.groupExpireTime - new Date().getTime() > 0 && order.expireTime - new Date().getTime() > 0) {
+      if (order.groupExpireTime - new Date().getTime() > 0 || order.expireTime - new Date().getTime() > 0) {
         time = order.groupExpireTime - new Date().getTime();
       } else {
         // 更新订单状态(拼团失败)

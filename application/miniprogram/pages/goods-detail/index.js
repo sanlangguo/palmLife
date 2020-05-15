@@ -95,6 +95,7 @@ Page({
       goods,
       currentPrice: goods.originPrice,
       show: false,
+      userInfo: wx.getStorageSync('userInfo')
     }, () => {
       this.getUserCartLength();
     })
@@ -335,6 +336,9 @@ Page({
           url: '../user-info/index',
         })
       }).catch(() => {});
+      this.setData({
+        show: false
+      })
       return false;
     }
 
