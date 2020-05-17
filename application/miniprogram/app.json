@@ -17,7 +17,8 @@
     "pages/admin/user-order/index",
     "pages/admin/goods-list/index",
     "pages/admin/goods-details/index",
-    "pages/admin/create-details/index"
+    "pages/admin/create-details/index",
+    "pages/admin/user-list/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
