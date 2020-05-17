@@ -66,3 +66,20 @@ page {
 .goods-title {
   margin-top: 20rpx;
 }
+
+.no-data-box {
+  height: 100vh;
+  width: 100%;
+  color: #ccc;
+  text-align: center;
+}
+
+.no-data-box text {
+  font-size: 28rpx;
+}
+
+.no-group-img {
+  margin-top: 37vh;
+  height: 70rpx;
+  width: 70rpx;
+}

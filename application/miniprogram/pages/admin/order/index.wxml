@@ -1,0 +1,22 @@
+<van-tabs active="{{ index }}" bind:change="switchTabs">
+  <van-tab title="全部">
+    <admin-order bindmyevent="turnPage" wx:if="{{index == 0}}" active="{{index}}" id="order" />
+  </van-tab>
+  <van-tab title="待下单">
+    <admin-order bindmyevent="turnPage" wx:if="{{index == 1}}"  active="{{index}}" id="order" />
+  </van-tab>
+  <van-tab title="待成团">
+    <admin-order bindmyevent="turnPage" wx:if="{{index == 2}}"  active="{{index}}" id="order" />
+  </van-tab>
+  <van-tab title="待发货">
+    <admin-order bindmyevent="turnPage" wx:if="{{index == 3}}"  active="{{index}}" id="order" />
+  </van-tab>
+  <van-tab title="已收货">
+    <admin-order bindmyevent="turnPage" wx:if="{{index == 4}}" active="{{index}}" id="order" />
+  </van-tab>
+  <van-tab title="拼团失败">
+    <admin-order bindmyevent="turnPage" wx:if="{{index == 5}}" active="{{index}}" id="order" />
+  </van-tab>
+</van-tabs>
+<!-- 确认弹出框 -->
+<van-dialog id="van-dialog" />

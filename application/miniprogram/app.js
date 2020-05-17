@@ -13,7 +13,7 @@ App({
       this.checkUserInfo();
     } else {
       this.globalData = {
-        userInfo: userInfo
+        userInfo
       }
     }
   },

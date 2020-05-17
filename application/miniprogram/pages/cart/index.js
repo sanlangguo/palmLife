@@ -136,6 +136,7 @@ Page({
         createTime: new Date().getTime(),
         orderNumber: orderNumber(),
         totalPrice: (totalPrice/100),
+        payMode: '货到付款',
       };
       if (checkedGoods.length === goods.length) {
         orderData.goods = goods;
@@ -211,7 +212,6 @@ Page({
       const goods = JSON.parse(JSON.stringify(this.data.cart.goods));
       if (goods.length > 1) {
         goods.splice(goods.findIndex(item => item.id == cartId), 1);
-        console.log(goods, '-- goods')
         await API.changeCards(id, {
           goods
         });

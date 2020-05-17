@@ -2,27 +2,15 @@ import API from "../../api/index.js";
 Page({
 
   /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    console.log(options, 'lo')
     if (options.id) {
       this.setData({
         id: options.id
       })
     }
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-    const res = await API.login();
+    const res = await wx.cloud.callFunction({ name: 'login'});
     const {
       openid
     } = res.result;
@@ -30,8 +18,6 @@ Page({
     if (userInfo.data && userInfo.data.length) {
       wx.setStorageSync('userInfo', userInfo.data[0]);
       this.selectSuccessCallBack();
-    } else {
-      wx.hideLoading();
     }
   },
 
@@ -57,7 +43,7 @@ Page({
       return
     }
 
-    const res = await API.login();
+    const res = await wx.cloud.callFunction({ name: 'login'});
     const that = this;
     const {
       openid

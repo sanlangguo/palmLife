@@ -24,24 +24,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    console.log(options, '------')
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
+    if (options.id) {
+      this.setData({
+        orderId: options.id
+      })
+    }
+    if (options.groupId) {
+      this.setData({
+        groupId: options.groupId
+      })
+    }
+  },
+
+  async onShow() {
     const userInfo = wx.getStorageSync('userInfo');
     if (userInfo) {
-      this.setData({
-        userInfo: wx.getStorageSync('userInfo')
-      })
-      if (options.id) {
+      if (!this.data.userInfo) {
         this.setData({
-          orderId: options.id
-        })
-      }
-      if (options.groupId) {
-        this.setData({
-          groupId: options.groupId
+          userInfo
         })
       }
     } else {
@@ -49,7 +49,9 @@ Page({
         url: '../login/index'
       })
     }
-    wx.hideLoading();
+    this.setData({
+      userInfo
+    })
   },
 
   /**
@@ -92,7 +94,6 @@ Page({
   onChange(event) {
     const userInfo = this.data.userInfo;
     userInfo[event.currentTarget.dataset.type] = event.detail;
-    console.log(userInfo, 'userInfo---')
     this.setData({
       userInfo
     })
@@ -102,14 +103,14 @@ Page({
    * 保存修改
    */
   async save() {
-    const {groupId,userInfo, orderId} = this.data;
-    const {_id, name, phone, receiveCity,receiveDetailedAddress, openid} = userInfo;
-    if (name && phone && receiveCity && receiveDetailedAddress ) {
+    const { groupId, userInfo, orderId } = this.data;
+    const { _id, name, phone, receiveCity,receiveDetailedAddress, openid } = userInfo;
+    if (name && phone && receiveCity && receiveDetailedAddress) {
       if (checkPhone(phone)) {
         Notify({ type: 'danger', message: '请输入正确的手机号', duration: 900 });
         return;
       }
-      const data = JSON.parse(JSON.stringify(this.data.userInfo))
+      const data = JSON.parse(JSON.stringify(userInfo))
       delete data._openid;
       delete data.openid;
       delete data._id;
@@ -119,8 +120,8 @@ Page({
         receiveCity,
         receiveDetailedAddress
       }
-      if (orderId) await API.updateOrder(orderId, orderData);
-      const res = await API.updateUserInfo(_id, data);
+      if (orderId) { await API.updateOrder(orderId, orderData) }
+      const res = await API.updateUserInfo(openid, data);
       if (res.stats.updated) {
         const userData = await API.getUserInfo(openid);
         if (userData.data && userData.data.length) {

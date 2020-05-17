@@ -1,6 +1,6 @@
 const cloud = require("wx-server-sdk");
 cloud.init({
-  env: cloud.DYNAMIC_CURRENT_ENV,
+  env: 'dev-o45qm',
   traceUser: true,
 })
 exports.main = async (event, context) => {
@@ -23,9 +23,4 @@ exports.main = async (event, context) => {
   } catch (e) {
     throw new Error(`数据库更新异常：${e.message}`);
   }
-  return false
-  console.log(111, 'res--------')
-  console.log(res, 'res--------')
-  
-  console.log(res, 'res')
 };

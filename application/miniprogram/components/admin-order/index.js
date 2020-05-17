@@ -37,13 +37,25 @@ Component({
         title: '加载中',
         mask: true
       })
-      const count = await API.getOrderCount();
-      const batchTimes = Math.ceil(count.total / 4);
+
+      const count = (await wx.cloud.callFunction({
+        name: 'orderProcessing',
+        data: {
+          type: 'count',
+        },
+      })).result;
+      const batchTimes = Math.ceil(count.total / 8);
       if (this.data.page === batchTimes || count.total == 0) {
         wx.hideLoading();
         return false;
       }
-      const res = await API.getAllOrderList(this.data.page * 4);
+      const res = (await wx.cloud.callFunction({
+        name: 'orderProcessing',
+        data: {
+          type: 'get',
+          page: this.data.page * 8
+        },
+      })).result;
       this.fileIdFormat(res, batchTimes);
     },
 
@@ -61,54 +73,32 @@ Component({
     },
 
     /**
-     * 再次购买
+     * 确认收货
      */
-    async buyAgainOrder(e) {
-      const {
-        id
-      } = e.currentTarget.dataset;
-      const {
-        order
-      } = this.data;
-      let data = {};
-      order.map(item => {
-        if (item._id == id) {
-          data.orderNumber = orderNumber()
-          data.active = 1;
-          data.goods = item.goods;
-          data.totalPrice = item.totalPrice;
-          data.name = item.name;
-          data.phone = item.phone;
-          data.receiveCity = item.receiveCity;
-          data.receiveDetailedAddress = item.receiveDetailedAddress;
-          data.createTime = new Date().getTime();
-        }
-      });
-      const res = await API.orderTotal(data);
-      wx.navigateTo({
-        url: '/pages/order-detail/index?id=' + res._id,
-      })
-    },
-
-    /**
-     * 删除订单
-     * @param { 0不删除 1 删除}
-     */
-    async deletOrder(e) {
+    async confirmReceipt(e) {
       Dialog.confirm({
-        title: '取消订单',
-        message: '你确定取消订单吗'
+        title: '确认送货',
+        message: '确认送货上门?'
       }).then(async() => {
         const that = this;
         const {
           id
         } = e.currentTarget.dataset;
         if (id) {
-          await API.updateOrder(id, {
-            delete: 1
+          await wx.cloud.callFunction({
+            name: 'orderProcessing',
+            data: {
+              type: 'update',
+              id,
+              data: {
+                active: 4,
+              }
+            },
+          }).catch((error) => {
+            console.log(error, 'error')
           });
           wx.showToast({
-            title: '删除成功',
+            title: '送货成功',
             icon: 'none',
             mask: true,
             duration: 2000,
@@ -143,7 +133,7 @@ Component({
         })
       } else {
         wx.navigateTo({
-          url: '/pages/order-detail/index?id=' + id,
+          url: '/pages/admin/user-order/index?id=' + id,
         })
       }
     },
@@ -157,13 +147,28 @@ Component({
         title: '加载中',
         mask: true
       })
-      const count = await API.getOrderActiveCount(active);
-      const batchTimes = Math.ceil(count.total / 4);
+      const count = (await wx.cloud.callFunction({
+        name: 'orderProcessing',
+        data: {
+          type: 'filterCount',
+          active
+        },
+      })).result;
+
+      const batchTimes = Math.ceil(count.total / 8);
       if (this.data.page === batchTimes || count.total == 0) {
         wx.hideLoading();
         return false;
       }
-      const res = await API.filterOrder(active, this.data.page * 4);
+      const res = (await wx.cloud.callFunction({
+        name: 'orderProcessing',
+        data: {
+          type: 'filter',
+          page: this.data.page * 8,
+          active,
+        },
+      })).result;
+
       this.fileIdFormat(res, batchTimes);
     },
 

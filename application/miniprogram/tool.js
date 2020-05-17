@@ -23,3 +23,14 @@ export function orderNumber() {
   const milliseconds = date.getMilliseconds();
   return `E${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
 }
+
+export function formatTime(time) {
+  const date = new Date(time);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day= date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  return `${year}年${month}月${day}日${hours}时${minutes}分${seconds}秒`;
+}

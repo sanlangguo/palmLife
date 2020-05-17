@@ -5,11 +5,6 @@ wx.cloud.init({
   traceUser: true,
 })
 const API = {
-  async login() {
-    return await wx.cloud.callFunction({
-      name: 'login'
-    });
-  },
   async getUserInfo(_openid) {
     return await db.collection('user').where({
       _openid
@@ -20,8 +15,10 @@ const API = {
       data
     });
   },
-  async updateUserInfo(uid, data) {
-    return await db.collection('user').doc(uid).update({
+  async updateUserInfo(openid, data) {
+    return await db.collection('user').where({
+      openid
+    }).update({
       data
     });
   },
@@ -141,10 +138,11 @@ const API = {
     return await db.collection('group').doc(id).get();
   },
   // 查询拼团列表
-  async getGroupsList(pagination) {
+  async getGroupsList(id, pagination) {
     const time = new Date().getTime()
     return await db.collection('group').where({
       expireTime: _.gt(time),
+      'goods.id': id,
     }).skip(pagination.page).limit(pagination.size).get();
   }
 };

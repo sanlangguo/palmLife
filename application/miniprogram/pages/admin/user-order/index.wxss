@@ -1,0 +1,47 @@
+page {
+    background-color: #f0f4f5;
+    margin-bottom: 100rpx;
+  }
+  
+  .steps-box {
+    margin-top: 12rpx;
+    margin-bottom: 12rpx;
+  }
+  
+  .value-phone {
+    color: #323233 !important;
+  }
+  
+  .value-total-price {
+    color: #ee0a24 !important;
+  }
+  
+  .van-cell-label {
+    flex: 2 !important;
+  }
+  
+  .panel-header {
+    margin-top: 12rpx;
+  }
+  
+  .panel-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 6rpx;
+  }
+  
+  .van-col--12 {
+    text-align: center;
+  }
+  
+  .selete-pay {
+    text-align: center;
+    line-height: 90rpx;
+    color: #07c160;
+    font-size: 28rpx;
+  }
+  
+  .tags {
+    color: #ccc;
+    font-size: 22rpx;
+  }

@@ -120,6 +120,27 @@
 					"pathName": "pages/group-goods-list/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "后台管理首页",
+					"pathName": "pages/admin/home/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "后台订单管理",
+					"pathName": "pages/admin/order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "后台管理用户订单详情",
+					"pathName": "pages/admin/user-order/index",
+					"query": "id=aa9f906d5ec003e500eaa3810a9ff91b",
+					"scene": null
 				}
 			]
 		}

@@ -82,7 +82,7 @@ Page({
     }
     if (goods.groupBuy && goods.expireTime - new Date().getTime() > 0) {
       goods.countdown = goods.expireTime - new Date().getTime();
-      this.getGroupList();
+      this.getGroupList(id);
     } else {
       goods.groupBuy = false;
     }
@@ -104,8 +104,8 @@ Page({
   /**
    * 查看团购列表
    */
-  async getGroupList() {
-    const res = await API.getGroupsList({size: 100, page: 0});
+  async getGroupList(id) {
+    const res = await API.getGroupsList(id, {size: 100, page: 0});
     if (res.data && res.data.length) {
       res.data.map((item, index) => {
         if (item.group.length >= item.groupPurchaseNumber || item.groupExpireTime < new Date().getTime()) {
@@ -116,7 +116,6 @@ Page({
         groupList: res.data
       })
     }
-    console.log(res, '----')
   },
 
   onChange(e) {
@@ -367,7 +366,8 @@ Page({
         originPrice: groupbuy ? goods.groupPurchasePrice : goods.norm[key].price ? goods.norm[key].price : goods.price
       }],
     }
-    if (orderId) {
+
+    if (!groupbuy && orderId) {
       data.updateTime = new Date().getTime();
       await API.updateOrder(orderId, data);
       wx.hideLoading({

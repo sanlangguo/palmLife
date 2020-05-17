@@ -9,16 +9,6 @@ Page({
     order: [],
     show: false,
     payMode: '',
-    steps: [{
-        text: '发起拼团',
-      },
-      {
-        text: '邀请好友拼团',
-      },
-      {
-        text: '拼团成功',
-      }
-    ],
   },
 
   /**
@@ -73,7 +63,6 @@ Page({
           item.totalPrice = goods.count * goods.originPrice;
         })
       })
-      console.log(res.data, 'order data')
       this.setData({
         order: res.data,
         payMode: res.data[0].payMode
@@ -86,7 +75,7 @@ Page({
   },
 
   /**
-   * 播放商户电话
+   * 拨打商户电话
    */
   async makePhoneCall() {
     const res = await API.getMerchantInfo();
@@ -128,6 +117,7 @@ Page({
       this.setData({
         show: true
       })
+      wx.hideLoading();
       return false
     }
     const {

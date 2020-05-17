@@ -48,7 +48,7 @@
 }
 
 .recommend-goods {
-  box-shadow: 2rpx 10rpx 10rpx 0rpx #ccc;
+  box-shadow: 2rpx 5rpx 10rpx 0rpx #ccc;
   width: 96%;
   margin-left: 2%;
   margin-bottom: 20rpx;

@@ -21,7 +21,7 @@ Page({
         userInfo
       })
     } else {
-      const res = await API.login();
+      const res = await wx.cloud.callFunction({ name: 'login'});
       const {
         openid
       } = res.result;
