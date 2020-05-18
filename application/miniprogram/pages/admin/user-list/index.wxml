@@ -1,2 +1,6 @@
-<!--pages/admin/user-list/index.wxml-->
-<text>pages/admin/user-list/index.wxml</text>
+<van-cell wx:key="id" wx:for="{{user}}" use-label-slot title="{{item.nickName}}" value="查看" is-link>
+	<view slot="label">
+  	<image class="avatar" src="{{item.avatarUrl}}"></image>
+		<view><text>{{item.createTime}}</text></view>
+	</view>
+</van-cell>

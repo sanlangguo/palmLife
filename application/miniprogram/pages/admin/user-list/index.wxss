@@ -1,1 +1,5 @@
-/* pages/admin/user-list/index.wxss */
+.avatar {
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 50%;
+}

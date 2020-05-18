@@ -24,6 +24,9 @@ export function orderNumber() {
   return `E${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
 }
 
+/**
+ * 时间戳格式时间
+ */
 export function formatTime(time) {
   const date = new Date(time);
   const year = date.getFullYear();
