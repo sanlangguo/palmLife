@@ -20,12 +20,14 @@ exports.main = async (event, context) => {
         active: _.eq(event.active)
       }).skip(event.page).limit(8).get();
     case 'user-order':
-      return await db.collection("user").aggregate().lookup({
+      return await db.collection("user").aggregate().match({
+        _openid: event.openid
+      }).lookup({
         from: 'order',
         localField: '_openid',
         foreignField: '_openid',
         as: 'orderList',
-      }).get();
+      }).end();
     default: break;
   }
   

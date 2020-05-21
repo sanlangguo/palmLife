@@ -1,4 +1,3 @@
-import { formatTime } from '../../../tool.js'
 Page({
 
   /**
@@ -23,7 +22,6 @@ Page({
     }, () => {
       this.getUserList();
     })
-    console.log(count)
   },
 
   async getUserList() {
@@ -35,14 +33,15 @@ Page({
       },
     })).result;
     if (res.data && res.data.length) {
-      res.data.map(item => {
-        item.createTime = item.createTime ? formatTime(item.createTime): "无时间";
-      })
       this.setData({
         user: this.data.user.concat(res.data)
       })
+    } else {
+      wx.showToast({
+        title: '暂无更多数据',
+        mask: true
+      })
     }
-    console.log(res, 'res')
   },
   /**
    * 上拉刷新

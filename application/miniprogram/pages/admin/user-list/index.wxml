@@ -1,6 +1,5 @@
-<van-cell wx:key="id" wx:for="{{user}}" use-label-slot title="{{item.nickName}}" value="查看" is-link>
+<van-cell wx:key="id" wx:for="{{user}}" use-label-slot title="{{item.nickName}}" value="查看详情" is-link url="{{'../user-details/index?id=' + item._openid}}">
 	<view slot="label">
   	<image class="avatar" src="{{item.avatarUrl}}"></image>
-		<view><text>{{item.createTime}}</text></view>
 	</view>
 </van-cell>

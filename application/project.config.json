@@ -146,6 +146,12 @@
 					"pathName": "pages/admin/user-list/index",
 					"query": "id=aa9f906d5ec003e500eaa3810a9ff91b",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索用户订单",
+					"pathName": "pages/admin/search-order/index",
+					"scene": null
 				}
 			]
 		}

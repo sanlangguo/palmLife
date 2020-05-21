@@ -1,0 +1,7 @@
+<van-cell-group>
+  <van-cell title="姓名" value="{{user.name ? user.name : user.nickName}}" />
+  <van-cell title="手机号" value="{{user.phone ? user.phone : '无' }}" />
+  <van-cell title="送货地址" value="{{user.receiveDetailedAddress ? user.receiveDetailedAddress : '无' }}" />
+  <van-cell title="历史订单" value="{{user.orderNumber}}" />
+  <van-cell title="注册时间" value="{{user.createTime}}" />
+</van-cell-group>

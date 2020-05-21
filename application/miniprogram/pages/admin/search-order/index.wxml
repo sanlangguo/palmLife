@@ -1,0 +1,25 @@
+<van-search
+  value="{{ value }}"
+  placeholder="请输入搜索关键词"
+  show-action
+  bind:search="onSearch"
+  bind:cancel="onCancel"
+/>
+
+<!-- 确认弹出框 -->
+<van-dialog id="van-dialog" />
+<block wx:if="{{order.length}}">
+	<van-panel footer-class="panel-footer" header-class="panel-header" title="社区商城" desc="{{'订单号：' + item.orderNumber}}" status="{{item.status}}" wx:for="{{order}}" wx:key="_id" use-footer-slot>
+		<van-card wx:for="{{item.goods}}" wx:key="index" num="{{item.count}}" price="{{item.originPrice}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{item.coverImg}}">
+			<view slot="tags" class="tags">
+				<van-tag wx:if="{{order[index].group}}" type="danger">拼团</van-tag>
+				<view wx:else>{{item.unit}}</view>
+			</view>
+		</van-card>
+		<van-cell title="合计" value-class="value-total-price" value="{{'¥'+ item.totalPrice}}" />
+		<view slot="footer">
+		<van-button wx:if="{{item.active == 3}}" size="small" plain hairline custom-class="btn-style" data-id="{{item._id}}" data-groupid="{{item.groupId}}" bind:click="confirmReceipt">确认送货</van-button>
+			<van-button size="small" plain hairline custom-class="btn-style" data-id="{{item._id}}" data-groupid="{{item.groupId}}" bind:click="viewOrderDetails">查看{{item.active == 2 ? '拼团': ''}}详情</van-button>
+		</view>
+	</van-panel>
+</block>

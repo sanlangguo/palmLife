@@ -1,8 +1,5 @@
 import API from '../../api/index';
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
-import {
-  orderNumber
-} from '../../tool.js';
 Component({
   properties: {
     active: {
