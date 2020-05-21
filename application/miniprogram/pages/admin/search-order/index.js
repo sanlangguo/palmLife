@@ -7,6 +7,7 @@ Page({
   data: {
     order: [],
   },
+
   /**
    * 确认搜索
    */
@@ -22,6 +23,7 @@ Page({
       this.fileIdFormat(res)
     }
   },
+
   /**
    * 图片地址渲染
    */

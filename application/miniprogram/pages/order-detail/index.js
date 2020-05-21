@@ -1,5 +1,6 @@
 import API from '../../api/index';
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+import { formatTime } from '../../tool.js'
 Page({
 
   /**
@@ -60,8 +61,9 @@ Page({
           const data = [goods.fileId];
           const fileRes = await API.getTempFileURL(data);
           goods.coverImg = fileRes.fileList[0].tempFileURL;
-          item.totalPrice = goods.count * goods.originPrice;
         })
+        item.createTime = formatTime(item.createTime);
+        item.updateTime = item.updateTime ? formatTime(item.updateTime): null;
       })
       this.setData({
         order: res.data,
@@ -141,10 +143,9 @@ Page({
         num = res.data.num - item.count;
       }
       await API.editGoodsDetails(item.id, { num })
-      order[0].totalPrice += item.count * item.originPrice * 1;
     })
     data.goods = order[0].goods;
-    data.totalPrice =  (order[0].totalPrice * 1).toFixed(2)
+    data.totalPrice =  order[0].totalPrice;
     await API.updateOrder(id, data);
     wx.hideLoading({
       complete: () => {
@@ -159,7 +160,6 @@ Page({
         });
       },
     })
-    
   },
 
   /**
@@ -189,5 +189,14 @@ Page({
         show: true
       })
     }
+  },
+
+  /**
+   * 拷贝订单号
+   */
+  copyOrderNumber() {
+    wx.setClipboardData({
+      data: this.data.order[0].orderNumber
+    })
   }
 })

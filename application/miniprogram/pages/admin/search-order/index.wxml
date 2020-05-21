@@ -3,7 +3,6 @@
   placeholder="请输入搜索关键词"
   show-action
   bind:search="onSearch"
-  bind:cancel="onCancel"
 />
 
 <!-- 确认弹出框 -->
@@ -22,4 +21,9 @@
 			<van-button size="small" plain hairline custom-class="btn-style" data-id="{{item._id}}" data-groupid="{{item.groupId}}" bind:click="viewOrderDetails">查看{{item.active == 2 ? '拼团': ''}}详情</van-button>
 		</view>
 	</van-panel>
+</block>
+<block wx:else>
+	<view class="no-order">
+		暂无用户订单
+	</view>
 </block>

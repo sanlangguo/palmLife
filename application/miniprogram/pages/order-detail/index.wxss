@@ -45,3 +45,13 @@ page {
   color: #ccc;
   font-size: 22rpx;
 }
+
+.cell-order-box {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.row-text{
+  font-size: 24rpx;
+  text-align: left;
+}
