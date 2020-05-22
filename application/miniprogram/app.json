@@ -20,7 +20,8 @@
     "pages/admin/create-details/index",
     "pages/admin/user-list/index",
     "pages/admin/user-details/index",
-    "pages/admin/search-order/index"
+    "pages/admin/search-order/index",
+    "pages/admin/income-count/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

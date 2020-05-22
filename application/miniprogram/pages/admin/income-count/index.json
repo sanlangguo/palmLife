@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "收益统计",
+  "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-calendar": "@vant/weapp/calendar/index"
+  }
+}

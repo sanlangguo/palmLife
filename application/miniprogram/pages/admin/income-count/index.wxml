@@ -1,0 +1,16 @@
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="日汇总">
+    <van-cell title="选择月份" value="{{ date }}" bind:click="onDisplay" />
+    <view class="statistics-cell">
+      <van-cell title="2020-05-12" value="1笔" size="small" label="收入：500.888" />
+    </view> 
+  </van-tab>
+  <van-tab title="月汇总">
+    <van-cell title="选择年份" value="{{ date }}" bind:click="onDisplay" />
+    <view class="statistics-cell">
+      <van-cell title="单元格" value="内容" size="small" />
+    </view> 
+  </van-tab>
+</van-tabs>
+
+<van-calendar show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" type="single" />

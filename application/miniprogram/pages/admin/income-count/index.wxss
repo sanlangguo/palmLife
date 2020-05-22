@@ -1,0 +1,8 @@
+page {
+  background-color: #f0f4f5;
+}
+
+.statistics-cell {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
