@@ -5,6 +5,11 @@ cloud.init({
 })
 const db = cloud.database();
 exports.main = async (event, context) => {
+  switch (event.type) {
+    case 'delete': 
+      return await db.collection('goods-list').doc(event.id).remove();
+  }
+
   return await db
     .collection("goods-list")
     .where({

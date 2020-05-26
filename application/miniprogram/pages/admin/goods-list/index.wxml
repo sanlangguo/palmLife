@@ -1,2 +1,18 @@
-<!--pages/admin/goods-list/index.wxml-->
-<text>pages/admin/goods-list/index.wxml</text>
+<view class="pages">
+	<van-sidebar active-key="{{ sort }}" bind:change="switchSort">
+		<van-sidebar-item title="精挑惠选" />
+		<van-sidebar-item title="精品卤菜" />
+		<van-sidebar-item title="美食生鲜" />
+		<van-sidebar-item title="居家好物" />
+	</van-sidebar>
+	<view class="card">
+		<van-card wx:for="{{goodList}}" wx:key="_id" thumb-link="{{'../goods-detail/index?id='+item._id}}" lazy-load="true" tag="{{item.tag}}" price="{{item.originPrice}}" origin-price="{{item.price}}" desc="{{item.unit}}" currency="¥" title="{{item.name}}" thumb="{{item.coverImg}}">
+			<view slot="footer" class="van-card__footer">
+				<van-button size="mini" bind:click="delete" data-id="{{item._id}}" type="danger" custom-class='button'>删除</van-button>
+			</view>
+		</van-card>
+	</view>
+
+</view>
+<!-- 弹出框确认 -->
+<van-dialog id="van-dialog" />

@@ -34,6 +34,11 @@ exports.main = async (event, context) => {
       }).skip(event.page).limit(8).get();
     case 'number': 
       return await db.collection("order").where({orderNumber: event.orderNumber}).get();
+    case 'time': 
+      return await db.collection("order").where({
+        active: 4,
+        createTime: _.gte(event.startTime).and(_.lte(event.endTime))
+      }).get();
     default: break;
   }
   

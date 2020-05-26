@@ -155,9 +155,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "收益统计",
-					"pathName": "pages/admin/income-count/index",
+					"id": 13,
+					"name": "后台商品首页",
+					"pathName": "pages/admin/goods-list/index",
 					"query": "",
 					"scene": null
 				}

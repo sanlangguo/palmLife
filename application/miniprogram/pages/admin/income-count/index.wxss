@@ -6,3 +6,11 @@ page {
   margin-top: 20rpx;
   margin-bottom: 20rpx;
 }
+
+.no-order {
+  font-size: 30rpx;
+  margin-top: 100rpx;
+  width: 100%;
+  text-align: center;
+  color: var(--tab-text-color, #646566);
+}
