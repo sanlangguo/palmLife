@@ -8,16 +8,7 @@ exports.main = async (event, context) => {
   switch (event.type) {
     case 'delete': 
       return await db.collection('goods-list').doc(event.id).remove();
+    case 'add': 
+      return await db.collection('goods-list').add({data: event.data});
   }
-
-  return await db
-    .collection("goods-list")
-    .where({
-      _id: event.id,
-    })
-    .update({
-      data: {
-        num: event.num
-      },
-    });
 };

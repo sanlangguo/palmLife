@@ -494,15 +494,7 @@ Page({
    * 活动结束时触发
    */
   async activityEnds() {
-    await wx.cloud.callFunction({
-      name: 'editGoods',
-      data: {
-        _id: this.data.goods._id,
-        data: {
-          groupBuy: false
-        },
-      },
-    })
+    await API.editGoodsDetails(this.data.goods._id, {groupBuy: false});
   },
 
 
