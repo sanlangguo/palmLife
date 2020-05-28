@@ -4,6 +4,6 @@
     <van-cell icon="records" title="订单列表" is-link url="/pages/admin/order/index" />
     <van-cell icon="search" title="订单号查询" is-link url="/pages/admin/search-order/index" />
     <van-cell icon="refund-o" title="收益统计" is-link url="/pages/admin/income-count/index" /> 
-    <van-cell icon="shop-o" title="商品管理" is-link data-url="/pages/admin/goods-list/index" bindtap="login" />
+    <van-cell icon="shop-o" title="商品管理" is-link url="/pages/admin/goods-list/index" />
   </van-cell-group>
 </view>

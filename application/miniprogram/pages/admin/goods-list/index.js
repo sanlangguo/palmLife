@@ -1,5 +1,5 @@
 import API from '../../../api/index';
-import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
 
   /**
@@ -70,113 +70,32 @@ Page({
    */
   async delete(e) {
     const gid = e.currentTarget.dataset.id;
+    const that = this;
     Dialog.confirm({
       title: '删除',
       message: '是否要删除该商品?'
-    }).then(() => {
-      console.log(gid, 'gid')
-    }).catch(() => {});
-    return false;
-    const userInfo = wx.getStorageSync('userInfo');
-    if (userInfo && userInfo.openid) {
-      const card = await this.getUserCardList(userInfo.openid);
-      let data = {};
-      if (card.data && card.data.length) {
-        const data = JSON.parse(JSON.stringify(card.data[0]));
-        delete data._openid;
-        delete data.openid;
-        delete data._id;
-        const goods = data.goods;
-        if (goods.length >= 20) {
-          wx.showToast({
-            title: '购物车已经加满啦',
-            icon: 'none',
-            mask: true
-          })
-        } else {
-          const ids = [];
-          goods.map((item) => {
-            ids.push(item.id)
-          });
-          if (ids.includes(gid)) {
-            goods.map((item) => {
-              if (item.id == gid) {
-                item.count += 1;
-              }
-            });
-          } else {
-            goods.push({
-              id: gid,
-              count: 1
-            })
-          }
-          const changeCards = await API.changeCards(card.data[0]._id, data);
-          if (changeCards.stats.updated == 1) {
-            wx.showToast({
-              title: '添加成功',
-              icon: 'none',
-              mask: true
-            })
-          } else {
-            wx.showToast({
-              title: '添加失败请重新添加',
-              icon: 'none',
-              mask: true
-            })
-          }
-        }
-      } else {
-        data.openid = userInfo.openid;
-        data.goods = [{
+    }).then(async () => {
+      const res = (await wx.cloud.callFunction({
+        name: 'editGoods',
+        data: {
+          type: 'delete',
           id: gid,
-          count: 1
-        }];
-        const addGoods = await this.addGoods(data);
-        if (addGoods._id) {
-          wx.showToast({
-            title: '添加成功',
-            icon: 'none',
-            mask: true
-          })
-        } else {
-          wx.showToast({
-            title: '添加失败请重新添加',
-            icon: 'none',
-            mask: true
-          })
-        }
-      }
-    } else {
-      Dialog.confirm({
-        title: '授权',
-        message: '用户信息不存在，点击确认授权'
-      }).then(() => {
-        wx.navigateTo({
-          url: '../login/index',
+        },
+      })).result;
+      if (res.stats && res.stats.removed) {
+        wx.showToast({
+          title: '删除成功',
+          mask: true,
         })
-      });
-    }
-  },
-
-  /**
-   * 用户第一次添加购物车
-   */
-  async addGoods(data) {
-    return await API.addCards(data);
-  },
-
-  /**
-   * 用户添加多个商品添加购物车
-   */
-  async changeCards(data) {
-    return await API.changeCards(data);
-  },
-
-  /**
-   * 查询用户购物车
-   */
-  async getUserCardList(openid) {
-    return await API.getCardList(openid);
+      } else {
+        wx.showToast({
+          title: '删除失败，请重试！',
+          mask: true,
+          icon: 'none'
+        })
+      }
+      that.getGoodsList();
+    }).catch(() => {});
   },
 
   /**
@@ -188,6 +107,7 @@ Page({
       mask: true
     })
     if (this.data.page !=0 && this.data.page === this.data.batchTimes) {
+      wx.hideLoading();
       return false;
     }
     const res = await API.filterBySortGoodsList(parseInt(this.data.sort), this.data.page * 6);
@@ -233,13 +153,5 @@ Page({
     }, () => {
       this.pagination(detail)
     })
-  },
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
 })
