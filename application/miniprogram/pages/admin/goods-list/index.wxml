@@ -4,6 +4,7 @@
 		<van-sidebar-item title="精品卤菜" />
 		<van-sidebar-item title="美食生鲜" />
 		<van-sidebar-item title="居家好物" />
+		<van-button plain type="primary" size="large">新增</van-button>
 	</van-sidebar>
 	<view class="card">
 		<van-card wx:for="{{goodList}}" wx:key="_id" thumb-link="{{'../goods-details/index?id='+item._id}}" lazy-load="true" tag="{{item.tag}}" price="{{item.originPrice}}" origin-price="{{item.price}}" desc="{{item.unit}}" currency="¥" title="{{item.name}}" thumb="{{item.coverImg}}">
@@ -12,7 +13,6 @@
 			</view>
 		</van-card>
 	</view>
-
 </view>
 <!-- 弹出框确认 -->
 <van-dialog id="van-dialog" />

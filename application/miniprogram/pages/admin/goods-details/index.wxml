@@ -37,6 +37,9 @@
 		<van-cell title="库存数量" value="{{ goods.num ? ('剩余'+ goods.num) : '剩余0'}}" icon="eye-o" />
 	</van-cell-group>
 	<van-cell-group custom-class="cell-group">
+		<van-cell title="促销标签" value="{{ goods.tag ? goods.tag : ''}}" icon="volume-o" />
+	</van-cell-group>
+	<van-cell-group custom-class="cell-group">
 		<van-cell title="商品规格" value="{{goods.norm[key].name}}" icon="cart-circle-o" data-groupbuy="false" bind:click="buyNow" is-link />
 	</van-cell-group>
 	<van-cell-group custom-class="group-buy-cell" wx:if="{{goods.groupBuy}}">
