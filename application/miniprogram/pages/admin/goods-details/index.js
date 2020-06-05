@@ -140,6 +140,8 @@ Page({
    * 添加购物车
    */
   async addCart(e) {
+    
+    return false;
     const gid = this.data.goods._id;
     if (Object.keys(this.data.userInfo).length) {
       const {
